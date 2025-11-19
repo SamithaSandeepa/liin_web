@@ -4,6 +4,11 @@ export interface ApproachCard {
   img: string;
   title: string;
   desc: string;
+  fullDetails?: {
+    overview: string;
+    keyPoints: string[];
+    impact: string;
+  };
 }
 
 export interface SDGImage {

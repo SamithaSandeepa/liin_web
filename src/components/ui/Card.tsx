@@ -1,5 +1,6 @@
 'use client'; // Needed for onClick handler
 
+import Image from 'next/image';
 import Button from './Button';
 
 interface CardProps {
@@ -25,12 +26,14 @@ export default function Card({
 
   return (
     <article className={`animate-on-scroll ${cardStyles} rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300`}>
-      <img
-        src={image}
-        alt={title}
-        className="w-full h-48 object-cover"
-        loading="lazy"
-      />
+      <div className="relative w-full h-48">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover"
+        />
+      </div>
       <div className="p-6">
         <h3 className="text-2xl font-bold mb-4">{title}</h3>
         <p className="text-sm mb-6 leading-relaxed opacity-90">{description}</p>
