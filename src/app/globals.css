@@ -1,26 +1,101 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==================== TAILWIND V4 THEME CONFIGURATION ==================== */
+
+@theme {
+  /* LIIN Primary Brand Colors */
+  --color-primary: #428ac9;
+  --color-primary-light: #4bb8f0;
+  --color-primary-dark: #1d8bc9;
+
+  /* Primary Color Scale (50-950) */
+  --color-primary-50: #e6f7fe;
+  --color-primary-100: #cceefd;
+  --color-primary-200: #99ddfb;
+  --color-primary-300: #66ccf9;
+  --color-primary-400: #33bbf7;
+  --color-primary-500: #27a6ec;
+  --color-primary-600: #1f85bd;
+  --color-primary-700: #17648e;
+  --color-primary-800: #0f435e;
+  --color-primary-900: #08222f;
+  --color-primary-950: #041119;
+
+  /* LIIN Secondary Colors */
+  --color-secondary: #1e3a5f;
+  --color-secondary-light: #2c5282;
+  --color-secondary-dark: #0a4d7a;
+
+  /* Secondary Color Scale (50-950) */
+  --color-secondary-50: #e8edf4;
+  --color-secondary-100: #d1dbe9;
+  --color-secondary-200: #a3b7d3;
+  --color-secondary-300: #7593bd;
+  --color-secondary-400: #476fa7;
+  --color-secondary-500: #1e3a5f;
+  --color-secondary-600: #182e4c;
+  --color-secondary-700: #122339;
+  --color-secondary-800: #0c1726;
+  --color-secondary-900: #060c13;
+  --color-secondary-950: #03060a;
+
+  /* Accent Colors */
+  --color-accent: #f59e0b;
+  --color-accent-light: #fbbf24;
+  --color-accent-dark: #d97706;
+
+  /* Fonts */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: Georgia, serif;
+
+  /* Custom Shadows */
+  --shadow-primary: 0 10px 30px rgb(39 166 236 / 0.3);
+  --shadow-primary-lg: 0 20px 40px rgb(39 166 236 / 0.4);
+  --shadow-soft: 0 2px 15px rgb(0 0 0 / 0.05);
+  --shadow-medium: 0 5px 20px rgb(0 0 0 / 0.1);
+  --shadow-hard: 0 10px 30px rgb(0 0 0 / 0.15);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Custom component classes can be added here */
+
+  /* Animate on Scroll */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  /* Custom utility classes can be added here */
+
+  .text-shadow-sm {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+  }
 }
