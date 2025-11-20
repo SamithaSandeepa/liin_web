@@ -5,6 +5,22 @@ interface SocialLink {
   ariaLabel: string;
 }
 
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+const navItems: NavItem[] = [
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
+  { label: "On Eagle's Wings", href: '#eagles-wings' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Investments', href: '#investments' },
+  { label: 'Impact Funds', href: '#impact' },
+  { label: 'Our Partners', href: '#partners' },
+  { label: 'News', href: '#news' },
+];
+
 const socialLinks: SocialLink[] = [
   { name: 'Facebook', icon: 'f', href: 'https://facebook.com/liin', ariaLabel: 'Visit LIIN on Facebook' },
   { name: 'LinkedIn', icon: 'in', href: 'https://linkedin.com/company/liin', ariaLabel: 'Visit LIIN on LinkedIn' },
@@ -15,41 +31,82 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="bg-primary text-white py-12 px-6">
-      <div className="container mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
-          {/* Address */}
-          <div>
-            <h3 className="font-bold mb-3 text-base">📍 Address</h3>
-            <address className="text-sm opacity-90 not-italic">
-              123 Galle Road<br />
-              Colombo 03, Sri Lanka
-            </address>
-          </div>
+    <footer id="contact" className="bg-primary text-white">
+      <div className="container mx-auto max-w-6xl px-6">
+        <div className="flex flex-col lg:flex-row">
+          {/* Left Side - Main Content */}
+          <div className="flex-1">
+            {/* Top Row - Navigation, Address & Contact */}
+            <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+              {/* Quick Links */}
+              <div>
+                <h3 className="font-bold mb-3 text-base">Quick Links</h3>
+                <nav className="flex flex-col gap-2">
+                  {navItems.slice(0, 4).map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className="text-sm opacity-90 hover:opacity-100 transition-opacity"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </nav>
+              </div>
 
-          {/* Contact */}
-          <div>
-            <h3 className="font-bold mb-3 text-base">📞 Contact</h3>
-            <div className="text-sm opacity-90">
-              <a href="tel:+94771234567" className="hover:opacity-100 transition-opacity">
-                +94 77 123 4567
-              </a>
-              <br />
-              <a href="mailto:info@liin.lk" className="hover:opacity-100 transition-opacity">
-                info@liin.lk
-              </a>
+              {/* Address */}
+              <div>
+                <h3 className="font-bold mb-3 text-base">Address</h3>
+                <address className="text-sm opacity-90 not-italic">
+                  123 Galle Road<br />
+                  Colombo 03, Sri Lanka
+                </address>
+              </div>
+
+              {/* Contact */}
+              <div>
+                <h3 className="font-bold mb-3 text-base">Contact</h3>
+                <div className="text-sm opacity-90">
+                  <a href="tel:+94771234567" className="hover:opacity-100 transition-opacity">
+                    +94 77 123 4567
+                  </a>
+                  <br />
+                  <a href="mailto:info@liin.lk" className="hover:opacity-100 transition-opacity">
+                    info@liin.lk
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Divider Line */}
+            <div className="w-full border-t border-white/30" />
+
+            {/* Bottom Row - Copyright & Policies */}
+            <div className="py-4 flex flex-col md:flex-row justify-between items-center gap-4 text-xs opacity-70">
+              <p>© {currentYear} Lanka Impact Investing Network. All rights reserved.</p>
+              <div className="flex gap-6">
+                <a href="/privacy" className="hover:opacity-100 transition-opacity">
+                  Privacy Policy
+                </a>
+                <a href="/terms" className="hover:opacity-100 transition-opacity">
+                  Terms of Service
+                </a>
+                <a href="/cookies" className="hover:opacity-100 transition-opacity">
+                  Cookie Policy
+                </a>
+              </div>
             </div>
           </div>
 
-          {/* Social Media */}
-          <div>
-            <h3 className="font-bold mb-3 text-base">🌐 Follow Us</h3>
-            <div className="flex gap-4 justify-center md:justify-start">
+          {/* Right Side - Social Media (Spans Both Rows) */}
+          <div className="hidden lg:flex flex-col items-center justify-center gap-3 pl-12">
+            <h3 className="font-bold text-xs mb-1">Follow Us</h3>
+            <div className="flex flex-col gap-2">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.href}
-                  className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary font-bold hover:scale-110 transition-transform"
+                  className="w-8 h-8 bg-white rounded-md flex items-center justify-center text-primary text-xs font-bold hover:scale-110 transition-transform"
                   aria-label={social.ariaLabel}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -59,12 +116,24 @@ export default function Footer() {
               ))}
             </div>
           </div>
+        </div>
 
-          {/* Copyright */}
-          <div>
-            <p className="text-xs opacity-70 mt-4">
-              © {currentYear} Lanka Impact Investing Network. All rights reserved.
-            </p>
+        {/* Mobile Social Icons */}
+        <div className="lg:hidden py-6 flex flex-col items-center gap-3 border-t border-white/30">
+          <h3 className="font-bold text-xs">Follow Us</h3>
+          <div className="flex gap-2">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                className="w-8 h-8 bg-white rounded-md flex items-center justify-center text-primary text-xs font-bold hover:scale-110 transition-transform"
+                aria-label={social.ariaLabel}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {social.icon}
+              </a>
+            ))}
           </div>
         </div>
       </div>

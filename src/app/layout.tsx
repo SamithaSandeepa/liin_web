@@ -7,6 +7,7 @@ import { organizationSchema, websiteSchema } from "@/lib/seo";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AnimationProvider from "@/components/AnimationProvider";
+import InitialLoader from "@/components/ui/InitialLoader";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -41,6 +42,7 @@ export default function RootLayout({
         <link rel="canonical" href="https://liin.lk" />
       </head>
       <body className="antialiased">
+        <InitialLoader />
         <Header />
         <main>
           {children}

@@ -28,7 +28,7 @@ export default function LoadingPro({
 
   return (
     <>
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white animate-fade-in">
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-primary/95 backdrop-blur-sm animate-fade-in">
         <div
           className={`flex flex-col items-center gap-6 transition-all duration-700 ease-out ${
             isVisible
@@ -37,19 +37,19 @@ export default function LoadingPro({
           }`}
         >
           {/* Logo with spinning ring */}
-          <div className="relative">
+          <div className="relative w-[120px] h-[120px] flex items-center justify-center">
             {/* Spinning ring */}
-            <div className="absolute inset-0 -m-4">
-              <div className="w-[140px] h-[140px] border-4 border-gray-200 border-t-primary rounded-full animate-spin-slow" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-[120px] h-[120px] border-4 border-white/30 border-t-white rounded-full animate-spin-slow" />
             </div>
 
-            {/* Logo */}
-            <div className="relative w-[100px] h-[100px] flex items-center justify-center">
+            {/* Logo container */}
+            <div className="relative w-[80px] h-[80px] bg-primary rounded-full shadow-lg flex items-center justify-center p-3">
               <Image
                 src="/images/logo.png"
                 alt="LIIN Logo"
-                width={80}
-                height={80}
+                width={60}
+                height={60}
                 className="object-contain animate-pulse-subtle"
                 priority
               />
@@ -58,7 +58,7 @@ export default function LoadingPro({
 
           {/* Loading text with dots */}
           <div className="text-center">
-            <p className="text-gray-700 text-lg font-medium">
+            <p className="text-white text-lg font-medium">
               {message}
               <span className="inline-flex ml-1">
                 <span
