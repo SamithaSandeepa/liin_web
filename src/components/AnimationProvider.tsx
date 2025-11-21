@@ -1,12 +1,15 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 /**
  * Client component that handles scroll animations
  * Separated from page content to minimize client bundle
  */
 export default function AnimationProvider() {
+  const pathname = usePathname();
+
   useEffect(() => {
     // Intersection Observer for scroll animations
     const observerOptions = {
@@ -22,12 +25,18 @@ export default function AnimationProvider() {
       });
     }, observerOptions);
 
-    document.querySelectorAll('.animate-on-scroll').forEach(el => {
-      observer.observe(el);
-    });
+    // Small delay to ensure DOM is ready after navigation
+    const timeoutId = setTimeout(() => {
+      document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+      });
+    }, 100);
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, [pathname]); // Re-run when pathname changes
 
   return null; // This component only runs effects, renders nothing
 }
