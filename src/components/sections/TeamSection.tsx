@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Section from '@/components/ui/Section';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Linkedin, Mail } from 'lucide-react';
@@ -102,9 +103,11 @@ export default function TeamSection() {
     >
       <div className="bg-white p-6 rounded-2xl shadow-medium hover:shadow-hard transition-all duration-300 hover:-translate-y-2">
         <div className="relative w-24 h-24 mx-auto mb-4">
-          <img
+          <Image
             src={member.img}
             alt={member.name}
+            width={96}
+            height={96}
             className="w-full h-full object-cover rounded-full ring-4 ring-primary/20 group-hover:ring-primary/50 transition-all"
           />
           <div className="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/10 transition-colors" />
@@ -126,10 +129,11 @@ export default function TeamSection() {
         {/* Team Group Photo */}
         <div className="animate-on-scroll mb-12">
           <div className="relative w-full h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-hard">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920"
               alt="LIIN Team"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
@@ -212,9 +216,11 @@ export default function TeamSection() {
                 </button>
                 <div className="flex items-center gap-4">
                   <div className="relative w-20 h-20 flex-shrink-0">
-                    <img
+                    <Image
                       src={selectedMember.img}
                       alt={selectedMember.name}
+                      width={80}
+                      height={80}
                       className="w-full h-full object-cover rounded-full ring-4 ring-white/30"
                     />
                   </div>

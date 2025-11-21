@@ -1,13 +1,14 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import { Menu, X, ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from "react";
+import Image from "next/image";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface SubItem {
   label: string;
   href: string;
+  subItems?: SubItem[];
 }
 
 interface NavItem {
@@ -19,79 +20,98 @@ interface NavItem {
 // First 5 items in navbar, rest in sidebar
 const navItems: NavItem[] = [
   {
-    label: 'Who We Are',
-    href: '/about',
+    label: "Who We Are",
+    href: "/about",
     subItems: [
-      { label: 'About', href: '/about#about-content' },
-      { label: 'Meet Our Team', href: '/about#team' },
+      { label: "About", href: "/about#about-content" },
+      { label: "Meet Our Team", href: "/about#team" },
     ],
   },
   {
-    label: 'LIIN Initiatives',
-    href: '#initiatives',
+    label: "LIIN Initiatives",
+    href: "#initiatives",
     subItems: [
-      { label: "On Eagle's Wings", href: '/initiatives/eagles-wings' },
-      { label: 'Ath Pavura', href: '/initiatives/ath-pavura' },
+      { label: "On Eagle's Wings", href: "/initiatives/eagles-wings" },
+      { label: "Ath Pavura", href: "/initiatives/ath-pavura" },
     ],
   },
   {
-    label: 'Projects',
-    href: '/projects',
+    label: "Projects",
+    href: "/projects",
     subItems: [
-      { label: 'Ongoing Projects', href: '/projects/ongoing' },
-      { label: 'GRIT', href: '/projects/grit' },
-      { label: 'Past Projects', href: '/projects/past' },
-      { label: 'Climate Challenge', href: '/projects/climate-challenge' },
-      { label: 'PIF', href: '/projects/pif' },
-      { label: 'Emerging Women', href: '/projects/emerging-women' },
-      { label: 'Linked Way', href: '/projects/linked-way' },
+      {
+        label: "Ongoing Projects",
+        href: "/projects/ongoing",
+        subItems: [
+          { label: "GRIT", href: "https://www.liin.lk/grit/" },
+          { label: "Climate Challenge", href: "/projects/climate-challenge" },
+          { label: "PIF", href: "/projects/pif" },
+          { label: "Emerging Women", href: "/projects/emerging-women" },
+          { label: "Linked Way", href: "/projects/linked-way" },
+        ]
+      },
+      {
+        label: "Past Projects",
+        href: "/projects/past",
+        subItems: [
+          { label: "Ath Pavura", href: "/initiatives/ath-pavura" },
+        ]
+      },
     ],
   },
   {
-    label: 'Investments',
-    href: '/investments',
+    label: "Investments",
+    href: "/investments",
     subItems: [
-      { label: 'Investment Philosophy', href: '/investments/philosophy' },
-      { label: 'Investees', href: '/investments/investees' },
+      { label: "Investment Philosophy", href: "/investments/philosophy" },
+      { label: "Investees", href: "/investments/investees" },
     ],
   },
   {
-    label: 'Impact Funds',
-    href: '/impact-funds',
+    label: "Impact Funds",
+    href: "/impact-funds",
     subItems: [
-      { label: 'Social Enterprise Fund (SEF)', href: '/impact-funds/sef' },
+      { label: "Social Enterprise Fund (SEF)", href: "/impact-funds/sef" },
     ],
   },
 ];
 
 // Sidebar items
 const sidebarItems: NavItem[] = [
-  { label: 'Our Partners', href: '/partners' },
+  { label: "Our Partners", href: "/partners" },
   {
-    label: 'News and Insights',
-    href: '/news',
+    label: "News and Insights",
+    href: "/news",
     subItems: [
-      { label: 'News & Insights', href: '/news' },
-      { label: 'Events', href: '/news/events' },
-      { label: 'Testimonials', href: '/news/testimonials' },
+      { label: "News & Insights", href: "/news" },
+      { label: "Events", href: "/news/events" },
+      { label: "Testimonials", href: "/news/testimonials" },
     ],
   },
-  { label: 'Contact Us', href: '/contact' },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [openSidebarDropdown, setOpenSidebarDropdown] = useState<string | null>(null);
+  const [openNestedDropdown, setOpenNestedDropdown] = useState<string | null>(null);
+  const [openSidebarDropdown, setOpenSidebarDropdown] = useState<string | null>(
+    null
+  );
+  const [openSidebarNested, setOpenSidebarNested] = useState<string | null>(null);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => {
     setIsMenuOpen(false);
     setOpenSidebarDropdown(null);
+    setOpenSidebarNested(null);
   };
 
   const handleDropdownEnter = (label: string) => setOpenDropdown(label);
-  const handleDropdownLeave = () => setOpenDropdown(null);
+  const handleDropdownLeave = () => {
+    setOpenDropdown(null);
+    setOpenNestedDropdown(null);
+  };
 
   const toggleSidebarDropdown = (label: string) => {
     setOpenSidebarDropdown(openSidebarDropdown === label ? null : label);
@@ -119,7 +139,10 @@ export default function Header() {
             </a>
 
             {/* Navigation */}
-            <nav aria-label="Main navigation" className="flex items-center gap-4">
+            <nav
+              aria-label="Main navigation"
+              className="flex items-center gap-4"
+            >
               {/* Primary Navigation Items with Dropdowns */}
               <ul className="hidden lg:flex items-center gap-1">
                 {navItems.map((item) => (
@@ -149,13 +172,44 @@ export default function Header() {
                             className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-xl min-w-[200px] py-2 z-50"
                           >
                             {item.subItems.map((subItem) => (
-                              <a
+                              <div
                                 key={subItem.href}
-                                href={subItem.href}
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors"
+                                className="relative"
+                                onMouseEnter={() => subItem.subItems && setOpenNestedDropdown(subItem.label)}
+                                onMouseLeave={() => setOpenNestedDropdown(null)}
                               >
-                                {subItem.label}
-                              </a>
+                                <a
+                                  href={subItem.href}
+                                  className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors"
+                                >
+                                  {subItem.label}
+                                  {subItem.subItems && <ChevronDown size={12} className="-rotate-90" />}
+                                </a>
+                                {/* Nested Dropdown */}
+                                {subItem.subItems && (
+                                  <AnimatePresence>
+                                    {openNestedDropdown === subItem.label && (
+                                      <motion.div
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -10 }}
+                                        transition={{ duration: 0.15 }}
+                                        className="absolute left-full top-0 ml-1 bg-white rounded-lg shadow-xl min-w-[180px] py-2 z-50"
+                                      >
+                                        {subItem.subItems.map((nestedItem) => (
+                                          <a
+                                            key={nestedItem.href}
+                                            href={nestedItem.href}
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors"
+                                          >
+                                            {nestedItem.label}
+                                          </a>
+                                        ))}
+                                      </motion.div>
+                                    )}
+                                  </AnimatePresence>
+                                )}
+                              </div>
                             ))}
                           </motion.div>
                         )}
@@ -198,10 +252,10 @@ export default function Header() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ x: '100%' }}
+            initial={{ x: "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed top-0 right-0 h-full w-80 bg-gradient-to-br from-primary to-secondary shadow-2xl z-50 overflow-y-auto"
           >
             <div className="flex flex-col h-full">
@@ -234,7 +288,9 @@ export default function Header() {
                               <ChevronDown
                                 size={16}
                                 className={`transition-transform ${
-                                  openSidebarDropdown === item.label ? 'rotate-180' : ''
+                                  openSidebarDropdown === item.label
+                                    ? "rotate-180"
+                                    : ""
                                 }`}
                               />
                             </button>
@@ -242,19 +298,58 @@ export default function Header() {
                               {openSidebarDropdown === item.label && (
                                 <motion.ul
                                   initial={{ height: 0, opacity: 0 }}
-                                  animate={{ height: 'auto', opacity: 1 }}
+                                  animate={{ height: "auto", opacity: 1 }}
                                   exit={{ height: 0, opacity: 0 }}
                                   className="overflow-hidden pl-4"
                                 >
                                   {item.subItems.map((subItem) => (
                                     <li key={subItem.href}>
-                                      <a
-                                        href={subItem.href}
-                                        onClick={closeMenu}
-                                        className="block px-4 py-2 text-white/80 text-sm hover:text-white hover:bg-white/10 rounded-lg transition-all"
-                                      >
-                                        {subItem.label}
-                                      </a>
+                                      {subItem.subItems ? (
+                                        <>
+                                          <button
+                                            onClick={() => setOpenSidebarNested(openSidebarNested === subItem.label ? null : subItem.label)}
+                                            className="flex items-center justify-between w-full px-4 py-2 text-white/80 text-sm hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                                          >
+                                            {subItem.label}
+                                            <ChevronDown
+                                              size={12}
+                                              className={`transition-transform ${
+                                                openSidebarNested === subItem.label ? "rotate-180" : ""
+                                              }`}
+                                            />
+                                          </button>
+                                          <AnimatePresence>
+                                            {openSidebarNested === subItem.label && (
+                                              <motion.ul
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: "auto", opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                className="overflow-hidden pl-4"
+                                              >
+                                                {subItem.subItems.map((nestedItem) => (
+                                                  <li key={nestedItem.href}>
+                                                    <a
+                                                      href={nestedItem.href}
+                                                      onClick={closeMenu}
+                                                      className="block px-4 py-2 text-white/60 text-xs hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                                                    >
+                                                      {nestedItem.label}
+                                                    </a>
+                                                  </li>
+                                                ))}
+                                              </motion.ul>
+                                            )}
+                                          </AnimatePresence>
+                                        </>
+                                      ) : (
+                                        <a
+                                          href={subItem.href}
+                                          onClick={closeMenu}
+                                          className="block px-4 py-2 text-white/80 text-sm hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                                        >
+                                          {subItem.label}
+                                        </a>
+                                      )}
                                     </li>
                                   ))}
                                 </motion.ul>
@@ -288,7 +383,9 @@ export default function Header() {
                               <ChevronDown
                                 size={16}
                                 className={`transition-transform ${
-                                  openSidebarDropdown === item.label ? 'rotate-180' : ''
+                                  openSidebarDropdown === item.label
+                                    ? "rotate-180"
+                                    : ""
                                 }`}
                               />
                             </button>
@@ -296,7 +393,7 @@ export default function Header() {
                               {openSidebarDropdown === item.label && (
                                 <motion.ul
                                   initial={{ height: 0, opacity: 0 }}
-                                  animate={{ height: 'auto', opacity: 1 }}
+                                  animate={{ height: "auto", opacity: 1 }}
                                   exit={{ height: 0, opacity: 0 }}
                                   className="overflow-hidden pl-4"
                                 >

@@ -1,7 +1,8 @@
 interface HeroSectionProps {
   title: string;
   subtitle?: string;
-  backgroundImage: string;
+  backgroundImage?: string;
+  backgroundVideo?: string;
   height?: 'default' | 'fullscreen';
 }
 
@@ -9,6 +10,7 @@ export default function HeroSection({
   title,
   subtitle,
   backgroundImage,
+  backgroundVideo,
   height = 'default'
 }: HeroSectionProps) {
   const heightClass = height === 'fullscreen' ? 'min-h-screen' : 'min-h-[600px]';
@@ -16,15 +18,30 @@ export default function HeroSection({
   return (
     <section
       id="home"
-      className={`relative ${heightClass} flex items-center justify-center text-center text-white`}
+      className={`relative ${heightClass} flex items-center justify-center text-center text-white overflow-hidden`}
     >
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url('${backgroundImage}')` }}
-        role="img"
-        aria-label="Hero background"
-      />
+      {/* Background Video */}
+      {backgroundVideo && (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={backgroundVideo} type="video/mp4" />
+        </video>
+      )}
+
+      {/* Background Image (fallback or primary) */}
+      {backgroundImage && !backgroundVideo && (
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('${backgroundImage}')` }}
+          role="img"
+          aria-label="Hero background"
+        />
+      )}
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40" />
