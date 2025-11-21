@@ -1,10 +1,10 @@
-import HeroSection from '@/components/sections/HeroSection';
-import ApproachSection from '@/components/sections/ApproachSection';
-import AboutSection from '@/components/sections/AboutSection';
-import SDGSection from '@/components/sections/SDGSection';
-import ImpactMetricsSection from '@/components/sections/ImpactMetricsSection';
-import CTASection from '@/components/sections/CTASection';
-import TestimonialsSection from '@/components/sections/TestimonialsSection';
+import HeroSection from "@/components/sections/HeroSection";
+import ApproachSection from "@/components/sections/ApproachSection";
+import AboutSection from "@/components/sections/AboutSection";
+import SDGSection from "@/components/sections/SDGSection";
+import ImpactMetricsSection from "@/components/sections/ImpactMetricsSection";
+import CTASection from "@/components/sections/CTASection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
 
 /**
  * Home Page - Landing page for LIIN
@@ -24,8 +24,8 @@ export default function Home() {
     <>
       <HeroSection
         title="Investing in Profit with Purpose"
-        subtitle="Catalyzing Transformative Change"
-        backgroundImage="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=1920"
+        subtitle="Empowering social enterprises to create lasting impact across Sri Lanka"
+        backgroundVideo="/videos/hero/hero.mp4"
       />
 
       <ApproachSection />
