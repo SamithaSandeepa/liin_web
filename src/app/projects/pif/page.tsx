@@ -228,7 +228,7 @@ export default function PIFPage() {
       </Section>
 
       {/* CTA */}
-      <Section background="gradient">
+      <Section background="gradient-primary">
         <div className="text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to Scale Your Business?
