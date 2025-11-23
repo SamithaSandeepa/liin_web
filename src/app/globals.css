@@ -4,7 +4,7 @@
 
 @theme {
   /* LIIN Primary Brand Colors */
-  --color-primary: #428ac9;
+  --color-primary: #438ac9;
   --color-primary-light: #4bb8f0;
   --color-primary-dark: #1d8bc9;
 
@@ -43,6 +43,11 @@
   --color-accent: #f59e0b;
   --color-accent-light: #fbbf24;
   --color-accent-dark: #d97706;
+
+  /* Neutral/Logo Colors */
+  --color-grey: #434357;
+  --color-grey-light: #5c5c72;
+  --color-grey-dark: #2e2e3d;
 
   /* Fonts */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
