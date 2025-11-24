@@ -18,7 +18,7 @@ export default function ApproachCardExpanded({ cards }: ApproachCardExpandedProp
   };
 
   return (
-    <div className="relative min-h-[600px]">
+    <div className="relative">
       <AnimatePresence mode="wait">
         {selectedCard === null ? (
           /* Cards Grid */
