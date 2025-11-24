@@ -1,6 +1,6 @@
 import { NewsResponse } from "./types/news";
 
-const DIRECTUS_URL = "https://directus.zigma99.com";
+const DIRECTUS_URL = process.env.NEXT_PUBLIC_DIRECTUS_URL;
 
 export const API_ENDPOINTS = {
   news: `${DIRECTUS_URL}/items/news`,
