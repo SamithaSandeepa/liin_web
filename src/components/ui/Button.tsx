@@ -15,7 +15,7 @@ export default function Button({
   className = '',
   ...props
 }: ButtonProps) {
-  const baseStyles = 'font-bold rounded-full transition-all hover:scale-105 inline-block text-center';
+  const baseStyles = 'font-bold rounded-lg transition-all hover:scale-105 inline-block text-center';
 
   const variants = {
     primary: 'bg-primary hover:bg-primary-dark text-white shadow-primary',
