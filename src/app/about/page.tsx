@@ -1,6 +1,7 @@
 import HeroSection from "@/components/sections/HeroSection";
 import Section from "@/components/ui/Section";
 import TeamSection from "@/components/sections/TeamSection";
+import JoinNetworkSection from "@/components/sections/JoinNetworkSection";
 
 /**
  * About Page - Information about LIIN and our team
@@ -138,33 +139,7 @@ export default function AboutPage() {
       <TeamSection />
 
       {/* Join Us Section */}
-      <Section
-        id="join"
-        title="Join Our Network"
-        subtitle="Be part of the impact investing movement in Sri Lanka"
-        background="gradient-primary"
-      >
-        <div className="text-center">
-          <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
-            Whether you're an investor looking to create meaningful impact or a
-            social enterprise seeking funding, we'd love to connect with you.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <a
-              href="/contact"
-              className="inline-block bg-white text-primary px-10 py-4 rounded-full font-bold hover:scale-105 transition-transform"
-            >
-              Get In Touch
-            </a>
-            <a
-              href="/"
-              className="inline-block bg-white/20 backdrop-blur-sm text-white border-2 border-white px-10 py-4 rounded-full font-bold hover:bg-white/30 transition-colors"
-            >
-              Back to Home
-            </a>
-          </div>
-        </div>
-      </Section>
+      <JoinNetworkSection />
     </>
   );
 }

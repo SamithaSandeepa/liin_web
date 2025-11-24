@@ -20,11 +20,18 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
  * Header, Footer, and AnimationProvider are in layout.tsx (shared across all pages).
  */
 export default function Home() {
+  const heroAnimatedPhrases = [
+    "Investing in Profit with Purpose",
+    "Catalyzing Transformative Change",
+    "Uplifting the Entrepreneurs Building a Better Future",
+    "Commitment to a Living Planet",
+    "Sri Lanka's Pioneer in Impact Investing"
+  ];
+
   return (
     <>
       <HeroSection
-        title="Investing in Profit with Purpose"
-        subtitle="Empowering social enterprises to create lasting impact across Sri Lanka"
+        animatedPhrases={heroAnimatedPhrases}
         backgroundVideo="/videos/hero/hero.mp4"
       />
       <ApproachSection />

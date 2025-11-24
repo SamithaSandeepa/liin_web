@@ -16,10 +16,13 @@ export interface SDGImage {
   alt: string;
 }
 
+import { LucideIcon } from 'lucide-react';
+
 export interface ImpactMetric {
-  icon: string;
+  icon: LucideIcon;
   value: string;
   label: string;
+  suffix?: string;
 }
 
 export interface CTACard {
