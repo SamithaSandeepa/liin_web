@@ -128,7 +128,7 @@ export default function AboutPage() {
                 <p className="text-lg text-gray-700 leading-relaxed">
                   To mobilize and deploy capital that supports social
                   enterprises in creating scalable, sustainable solutions for
-                  social and environmental challenges
+                  social and environmental challenges.
                 </p>
               </div>
             </div>
