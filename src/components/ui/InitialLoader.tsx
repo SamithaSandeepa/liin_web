@@ -17,7 +17,7 @@ export default function InitialLoader() {
       // Small delay to show loading briefly
       const timer = setTimeout(() => {
         setIsFading(true);
-        setTimeout(() => setIsLoading(false), 500);
+        setTimeout(() => setIsLoading(false), 300);
       }, 800);
       return () => clearTimeout(timer);
     }
