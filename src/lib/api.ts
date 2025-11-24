@@ -7,6 +7,7 @@ export const API_ENDPOINTS = {
   partners: `${DIRECTUS_URL}/items/partners`,
   roleCategories: `${DIRECTUS_URL}/items/role_category`,
   teamMembers: `${DIRECTUS_URL}/items/team_members`,
+  testimonials: `${DIRECTUS_URL}/items/testimonials`,
 };
 
 export interface Partner {
@@ -50,6 +51,18 @@ export interface TeamMember {
 
 export interface TeamMembersResponse {
   data: TeamMember[];
+}
+
+export interface Testimonial {
+  id: string;
+  status: string;
+  sort: number | null;
+  testimonial_text: string;
+  youtube_url: string;
+}
+
+export interface TestimonialsResponse {
+  data: Testimonial[];
 }
 
 export function getAssetUrl(assetId: string): string {
@@ -111,6 +124,18 @@ export async function fetchTeamMembers(): Promise<TeamMembersResponse> {
 
   if (!res.ok) {
     throw new Error('Failed to fetch team members');
+  }
+
+  return res.json();
+}
+
+export async function fetchTestimonials(): Promise<TestimonialsResponse> {
+  const res = await fetch(`${API_ENDPOINTS.testimonials}?filter[status][_eq]=published`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch testimonials');
   }
 
   return res.json();

@@ -60,10 +60,14 @@ export default function Section({
         {(title || subtitle) && (
           <div className="text-center mb-16">
             {title && (
-              <h2 className="text-4xl lg:text-5xl font-bold mb-4">{title}</h2>
+              <h2 className={`text-4xl lg:text-5xl font-bold mb-4 ${
+                ['white', 'gray', 'grey-light'].includes(background) ? 'text-primary' : ''
+              }`}>{title}</h2>
             )}
             {subtitle && (
-              <p className="text-lg lg:text-xl opacity-90 max-w-4xl mx-auto">
+              <p className={`text-lg lg:text-xl max-w-4xl mx-auto ${
+                ['white', 'gray', 'grey-light'].includes(background) ? 'text-gray-600' : 'opacity-90'
+              }`}>
                 {subtitle}
               </p>
             )}

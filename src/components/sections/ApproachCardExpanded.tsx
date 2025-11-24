@@ -18,7 +18,7 @@ export default function ApproachCardExpanded({ cards }: ApproachCardExpandedProp
   };
 
   return (
-    <div className="relative min-h-[600px]">
+    <div className="relative">
       <AnimatePresence mode="wait">
         {selectedCard === null ? (
           /* Cards Grid */
@@ -53,7 +53,7 @@ export default function ApproachCardExpanded({ cards }: ApproachCardExpandedProp
                     transition: { duration: 0.2 }
                   }}
                   whileTap={{ scale: 0.95 }}
-                  className="animate-on-scroll bg-primary text-white shadow-lg hover:shadow-primary rounded-2xl overflow-hidden cursor-pointer"
+                  className="animate-on-scroll bg-white text-gray-900 shadow-lg hover:shadow-hard rounded-2xl overflow-hidden cursor-pointer"
                   onClick={() => setSelectedCard(idx)}
                 >
                   <div className="relative w-full h-48 overflow-hidden">
@@ -65,10 +65,10 @@ export default function ApproachCardExpanded({ cards }: ApproachCardExpandedProp
                     />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
-                    <p className="text-sm mb-6 leading-relaxed opacity-90">{card.desc}</p>
+                    <h3 className="text-2xl font-bold mb-4 text-primary">{card.title}</h3>
+                    <p className="text-sm mb-6 leading-relaxed text-gray-600">{card.desc}</p>
                     <motion.button
-                      className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-white text-primary font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors"
                       whileHover={{ gap: 8 }}
                     >
                       Learn More

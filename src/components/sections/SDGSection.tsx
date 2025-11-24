@@ -7,13 +7,13 @@ export default function SDGSection() {
     <Section
       id="sdg"
       title="SDGs as LIIN Impact Indicators"
-      background="gradient-secondary"
+      background="white"
     >
       <div className="flex flex-wrap items-center justify-center gap-8">
         {sdgImages.map((sdg, idx) => (
           <div
             key={idx}
-            className="w-28 h-28 bg-white rounded-lg p-2 hover:scale-110 transition-transform"
+            className="w-28 h-28 hover:scale-110 transition-transform"
           >
             <Image
               src={sdg.src}

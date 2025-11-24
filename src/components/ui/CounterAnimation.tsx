@@ -6,9 +6,10 @@ import { motion, useInView } from 'framer-motion';
 interface CounterAnimationProps {
   value: string;
   duration?: number;
+  className?: string;
 }
 
-export default function CounterAnimation({ value, duration = 2 }: CounterAnimationProps) {
+export default function CounterAnimation({ value, duration = 2, className = "text-4xl font-bold mb-3" }: CounterAnimationProps) {
   const [displayValue, setDisplayValue] = useState<string>('0');
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
@@ -60,7 +61,7 @@ export default function CounterAnimation({ value, duration = 2 }: CounterAnimati
       initial={{ opacity: 0, scale: 0.5 }}
       animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="text-4xl font-bold mb-3"
+      className={className}
     >
       {displayValue}
     </motion.div>

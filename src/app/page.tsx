@@ -27,7 +27,6 @@ export default function Home() {
         subtitle="Empowering social enterprises to create lasting impact across Sri Lanka"
         backgroundVideo="/videos/hero/hero.mp4"
       />
-
       <ApproachSection />
       <AboutSection />
       <SDGSection />
