@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 export const siteConfig = {
   name: 'LIIN - Lanka Impact Investing Network',
   description: 'Investing in Profit with Purpose. We connect investors with social enterprises in Sri Lanka to drive sustainable development and transformative change.',
-  url: 'https://liin.lk',
-  ogImage: 'https://liin.lk/og-image.jpg',
+  url: 'https://liin-web.vercel.app',
+  ogImage: 'https://liin-web.vercel.app/images/logo.png',
   links: {
     facebook: 'https://facebook.com/liin',
     linkedin: 'https://linkedin.com/company/liin',

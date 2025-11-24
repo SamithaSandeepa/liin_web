@@ -39,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        <link rel="canonical" href="https://liin.lk" />
+        <link rel="canonical" href="https://liin-web.vercel.app/" />
       </head>
       <body className="antialiased">
         <InitialLoader />
