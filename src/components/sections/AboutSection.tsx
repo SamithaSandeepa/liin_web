@@ -21,7 +21,7 @@ export default function AboutSection() {
         <Button variant="primary" size="lg">
           About Us
         </Button>
-        <Button variant="primary" size="lg">
+        <Button variant="outline" size="lg">
           Investment Philosophy
         </Button>
       </div>

@@ -48,11 +48,11 @@ export default function HeroSection({
 
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-6">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-shadow-lg mb-6">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-shadow-lg mb-6 animate-fade-in-up">
           {title}
         </h1>
         {subtitle && (
-          <p className="text-lg md:text-xl lg:text-2xl opacity-95 max-w-4xl mx-auto">
+          <p className="text-lg md:text-xl lg:text-2xl opacity-95 max-w-4xl mx-auto animate-fade-in-up animation-delay-300">
             {subtitle}
           </p>
         )}
