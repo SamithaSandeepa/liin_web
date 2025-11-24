@@ -11,20 +11,35 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-  { label: "On Eagle's Wings", href: '#eagles-wings' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Investments', href: '#investments' },
-  { label: 'Impact Funds', href: '#impact' },
-  { label: 'Our Partners', href: '#partners' },
-  { label: 'News', href: '#news' },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+  { label: "On Eagle's Wings", href: "#eagles-wings" },
+  { label: "Projects", href: "#projects" },
+  { label: "Investments", href: "#investments" },
+  { label: "Impact Funds", href: "#impact" },
+  { label: "Our Partners", href: "#partners" },
+  { label: "News", href: "#news" },
 ];
 
 const socialLinks: SocialLink[] = [
-  { name: 'Facebook', icon: 'f', href: 'https://facebook.com/liin', ariaLabel: 'Visit LIIN on Facebook' },
-  { name: 'LinkedIn', icon: 'in', href: 'https://linkedin.com/company/liin', ariaLabel: 'Visit LIIN on LinkedIn' },
-  { name: 'YouTube', icon: '▶', href: 'https://youtube.com/liin', ariaLabel: 'Visit LIIN on YouTube' }
+  {
+    name: "Facebook",
+    icon: "f",
+    href: "https://facebook.com/liin",
+    ariaLabel: "Visit LIIN on Facebook",
+  },
+  {
+    name: "LinkedIn",
+    icon: "in",
+    href: "https://linkedin.com/company/liin",
+    ariaLabel: "Visit LIIN on LinkedIn",
+  },
+  {
+    name: "YouTube",
+    icon: "▶",
+    href: "https://youtube.com/liin",
+    ariaLabel: "Visit LIIN on YouTube",
+  },
 ];
 
 export default function Footer() {
@@ -58,7 +73,8 @@ export default function Footer() {
               <div>
                 <h3 className="font-bold mb-3 text-base">Address</h3>
                 <address className="text-sm opacity-90 not-italic">
-                  123 Galle Road<br />
+                  123 Galle Road
+                  <br />
                   Colombo 03, Sri Lanka
                 </address>
               </div>
@@ -67,11 +83,17 @@ export default function Footer() {
               <div>
                 <h3 className="font-bold mb-3 text-base">Contact</h3>
                 <div className="text-sm opacity-90">
-                  <a href="tel:+94771234567" className="hover:opacity-100 transition-opacity">
+                  <a
+                    href="tel:+94771234567"
+                    className="hover:opacity-100 transition-opacity"
+                  >
                     +94 77 123 4567
                   </a>
                   <br />
-                  <a href="mailto:info@liin.lk" className="hover:opacity-100 transition-opacity">
+                  <a
+                    href="mailto:info@liin.lk"
+                    className="hover:opacity-100 transition-opacity"
+                  >
                     info@liin.lk
                   </a>
                 </div>
@@ -83,15 +105,27 @@ export default function Footer() {
 
             {/* Bottom Row - Copyright & Policies */}
             <div className="py-4 flex flex-col md:flex-row justify-between items-center gap-4 text-xs opacity-70">
-              <p>© {currentYear} Lanka Impact Investing Network. All rights reserved.</p>
+              <p>
+                © {currentYear} Lanka Impact Investing Network. All rights
+                reserved.
+              </p>
               <div className="flex gap-6">
-                <a href="/privacy" className="hover:opacity-100 transition-opacity">
+                <a
+                  href="/privacy"
+                  className="hover:opacity-100 transition-opacity"
+                >
                   Privacy Policy
                 </a>
-                <a href="/terms" className="hover:opacity-100 transition-opacity">
+                <a
+                  href="/terms"
+                  className="hover:opacity-100 transition-opacity"
+                >
                   Terms of Service
                 </a>
-                <a href="/cookies" className="hover:opacity-100 transition-opacity">
+                <a
+                  href="/cookies"
+                  className="hover:opacity-100 transition-opacity"
+                >
                   Cookie Policy
                 </a>
               </div>
@@ -100,7 +134,7 @@ export default function Footer() {
 
           {/* Right Side - Social Media (Spans Both Rows) */}
           <div className="hidden lg:flex flex-col items-center justify-center gap-3 pl-12">
-            <h3 className="font-bold text-xs mb-1">Follow Us</h3>
+            <h3 className="font-bold text-base mb-3">Follow Us</h3>
             <div className="flex flex-col gap-2">
               {socialLinks.map((social) => (
                 <a
@@ -120,7 +154,7 @@ export default function Footer() {
 
         {/* Mobile Social Icons */}
         <div className="lg:hidden py-6 flex flex-col items-center gap-3 border-t border-white/30">
-          <h3 className="font-bold text-xs">Follow Us</h3>
+          <h3 className="font-bold text-base">Follow Us</h3>
           <div className="flex gap-2">
             {socialLinks.map((social) => (
               <a

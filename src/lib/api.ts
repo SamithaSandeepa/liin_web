@@ -1,6 +1,6 @@
-import { NewsResponse } from './types/news';
+import { NewsResponse } from "./types/news";
 
-const DIRECTUS_URL = 'https://directus.zigma99.com';
+const DIRECTUS_URL = "https://directus.zigma99.com";
 
 export const API_ENDPOINTS = {
   news: `${DIRECTUS_URL}/items/news`,
@@ -57,7 +57,6 @@ export interface Testimonial {
   id: string;
   status: string;
   sort: number | null;
-  testimonial_text: string;
   youtube_url: string;
 }
 
@@ -75,7 +74,7 @@ export async function fetchNews(): Promise<NewsResponse> {
   });
 
   if (!res.ok) {
-    throw new Error('Failed to fetch news');
+    throw new Error("Failed to fetch news");
   }
 
   return res.json();
@@ -87,7 +86,7 @@ export async function fetchNewsBySlug(slug: string): Promise<NewsResponse> {
   });
 
   if (!res.ok) {
-    throw new Error('Failed to fetch news item');
+    throw new Error("Failed to fetch news item");
   }
 
   return res.json();
@@ -99,43 +98,52 @@ export async function fetchPartners(): Promise<PartnersResponse> {
   });
 
   if (!res.ok) {
-    throw new Error('Failed to fetch partners');
+    throw new Error("Failed to fetch partners");
   }
 
   return res.json();
 }
 
 export async function fetchRoleCategories(): Promise<RoleCategoriesResponse> {
-  const res = await fetch(`${API_ENDPOINTS.roleCategories}?filter[status][_eq]=published`, {
-    next: { revalidate: 60 },
-  });
+  const res = await fetch(
+    `${API_ENDPOINTS.roleCategories}?filter[status][_eq]=published`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
 
   if (!res.ok) {
-    throw new Error('Failed to fetch role categories');
+    throw new Error("Failed to fetch role categories");
   }
 
   return res.json();
 }
 
 export async function fetchTeamMembers(): Promise<TeamMembersResponse> {
-  const res = await fetch(`${API_ENDPOINTS.teamMembers}?filter[status][_eq]=published`, {
-    next: { revalidate: 60 },
-  });
+  const res = await fetch(
+    `${API_ENDPOINTS.teamMembers}?filter[status][_eq]=published`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
 
   if (!res.ok) {
-    throw new Error('Failed to fetch team members');
+    throw new Error("Failed to fetch team members");
   }
 
   return res.json();
 }
 
 export async function fetchTestimonials(): Promise<TestimonialsResponse> {
-  const res = await fetch(`${API_ENDPOINTS.testimonials}?filter[status][_eq]=published`, {
-    next: { revalidate: 60 },
-  });
+  const res = await fetch(
+    `${API_ENDPOINTS.testimonials}?filter[status][_eq]=published`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
 
   if (!res.ok) {
-    throw new Error('Failed to fetch testimonials');
+    throw new Error("Failed to fetch testimonials");
   }
 
   return res.json();

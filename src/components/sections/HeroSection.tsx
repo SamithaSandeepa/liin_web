@@ -51,11 +51,11 @@ export default function HeroSection({
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
         {animatedPhrases ? (
           <AnimatedTextLoop
             phrases={animatedPhrases}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-shadow-lg min-h-[200px] flex items-center justify-center"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-snug md:leading-tight text-shadow-lg min-h-[200px] flex items-center justify-center"
           />
         ) : (
           <>

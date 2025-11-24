@@ -1,5 +1,6 @@
 import Section from '@/components/ui/Section';
 import CounterAnimation from '@/components/ui/CounterAnimation';
+import PrismaBackground from '@/components/ui/PrismaBackground';
 import { impactMetrics } from '@/lib/data/metrics';
 
 export default function ImpactMetricsSection() {
@@ -8,8 +9,10 @@ export default function ImpactMetricsSection() {
       id="metrics"
       title="Our Measured Impact"
       background="secondary"
+      className="relative"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 text-center">
+      <PrismaBackground />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 text-center relative z-10">
         {impactMetrics.map((metric, idx) => {
           const IconComponent = metric.icon;
           return (
