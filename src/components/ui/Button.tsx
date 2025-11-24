@@ -15,7 +15,7 @@ export default function Button({
   className = '',
   ...props
 }: ButtonProps) {
-  const baseStyles = 'font-bold rounded-full transition-all hover:scale-105 inline-block text-center';
+  const baseStyles = 'font-bold rounded-lg transition-all hover:scale-105 inline-block text-center';
 
   const variants = {
     primary: 'bg-primary hover:bg-primary-dark text-white shadow-primary',
@@ -25,9 +25,9 @@ export default function Button({
   };
 
   const sizes = {
-    sm: 'px-6 py-2 text-sm',
-    md: 'px-8 py-3 text-base',
-    lg: 'px-12 py-6 text-2xl'
+    sm: 'px-4 py-2 text-sm md:px-6',
+    md: 'px-6 py-2.5 text-sm md:px-8 md:py-3 md:text-base',
+    lg: 'px-8 py-3 text-base md:px-12 md:py-6 md:text-2xl'
   };
 
   const widthClass = fullWidth ? 'w-full' : '';
