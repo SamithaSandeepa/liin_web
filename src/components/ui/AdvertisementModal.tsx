@@ -78,25 +78,36 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
   useEffect(() => {
     if (!isOpen || filteredAds.length <= 1 || !isAutoPlaying) return;
 
+    console.log('🔄 Starting auto-slide:', {
+      interval: '10 seconds',
+      adsCount: filteredAds.length,
+    });
+
     const interval = setInterval(() => {
       setCurrentIndex((prev) => {
         const nextIndex = (prev + 1) % filteredAds.length;
+        console.log(`⏭️ Auto-sliding to ad ${nextIndex + 1} of ${filteredAds.length}`);
         // Mark next ad as displayed
         markAdAsDisplayed(filteredAds[nextIndex].id);
         return nextIndex;
       });
     }, 10000); // 10 seconds
 
-    return () => clearInterval(interval);
+    return () => {
+      console.log('🛑 Stopping auto-slide');
+      clearInterval(interval);
+    };
   }, [isOpen, filteredAds.length, isAutoPlaying, filteredAds]);
 
   // Close modal
   const handleClose = () => {
+    console.log('❌ Closing advertisement modal');
     setIsOpen(false);
   };
 
   // Navigate to previous ad
   const handlePrevious = () => {
+    console.log('⬅️ Navigating to previous ad');
     setIsAutoPlaying(false);
     setCurrentIndex((prev) => {
       const prevIndex = (prev - 1 + filteredAds.length) % filteredAds.length;
@@ -107,6 +118,7 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
 
   // Navigate to next ad
   const handleNext = () => {
+    console.log('➡️ Navigating to next ad');
     setIsAutoPlaying(false);
     setCurrentIndex((prev) => {
       const nextIndex = (prev + 1) % filteredAds.length;
@@ -115,7 +127,12 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
     });
   };
 
-  if (filteredAds.length === 0) return null;
+  if (filteredAds.length === 0) {
+    console.log('⚠️ AdvertisementModal: No filtered ads, not rendering modal');
+    return null;
+  }
+
+  console.log('✓ AdvertisementModal: Rendering with', filteredAds.length, 'ads');
 
   const currentAd = filteredAds[currentIndex];
 
