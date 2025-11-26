@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import LoadingPro from './LoadingPro';
+import { useEffect, useState } from "react";
+import LoadingPro from "./LoadingPro";
 
 /**
  * Initial page loader that shows on first visit
@@ -13,7 +13,7 @@ export default function InitialLoader() {
 
   useEffect(() => {
     // Check if page has already loaded
-    if (document.readyState === 'complete') {
+    if (document.readyState === "complete") {
       // Small delay to show loading briefly
       const timer = setTimeout(() => {
         setIsFading(true);
@@ -27,12 +27,12 @@ export default function InitialLoader() {
       // Add small delay for smooth transition
       setTimeout(() => {
         setIsFading(true);
-        setTimeout(() => setIsLoading(false), 500);
+        setTimeout(() => setIsLoading(false), 300);
       }, 500);
     };
 
-    window.addEventListener('load', handleLoad);
-    return () => window.removeEventListener('load', handleLoad);
+    window.addEventListener("load", handleLoad);
+    return () => window.removeEventListener("load", handleLoad);
   }, []);
 
   if (!isLoading) return null;
@@ -40,7 +40,7 @@ export default function InitialLoader() {
   return (
     <div
       className={`transition-opacity duration-500 ${
-        isFading ? 'opacity-0' : 'opacity-100'
+        isFading ? "opacity-0" : "opacity-100"
       }`}
     >
       <LoadingPro message="Welcome to LIIN" />

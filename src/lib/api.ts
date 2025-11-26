@@ -8,6 +8,7 @@ export const API_ENDPOINTS = {
   roleCategories: `${DIRECTUS_URL}/items/role_category`,
   teamMembers: `${DIRECTUS_URL}/items/team_members`,
   testimonials: `${DIRECTUS_URL}/items/testimonials`,
+  advertisements: `${DIRECTUS_URL}/items/advertisement_popups`,
 };
 
 export interface Partner {
@@ -64,9 +65,29 @@ export interface TestimonialsResponse {
   data: Testimonial[];
 }
 
+export interface Advertisement {
+  id: number;
+  status: string;
+  sort: number | null;
+  title: string;
+  content: string;
+  button_text: string;
+  button_url: string;
+  display_frequency: "always" | "once_per_day" | "once_per_session";
+  start_date: string;
+  end_date: string;
+  image: string;
+}
+
+export interface AdvertisementResponse {
+  data: Advertisement[];
+}
+
 export function getAssetUrl(assetId: string): string {
   return `${DIRECTUS_URL}/assets/${assetId}`;
 }
+
+
 
 export async function fetchNews(): Promise<NewsResponse> {
   const res = await fetch(API_ENDPOINTS.news, {
@@ -147,4 +168,87 @@ export async function fetchTestimonials(): Promise<TestimonialsResponse> {
   }
 
   return res.json();
+}
+
+/**
+ * Fetch active advertisements from Directus API
+ */
+export async function fetchAdvertisements(): Promise<Advertisement[]> {
+  try {
+    const response = await fetch(
+      `${API_ENDPOINTS.advertisements}?filter[status][_eq]=published`,
+      {
+        next: { revalidate: 60 },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch advertisements");
+    }
+
+    const result: AdvertisementResponse = await response.json();
+    // Filter active advertisements based on date and status
+    const now = new Date();
+    const activeAds = result.data.filter((ad) => {
+      const startDate = new Date(ad.start_date);
+      const endDate = new Date(ad.end_date);
+
+      return now >= startDate && now <= endDate;
+    });
+
+    return activeAds;
+  } catch (error) {
+    console.error("Error fetching advertisements:", error);
+    return [];
+  }
+}
+
+/**
+ * Check if advertisement should be displayed based on frequency
+ */
+export function shouldDisplayAd(
+  adId: number,
+  frequency: Advertisement["display_frequency"]
+): boolean {
+  if (typeof window === "undefined") return true;
+
+  if (frequency === "always") {
+    return true;
+  }
+
+  const storageKey = `ad_displayed_${adId}`;
+  const lastDisplayed = localStorage.getItem(storageKey);
+
+  if (!lastDisplayed) {
+    return true;
+  }
+
+  if (frequency === "once_per_session") {
+    // Already displayed in this session
+    return false;
+  }
+
+  if (frequency === "once_per_day") {
+    const lastDisplayedDate = new Date(lastDisplayed);
+    const now = new Date();
+
+    // Check if it's a different day
+    return (
+      lastDisplayedDate.getDate() !== now.getDate() ||
+      lastDisplayedDate.getMonth() !== now.getMonth() ||
+      lastDisplayedDate.getFullYear() !== now.getFullYear()
+    );
+  }
+
+  return true;
+}
+
+/**
+ * Mark advertisement as displayed
+ */
+export function markAdAsDisplayed(adId: number): void {
+  if (typeof window === "undefined") return;
+
+  const storageKey = `ad_displayed_${adId}`;
+  localStorage.setItem(storageKey, new Date().toISOString());
 }
