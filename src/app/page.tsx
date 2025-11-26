@@ -33,6 +33,13 @@ export default async function Home() {
   // Fetch advertisements from API (server-side)
   const advertisements = await fetchAdvertisements();
 
+  // Debug logging for production
+  console.log('🎯 Advertisement Debug:', {
+    count: advertisements.length,
+    advertisements: advertisements,
+    envUrl: process.env.NEXT_PUBLIC_DIRECTUS_URL,
+  });
+
   return (
     <>
       <HeroSection

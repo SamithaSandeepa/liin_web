@@ -27,25 +27,50 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
   const [filteredAds, setFilteredAds] = useState<Advertisement[]>([]);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
+  // Debug: Log initial advertisements
+  useEffect(() => {
+    console.log('📢 AdvertisementModal - Initial Props:', {
+      totalAds: advertisements.length,
+      advertisements: advertisements,
+    });
+  }, [advertisements]);
+
   // Filter ads based on display frequency
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const adsToDisplay = advertisements.filter(ad => 
-      shouldDisplayAd(ad.id, ad.display_frequency)
-    );
+    console.log('🔍 Filtering ads based on display frequency...');
+
+    const adsToDisplay = advertisements.filter(ad => {
+      const shouldDisplay = shouldDisplayAd(ad.id, ad.display_frequency);
+      console.log(`  Ad ${ad.id} (${ad.title}):`, {
+        frequency: ad.display_frequency,
+        shouldDisplay: shouldDisplay,
+      });
+      return shouldDisplay;
+    });
+
+    console.log('✅ Filtered Ads:', {
+      count: adsToDisplay.length,
+      ads: adsToDisplay,
+    });
 
     setFilteredAds(adsToDisplay);
 
     // Show modal after a short delay (page load complete)
     if (adsToDisplay.length > 0) {
+      console.log('⏳ Setting timer to show modal in 1.5 seconds...');
       const timer = setTimeout(() => {
+        console.log('🎉 Opening advertisement modal!');
         setIsOpen(true);
         // Mark first ad as displayed
         markAdAsDisplayed(adsToDisplay[0].id);
+        console.log('✓ Marked first ad as displayed:', adsToDisplay[0].id);
       }, 1500); // 1.5 seconds after page load
 
       return () => clearTimeout(timer);
+    } else {
+      console.log('❌ No ads to display (filtered ads length is 0)');
     }
   }, [advertisements]);
 
