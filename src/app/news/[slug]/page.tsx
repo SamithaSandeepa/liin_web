@@ -1,19 +1,19 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { fetchNewsBySlug, getAssetUrl } from '@/lib/api';
-import { Calendar, ArrowLeft, Share2 } from 'lucide-react';
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { fetchNewsBySlug, getAssetUrl, fixDirectusHtmlImages } from "@/lib/api";
+import { Calendar, ArrowLeft, Share2 } from "lucide-react";
 
 function stripHtml(html: string): string {
-  return html.replace(/<[^>]*>/g, '');
+  return html.replace(/<[^>]*>/g, "");
 }
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 }
 
@@ -30,6 +30,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
   }
 
   const news = response.data[0];
+  const processedContent = fixDirectusHtmlImages(news.content);
 
   return (
     <>
@@ -90,8 +91,11 @@ export default async function NewsDetailPage({ params }: PageProps) {
               prose-ul:text-gray-700 prose-ol:text-gray-700
               prose-li:marker:text-primary
               prose-strong:text-gray-900
+              prose-img:rounded-lg prose-img:shadow-lg
             "
-            dangerouslySetInnerHTML={{ __html: news.content }}
+            dangerouslySetInnerHTML={{
+              __html: processedContent,
+            }}
           />
 
           {/* Share Section */}
@@ -122,7 +126,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   if (!response.data || response.data.length === 0) {
     return {
-      title: 'News Not Found',
+      title: "News Not Found",
     };
   }
 

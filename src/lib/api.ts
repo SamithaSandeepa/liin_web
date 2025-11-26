@@ -87,7 +87,33 @@ export function getAssetUrl(assetId: string): string {
   return `${DIRECTUS_URL}/assets/${assetId}`;
 }
 
+/**
+ * Fixes image URLs in Directus WYSIWYG content
+ * Keeps transformation parameters (width, height) for optimized loading
+ */
+export function fixDirectusHtmlImages(html: string): string {
+  if (!html) return html;
 
+  // Decode ALL HTML entities in URLs (not just &amp;)
+  html = html.replace(/&amp;/g, "&");
+  html = html.replace(/&quot;/g, '"');
+  html = html.replace(/&#39;/g, "'");
+  html = html.replace(/&lt;/g, "<");
+  html = html.replace(/&gt;/g, ">");
+
+  // Replace relative asset paths with full Directus URL
+  html = html.replace(/src="\/assets\//g, `src="${DIRECTUS_URL}/assets/`);
+
+  html = html.replace(/src='\/assets\//g, `src='${DIRECTUS_URL}/assets/`);
+
+  // Add crossorigin attribute to fix CORS issues
+  html = html.replace(
+    /<img /g,
+    '<img crossorigin="anonymous" loading="lazy" style="max-width: 100%; height: auto;" '
+  );
+
+  return html;
+}
 
 export async function fetchNews(): Promise<NewsResponse> {
   const res = await fetch(API_ENDPOINTS.news, {
@@ -183,11 +209,12 @@ export async function fetchAdvertisements(): Promise<Advertisement[]> {
     );
 
     if (!response.ok) {
-      throw new Error("Failed to fetch advertisements");
+      return [];
     }
 
     const result: AdvertisementResponse = await response.json();
-    // Filter active advertisements based on date and status
+    
+    // Filter active advertisements based on date range
     const now = new Date();
     const activeAds = result.data.filter((ad) => {
       const startDate = new Date(ad.start_date);
@@ -198,7 +225,6 @@ export async function fetchAdvertisements(): Promise<Advertisement[]> {
 
     return activeAds;
   } catch (error) {
-    console.error("Error fetching advertisements:", error);
     return [];
   }
 }
