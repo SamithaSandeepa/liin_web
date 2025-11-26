@@ -89,7 +89,7 @@ export function getAssetUrl(assetId: string): string {
 
 /**
  * Fixes image URLs in Directus WYSIWYG content
- * Keeps transformation parameters (width, height) for optimized loading
+ * Routes images through Next.js proxy to avoid CORS issues
  */
 export function fixDirectusHtmlImages(html: string): string {
   if (!html) return html;
@@ -101,15 +101,22 @@ export function fixDirectusHtmlImages(html: string): string {
   html = html.replace(/&lt;/g, "<");
   html = html.replace(/&gt;/g, ">");
 
-  // Replace relative asset paths with full Directus URL
+  // Replace relative asset paths with full Directus URL first
   html = html.replace(/src="\/assets\//g, `src="${DIRECTUS_URL}/assets/`);
-
   html = html.replace(/src='\/assets\//g, `src='${DIRECTUS_URL}/assets/`);
 
-  // Add crossorigin attribute to fix CORS issues
+  // Now proxy all Directus image URLs through Next.js API route
+  const directusUrlPattern = new RegExp(`src=["']${DIRECTUS_URL}/assets/([^"']+)["']`, 'g');
+  html = html.replace(directusUrlPattern, (match, assetPath) => {
+    const fullUrl = `${DIRECTUS_URL}/assets/${assetPath}`;
+    const encodedUrl = encodeURIComponent(fullUrl);
+    return `src="/api/image-proxy?url=${encodedUrl}"`;
+  });
+
+  // Add lazy loading and responsive styling
   html = html.replace(
     /<img /g,
-    '<img crossorigin="anonymous" loading="lazy" style="max-width: 100%; height: auto;" '
+    '<img loading="lazy" style="max-width: 100%; height: auto; border-radius: 0.5rem;" '
   );
 
   return html;

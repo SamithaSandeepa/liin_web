@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { fetchNewsBySlug, getAssetUrl, fixDirectusHtmlImages } from "@/lib/api";
-import { Calendar, ArrowLeft, Share2 } from "lucide-react";
+import { Calendar, ArrowLeft } from "lucide-react";
+import ShareButton from "./ShareButton";
 
 function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, "");
@@ -84,15 +85,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
 
           {/* Main Content */}
           <div
-            className="prose prose-lg max-w-none
-              prose-headings:font-bold prose-headings:text-gray-900
-              prose-p:text-gray-700 prose-p:leading-relaxed
-              prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-              prose-ul:text-gray-700 prose-ol:text-gray-700
-              prose-li:marker:text-primary
-              prose-strong:text-gray-900
-              prose-img:rounded-lg prose-img:shadow-lg
-            "
+            className="directus-content"
             dangerouslySetInnerHTML={{
               __html: processedContent,
             }}
@@ -108,10 +101,10 @@ export default async function NewsDetailPage({ params }: PageProps) {
                 <ArrowLeft size={18} />
                 Back to All News
               </Link>
-              <button className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors">
-                <Share2 size={18} />
-                Share
-              </button>
+              <ShareButton 
+                title={stripHtml(news.title)}
+                slug={slug}
+              />
             </div>
           </div>
         </div>
