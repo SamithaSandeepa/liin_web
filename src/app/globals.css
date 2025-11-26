@@ -71,6 +71,33 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* Global Scrollbar Styling for Entire Site */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #438ac9 #e5e7eb;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #438ac9;
+    border-radius: 10px;
+    border: 2px solid #f3f4f6;
+    transition: background 0.3s ease;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #3272a8;
+  }
 }
 
 @layer components {

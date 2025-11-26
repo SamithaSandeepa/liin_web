@@ -205,29 +205,27 @@ export async function fetchAdvertisements(): Promise<Advertisement[]> {
       `${API_ENDPOINTS.advertisements}?filter[status][_eq]=published`,
       {
         next: { revalidate: 60 },
-        cache: 'no-store', // Force fresh data in production
       }
     );
 
     if (!response.ok) {
-      console.error(`Advertisement API failed: ${response.status} ${response.statusText}`);
       return [];
     }
 
     const result: AdvertisementResponse = await response.json();
     
-    // Filter active advertisements based on date range
+    // Filter active advertisements based on date range (using UTC)
     const now = new Date();
     const activeAds = result.data.filter((ad) => {
       const startDate = new Date(ad.start_date);
       const endDate = new Date(ad.end_date);
 
-      return now >= startDate && now <= endDate;
+      // Compare timestamps to handle timezone differences
+      return now.getTime() >= startDate.getTime() && now.getTime() <= endDate.getTime();
     });
 
     return activeAds;
   } catch (error) {
-    console.error('Error fetching advertisements:', error);
     return [];
   }
 }
@@ -239,15 +237,9 @@ export function shouldDisplayAd(
   adId: number,
   frequency: Advertisement["display_frequency"]
 ): boolean {
-  if (typeof window === "undefined") {
-    console.log(`🔍 shouldDisplayAd (server-side): Ad ${adId} - returning true`);
-    return true;
-  }
-
-  console.log(`🔍 shouldDisplayAd: Checking ad ${adId} with frequency "${frequency}"`);
+  if (typeof window === "undefined") return true;
 
   if (frequency === "always") {
-    console.log(`  ✅ Frequency is "always" - displaying`);
     return true;
   }
 
@@ -255,15 +247,10 @@ export function shouldDisplayAd(
   const lastDisplayed = localStorage.getItem(storageKey);
 
   if (!lastDisplayed) {
-    console.log(`  ✅ No display history - displaying for first time`);
     return true;
   }
 
-  console.log(`  📅 Last displayed: ${lastDisplayed}`);
-
   if (frequency === "once_per_session") {
-    // Already displayed in this session
-    console.log(`  ❌ Frequency is "once_per_session" and already displayed`);
     return false;
   }
 
@@ -271,20 +258,11 @@ export function shouldDisplayAd(
     const lastDisplayedDate = new Date(lastDisplayed);
     const now = new Date();
     
-    const isDifferentDay = (
+    return (
       lastDisplayedDate.getDate() !== now.getDate() ||
       lastDisplayedDate.getMonth() !== now.getMonth() ||
       lastDisplayedDate.getFullYear() !== now.getFullYear()
     );
-
-    console.log(`  ${isDifferentDay ? '✅' : '❌'} Different day check:`, {
-      lastDate: lastDisplayedDate.toDateString(),
-      today: now.toDateString(),
-      isDifferent: isDifferentDay,
-    });
-
-    // Check if it's a different day
-    return isDifferentDay;
   }
 
   return true;
@@ -297,7 +275,5 @@ export function markAdAsDisplayed(adId: number): void {
   if (typeof window === "undefined") return;
 
   const storageKey = `ad_displayed_${adId}`;
-  const timestamp = new Date().toISOString();
-  localStorage.setItem(storageKey, timestamp);
-  console.log(`💾 Marked ad ${adId} as displayed:`, timestamp);
+  localStorage.setItem(storageKey, new Date().toISOString());
 }

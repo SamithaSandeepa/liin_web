@@ -27,50 +27,24 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
   const [filteredAds, setFilteredAds] = useState<Advertisement[]>([]);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  // Debug: Log initial advertisements
-  useEffect(() => {
-    console.log('📢 AdvertisementModal - Initial Props:', {
-      totalAds: advertisements.length,
-      advertisements: advertisements,
-    });
-  }, [advertisements]);
-
   // Filter ads based on display frequency
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    console.log('🔍 Filtering ads based on display frequency...');
-
-    const adsToDisplay = advertisements.filter(ad => {
-      const shouldDisplay = shouldDisplayAd(ad.id, ad.display_frequency);
-      console.log(`  Ad ${ad.id} (${ad.title}):`, {
-        frequency: ad.display_frequency,
-        shouldDisplay: shouldDisplay,
-      });
-      return shouldDisplay;
-    });
-
-    console.log('✅ Filtered Ads:', {
-      count: adsToDisplay.length,
-      ads: adsToDisplay,
-    });
+    const adsToDisplay = advertisements.filter(ad => 
+      shouldDisplayAd(ad.id, ad.display_frequency)
+    );
 
     setFilteredAds(adsToDisplay);
 
     // Show modal after a short delay (page load complete)
     if (adsToDisplay.length > 0) {
-      console.log('⏳ Setting timer to show modal in 1.5 seconds...');
       const timer = setTimeout(() => {
-        console.log('🎉 Opening advertisement modal!');
         setIsOpen(true);
-        // Mark first ad as displayed
         markAdAsDisplayed(adsToDisplay[0].id);
-        console.log('✓ Marked first ad as displayed:', adsToDisplay[0].id);
-      }, 1500); // 1.5 seconds after page load
+      }, 1500);
 
       return () => clearTimeout(timer);
-    } else {
-      console.log('❌ No ads to display (filtered ads length is 0)');
     }
   }, [advertisements]);
 
@@ -78,36 +52,22 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
   useEffect(() => {
     if (!isOpen || filteredAds.length <= 1 || !isAutoPlaying) return;
 
-    console.log('🔄 Starting auto-slide:', {
-      interval: '10 seconds',
-      adsCount: filteredAds.length,
-    });
-
     const interval = setInterval(() => {
       setCurrentIndex((prev) => {
         const nextIndex = (prev + 1) % filteredAds.length;
-        console.log(`⏭️ Auto-sliding to ad ${nextIndex + 1} of ${filteredAds.length}`);
-        // Mark next ad as displayed
         markAdAsDisplayed(filteredAds[nextIndex].id);
         return nextIndex;
       });
-    }, 10000); // 10 seconds
+    }, 10000);
 
-    return () => {
-      console.log('🛑 Stopping auto-slide');
-      clearInterval(interval);
-    };
+    return () => clearInterval(interval);
   }, [isOpen, filteredAds.length, isAutoPlaying, filteredAds]);
 
-  // Close modal
   const handleClose = () => {
-    console.log('❌ Closing advertisement modal');
     setIsOpen(false);
   };
 
-  // Navigate to previous ad
   const handlePrevious = () => {
-    console.log('⬅️ Navigating to previous ad');
     setIsAutoPlaying(false);
     setCurrentIndex((prev) => {
       const prevIndex = (prev - 1 + filteredAds.length) % filteredAds.length;
@@ -156,9 +116,9 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-6 md:p-4"
           >
-            <div className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <div className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[85vh] md:max-h-[90vh] overflow-hidden">
               {/* Close Button */}
               <button
                 onClick={handleClose}
@@ -189,7 +149,7 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
               )}
 
               {/* Content Container */}
-              <div className="overflow-y-auto max-h-[90vh] scrollbar-thin scrollbar-thumb-primary scrollbar-track-gray-200 hover:scrollbar-thumb-primary-dark">
+              <div className="overflow-y-auto max-h-[85vh] md:max-h-[90vh] scrollbar-thin scrollbar-thumb-primary scrollbar-track-gray-200 hover:scrollbar-thumb-primary-dark">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentAd.id}
@@ -212,7 +172,7 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
                     )}
 
                     {/* Content Section */}
-                    <div className="p-6 md:p-8 lg:p-10">
+                    <div className="p-8 md:p-8 lg:p-10">
                       {/* Title */}
                       <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
                         {currentAd.title}
