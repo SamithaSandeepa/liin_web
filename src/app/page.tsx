@@ -27,18 +27,11 @@ export default async function Home() {
     "Catalyzing Transformative Change",
     "Uplifting the Entrepreneurs Building a Better Future",
     "Commitment to a Living Planet",
-    "Sri Lanka's Pioneer in Impact Investing"
+    "Sri Lanka's Pioneer in Impact Investing",
   ];
 
   // Fetch advertisements from API (server-side)
   const advertisements = await fetchAdvertisements();
-
-  // Debug logging for production
-  console.log('🎯 Advertisement Debug:', {
-    count: advertisements.length,
-    advertisements: advertisements,
-    envUrl: process.env.NEXT_PUBLIC_DIRECTUS_URL,
-  });
 
   return (
     <>
@@ -52,7 +45,7 @@ export default async function Home() {
       <ImpactMetricsSection />
       <CTASection />
       <TestimonialsSection />
-      
+
       {/* Advertisement Modal - Shows after page load */}
       <AdvertisementModal advertisements={advertisements} />
     </>
