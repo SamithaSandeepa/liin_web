@@ -239,9 +239,15 @@ export function shouldDisplayAd(
   adId: number,
   frequency: Advertisement["display_frequency"]
 ): boolean {
-  if (typeof window === "undefined") return true;
+  if (typeof window === "undefined") {
+    console.log(`🔍 shouldDisplayAd (server-side): Ad ${adId} - returning true`);
+    return true;
+  }
+
+  console.log(`🔍 shouldDisplayAd: Checking ad ${adId} with frequency "${frequency}"`);
 
   if (frequency === "always") {
+    console.log(`  ✅ Frequency is "always" - displaying`);
     return true;
   }
 
@@ -249,24 +255,36 @@ export function shouldDisplayAd(
   const lastDisplayed = localStorage.getItem(storageKey);
 
   if (!lastDisplayed) {
+    console.log(`  ✅ No display history - displaying for first time`);
     return true;
   }
 
+  console.log(`  📅 Last displayed: ${lastDisplayed}`);
+
   if (frequency === "once_per_session") {
     // Already displayed in this session
+    console.log(`  ❌ Frequency is "once_per_session" and already displayed`);
     return false;
   }
 
   if (frequency === "once_per_day") {
     const lastDisplayedDate = new Date(lastDisplayed);
     const now = new Date();
-
-    // Check if it's a different day
-    return (
+    
+    const isDifferentDay = (
       lastDisplayedDate.getDate() !== now.getDate() ||
       lastDisplayedDate.getMonth() !== now.getMonth() ||
       lastDisplayedDate.getFullYear() !== now.getFullYear()
     );
+
+    console.log(`  ${isDifferentDay ? '✅' : '❌'} Different day check:`, {
+      lastDate: lastDisplayedDate.toDateString(),
+      today: now.toDateString(),
+      isDifferent: isDifferentDay,
+    });
+
+    // Check if it's a different day
+    return isDifferentDay;
   }
 
   return true;
@@ -279,5 +297,7 @@ export function markAdAsDisplayed(adId: number): void {
   if (typeof window === "undefined") return;
 
   const storageKey = `ad_displayed_${adId}`;
-  localStorage.setItem(storageKey, new Date().toISOString());
+  const timestamp = new Date().toISOString();
+  localStorage.setItem(storageKey, timestamp);
+  console.log(`💾 Marked ad ${adId} as displayed:`, timestamp);
 }
