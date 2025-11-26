@@ -5,6 +5,8 @@ import SDGSection from "@/components/sections/SDGSection";
 import ImpactMetricsSection from "@/components/sections/ImpactMetricsSection";
 import CTASection from "@/components/sections/CTASection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import AdvertisementModal from "@/components/ui/AdvertisementModal";
+import { fetchAdvertisements } from "@/lib/api";
 
 /**
  * Home Page - Landing page for LIIN
@@ -19,7 +21,7 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
  * Each section is a separate, reusable component with its own data source.
  * Header, Footer, and AnimationProvider are in layout.tsx (shared across all pages).
  */
-export default function Home() {
+export default async function Home() {
   const heroAnimatedPhrases = [
     "Investing in Profit with Purpose",
     "Catalyzing Transformative Change",
@@ -27,6 +29,9 @@ export default function Home() {
     "Commitment to a Living Planet",
     "Sri Lanka's Pioneer in Impact Investing"
   ];
+
+  // Fetch advertisements from API (server-side)
+  const advertisements = await fetchAdvertisements();
 
   return (
     <>
@@ -40,6 +45,9 @@ export default function Home() {
       <ImpactMetricsSection />
       <CTASection />
       <TestimonialsSection />
+      
+      {/* Advertisement Modal - Shows after page load */}
+      <AdvertisementModal advertisements={advertisements} />
     </>
   );
 }
