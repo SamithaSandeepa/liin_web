@@ -205,10 +205,12 @@ export async function fetchAdvertisements(): Promise<Advertisement[]> {
       `${API_ENDPOINTS.advertisements}?filter[status][_eq]=published`,
       {
         next: { revalidate: 60 },
+        cache: 'no-store', // Force fresh data in production
       }
     );
 
     if (!response.ok) {
+      console.error(`Advertisement API failed: ${response.status} ${response.statusText}`);
       return [];
     }
 
@@ -225,6 +227,7 @@ export async function fetchAdvertisements(): Promise<Advertisement[]> {
 
     return activeAds;
   } catch (error) {
+    console.error('Error fetching advertisements:', error);
     return [];
   }
 }
