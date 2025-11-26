@@ -207,6 +207,286 @@
     animation-delay: 0.7s;
     opacity: 0;
   }
+
+  /* ==================== UNIVERSAL DIRECTUS HTML CONTENT STYLING ==================== */
+  /* This class can be applied to any container with Directus WYSIWYG content */
+  /* Works independently of Tailwind or any framework */
+  
+  .directus-content,
+  .prose {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.75;
+    color: #374151; /* gray-700 */
+    max-width: 100%;
+  }
+
+  /* Headings */
+  .directus-content h1,
+  .directus-content h2,
+  .directus-content h3,
+  .directus-content h4,
+  .directus-content h5,
+  .directus-content h6,
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    font-weight: 700;
+    color: #111827; /* gray-900 */
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+    line-height: 1.3;
+  }
+
+  /* Paragraphs */
+  .directus-content p,
+  .prose p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    line-height: 1.75;
+    color: #374151; /* gray-700 */
+  }
+
+  /* Links */
+  .directus-content a,
+  .prose a {
+    color: #438ac9; /* primary */
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: rgba(67, 138, 201, 0.3);
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .directus-content a:hover,
+  .prose a:hover {
+    color: #3272a8; /* primary-dark */
+    text-decoration-color: #438ac9;
+  }
+
+  /* Unordered Lists (ul) */
+  .directus-content ul,
+  .prose ul {
+    list-style-type: disc;
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+    padding-left: 1.625em;
+  }
+
+  /* Ordered Lists (ol) */
+  .directus-content ol,
+  .prose ol {
+    list-style-type: decimal;
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+    padding-left: 1.625em;
+  }
+
+  /* List Items */
+  .directus-content li,
+  .prose li {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding-left: 0.375em;
+    line-height: 1.75;
+    color: #374151;
+  }
+
+  /* List Markers (bullets/numbers) */
+  .directus-content li::marker,
+  .prose li::marker {
+    color: #438ac9; /* primary */
+    font-weight: 700;
+  }
+
+  /* Nested Lists - Level 2 */
+  .directus-content ul ul,
+  .prose ul ul {
+    list-style-type: circle;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+    padding-left: 1.625em;
+  }
+
+  .directus-content ol ol,
+  .prose ol ol {
+    list-style-type: lower-alpha;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+    padding-left: 1.625em;
+  }
+
+  .directus-content ul ol,
+  .prose ul ol {
+    list-style-type: lower-alpha;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+    padding-left: 1.625em;
+  }
+
+  .directus-content ol ul,
+  .prose ol ul {
+    list-style-type: circle;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+    padding-left: 1.625em;
+  }
+
+  /* Nested Lists - Level 3 */
+  .directus-content ul ul ul,
+  .prose ul ul ul {
+    list-style-type: square;
+    padding-left: 1.625em;
+  }
+
+  .directus-content ol ol ol,
+  .prose ol ol ol {
+    list-style-type: lower-roman;
+    padding-left: 1.625em;
+  }
+
+  /* Strong/Bold */
+  .directus-content strong,
+  .directus-content b,
+  .prose strong,
+  .prose b {
+    font-weight: 700;
+    color: #111827; /* gray-900 */
+  }
+
+  /* Emphasis/Italic */
+  .directus-content em,
+  .directus-content i,
+  .prose em,
+  .prose i {
+    font-style: italic;
+  }
+
+  /* Images */
+  .directus-content img,
+  .prose img {
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Blockquotes */
+  .directus-content blockquote,
+  .prose blockquote {
+    border-left: 4px solid #438ac9;
+    padding-left: 1.5em;
+    margin: 1.5em 0;
+    font-style: italic;
+    color: #6b7280;
+  }
+
+  /* Code blocks */
+  .directus-content pre,
+  .prose pre {
+    background: #f3f4f6;
+    border-radius: 0.5rem;
+    padding: 1em;
+    overflow-x: auto;
+    margin: 1.5em 0;
+  }
+
+  .directus-content code,
+  .prose code {
+    background: #f3f4f6;
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    font-family: 'Courier New', monospace;
+  }
+
+  .directus-content pre code,
+  .prose pre code {
+    background: transparent;
+    padding: 0;
+  }
+
+  /* Tables */
+  .directus-content table,
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+  }
+
+  .directus-content th,
+  .directus-content td,
+  .prose th,
+  .prose td {
+    border: 1px solid #e5e7eb;
+    padding: 0.75em;
+    text-align: left;
+  }
+
+  .directus-content th,
+  .prose th {
+    background: #f9fafb;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  /* Horizontal Rule */
+  .directus-content hr,
+  .prose hr {
+    border: none;
+    border-top: 2px solid #e5e7eb;
+    margin: 2em 0;
+  }
+
+  /* Nested lists - second level */
+  .prose ul ul,
+  .prose ol ul {
+    list-style-type: circle;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+    padding-left: 1.625em;
+  }
+
+  .prose ul ol,
+  .prose ol ol {
+    list-style-type: lower-alpha;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+    padding-left: 1.625em;
+  }
+
+  /* Nested lists - third level */
+  .prose ul ul ul,
+  .prose ol ul ul {
+    list-style-type: square;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .prose ul ol ol,
+  .prose ol ol ol {
+    list-style-type: lower-roman;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  /* List item spacing within nested lists */
+  .prose li > ul,
+  .prose li > ol {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  /* Ensure list markers are visible and properly colored */
+  .prose ul > li::marker,
+  .prose ol > li::marker {
+    color: #438ac9; /* primary color */
+    font-weight: 600;
+  }
 }
 
 /* Keyframes */
