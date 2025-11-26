@@ -27,25 +27,50 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
   const [filteredAds, setFilteredAds] = useState<Advertisement[]>([]);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
+  // Debug: Log initial advertisements
+  useEffect(() => {
+    console.log('📢 AdvertisementModal - Initial Props:', {
+      totalAds: advertisements.length,
+      advertisements: advertisements,
+    });
+  }, [advertisements]);
+
   // Filter ads based on display frequency
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const adsToDisplay = advertisements.filter(ad => 
-      shouldDisplayAd(ad.id, ad.display_frequency)
-    );
+    console.log('🔍 Filtering ads based on display frequency...');
+
+    const adsToDisplay = advertisements.filter(ad => {
+      const shouldDisplay = shouldDisplayAd(ad.id, ad.display_frequency);
+      console.log(`  Ad ${ad.id} (${ad.title}):`, {
+        frequency: ad.display_frequency,
+        shouldDisplay: shouldDisplay,
+      });
+      return shouldDisplay;
+    });
+
+    console.log('✅ Filtered Ads:', {
+      count: adsToDisplay.length,
+      ads: adsToDisplay,
+    });
 
     setFilteredAds(adsToDisplay);
 
     // Show modal after a short delay (page load complete)
     if (adsToDisplay.length > 0) {
+      console.log('⏳ Setting timer to show modal in 1.5 seconds...');
       const timer = setTimeout(() => {
+        console.log('🎉 Opening advertisement modal!');
         setIsOpen(true);
         // Mark first ad as displayed
         markAdAsDisplayed(adsToDisplay[0].id);
+        console.log('✓ Marked first ad as displayed:', adsToDisplay[0].id);
       }, 1500); // 1.5 seconds after page load
 
       return () => clearTimeout(timer);
+    } else {
+      console.log('❌ No ads to display (filtered ads length is 0)');
     }
   }, [advertisements]);
 
@@ -53,25 +78,36 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
   useEffect(() => {
     if (!isOpen || filteredAds.length <= 1 || !isAutoPlaying) return;
 
+    console.log('🔄 Starting auto-slide:', {
+      interval: '10 seconds',
+      adsCount: filteredAds.length,
+    });
+
     const interval = setInterval(() => {
       setCurrentIndex((prev) => {
         const nextIndex = (prev + 1) % filteredAds.length;
+        console.log(`⏭️ Auto-sliding to ad ${nextIndex + 1} of ${filteredAds.length}`);
         // Mark next ad as displayed
         markAdAsDisplayed(filteredAds[nextIndex].id);
         return nextIndex;
       });
     }, 10000); // 10 seconds
 
-    return () => clearInterval(interval);
+    return () => {
+      console.log('🛑 Stopping auto-slide');
+      clearInterval(interval);
+    };
   }, [isOpen, filteredAds.length, isAutoPlaying, filteredAds]);
 
   // Close modal
   const handleClose = () => {
+    console.log('❌ Closing advertisement modal');
     setIsOpen(false);
   };
 
   // Navigate to previous ad
   const handlePrevious = () => {
+    console.log('⬅️ Navigating to previous ad');
     setIsAutoPlaying(false);
     setCurrentIndex((prev) => {
       const prevIndex = (prev - 1 + filteredAds.length) % filteredAds.length;
@@ -82,6 +118,7 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
 
   // Navigate to next ad
   const handleNext = () => {
+    console.log('➡️ Navigating to next ad');
     setIsAutoPlaying(false);
     setCurrentIndex((prev) => {
       const nextIndex = (prev + 1) % filteredAds.length;
@@ -90,7 +127,12 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
     });
   };
 
-  if (filteredAds.length === 0) return null;
+  if (filteredAds.length === 0) {
+    console.log('⚠️ AdvertisementModal: No filtered ads, not rendering modal');
+    return null;
+  }
+
+  console.log('✓ AdvertisementModal: Rendering with', filteredAds.length, 'ads');
 
   const currentAd = filteredAds[currentIndex];
 
