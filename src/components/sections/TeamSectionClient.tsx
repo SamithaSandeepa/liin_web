@@ -17,11 +17,11 @@ export default function TeamSectionClient({ categories, teamMembers }: TeamSecti
   const [activeCategory, setActiveCategory] = useState<string>(categories[0]?.id || '');
 
   const getImageUrl = (assetId: string | null) => {
-    if (!assetId) return 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400';
+    if (!assetId) return '/images/default-team-member.svg';
     return getAssetUrl(assetId);
   };
 
-  const currentTeam = teamMembers.filter(member => member.category_id === activeCategory);
+  const currentTeam = teamMembers.filter(member => member.team_member_category === activeCategory);
 
   const TeamMemberCard = ({ member, index }: { member: TeamMember; index: number }) => (
     <motion.article
@@ -87,7 +87,7 @@ export default function TeamSectionClient({ categories, teamMembers }: TeamSecti
                       : 'text-gray-600 hover:text-primary'
                   }`}
                 >
-                  {category.category}
+                  {category.team_member_category}
                 </button>
               ))}
             </div>

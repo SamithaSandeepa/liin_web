@@ -5,7 +5,7 @@ const DIRECTUS_URL = process.env.NEXT_PUBLIC_DIRECTUS_URL;
 export const API_ENDPOINTS = {
   news: `${DIRECTUS_URL}/items/news`,
   partners: `${DIRECTUS_URL}/items/partners`,
-  roleCategories: `${DIRECTUS_URL}/items/role_category`,
+  roleCategories: `${DIRECTUS_URL}/items/team_member_categories`,
   teamMembers: `${DIRECTUS_URL}/items/team_members`,
   testimonials: `${DIRECTUS_URL}/items/testimonials`,
   advertisements: `${DIRECTUS_URL}/items/advertisement_popups`,
@@ -28,7 +28,7 @@ export interface RoleCategory {
   id: string;
   status: string;
   sort: number | null;
-  category: string;
+  team_member_category: string;
 }
 
 export interface RoleCategoriesResponse {
@@ -47,7 +47,7 @@ export interface TeamMember {
   facebook_url: string | null;
   instagram_url: string | null;
   twitter_url: string | null;
-  category_id: string;
+  team_member_category: string;
 }
 
 export interface TeamMembersResponse {
