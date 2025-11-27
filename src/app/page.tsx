@@ -6,6 +6,8 @@ import ImpactMetricsSection from "@/components/sections/ImpactMetricsSection";
 import CTASection from "@/components/sections/CTASection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import AdvertisementModal from "@/components/ui/AdvertisementModal";
+import InitiativesShowcaseSection from "@/components/sections/InitiativesShowcaseSection";
+import SectionAnimator from "@/components/ui/SectionAnimator";
 import { fetchAdvertisements } from "@/lib/api";
 
 /**
@@ -39,12 +41,25 @@ export default async function Home() {
         animatedPhrases={heroAnimatedPhrases}
         backgroundVideo="/videos/hero/hero.mp4"
       />
-      <ApproachSection />
-      <AboutSection />
-      <SDGSection />
-      <ImpactMetricsSection />
-      <CTASection />
-      <TestimonialsSection />
+      <InitiativesShowcaseSection />
+      <SectionAnimator animation="fade-up">
+        <ApproachSection />
+      </SectionAnimator>
+      <SectionAnimator animation="fade-up" delay={0.1}>
+        <AboutSection />
+      </SectionAnimator>
+      <SectionAnimator animation="scale-up">
+        <SDGSection />
+      </SectionAnimator>
+      <SectionAnimator animation="fade-up">
+        <ImpactMetricsSection />
+      </SectionAnimator>
+      <SectionAnimator animation="fade-up" delay={0.1}>
+        <CTASection />
+      </SectionAnimator>
+      <SectionAnimator animation="fade-up">
+        <TestimonialsSection />
+      </SectionAnimator>
 
       {/* Advertisement Modal - Shows after page load */}
       <AdvertisementModal advertisements={advertisements} />

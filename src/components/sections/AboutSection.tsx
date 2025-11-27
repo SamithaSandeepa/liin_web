@@ -1,5 +1,6 @@
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
+import InvestmentBackground from "@/components/ui/InvestmentBackground";
 
 export default function AboutSection() {
   return (
@@ -7,8 +8,11 @@ export default function AboutSection() {
       id="about"
       title="About the Lanka Impact Investing Network"
       background="gray"
+      className="relative overflow-hidden"
     >
-      <p className="text-xl leading-relaxed text-gray-700 max-w-5xl mx-auto mb-12 text-center">
+      <InvestmentBackground />
+      <div className="relative z-10">
+        <p className="text-xl leading-relaxed text-gray-700 max-w-5xl mx-auto mb-12 text-center">
         We are a group of experienced professionals with the shared vision of
         building a thriving social enterprise sector since 2015 in Sri Lanka. We
         have identified the need for a dedicated impact investment company which
@@ -21,9 +25,10 @@ export default function AboutSection() {
         <Button variant="primary" size="lg">
           About Us
         </Button>
-        <Button variant="outline" size="lg">
+        <Button variant="primary" size="lg">
           Investment Philosophy
         </Button>
+      </div>
       </div>
     </Section>
   );

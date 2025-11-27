@@ -1,10 +1,15 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import Image from 'next/image';
-import { Advertisement, getAssetUrl, shouldDisplayAd, markAdAsDisplayed } from '@/lib/api';
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import {
+  Advertisement,
+  getAssetUrl,
+  shouldDisplayAd,
+  markAdAsDisplayed,
+} from "@/lib/api";
 
 interface AdvertisementModalProps {
   advertisements: Advertisement[];
@@ -12,7 +17,7 @@ interface AdvertisementModalProps {
 
 /**
  * Professional Advertisement Modal with Auto-Slider
- * 
+ *
  * Features:
  * - Auto-slides through multiple ads (10 seconds each)
  * - Manual navigation controls
@@ -21,7 +26,9 @@ interface AdvertisementModalProps {
  * - Professional animations and styling
  * - Fully responsive
  */
-export default function AdvertisementModal({ advertisements }: AdvertisementModalProps) {
+export default function AdvertisementModal({
+  advertisements,
+}: AdvertisementModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [filteredAds, setFilteredAds] = useState<Advertisement[]>([]);
@@ -29,9 +36,9 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
 
   // Filter ads based on display frequency
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
-    const adsToDisplay = advertisements.filter(ad => 
+    const adsToDisplay = advertisements.filter((ad) =>
       shouldDisplayAd(ad.id, ad.display_frequency)
     );
 
@@ -78,7 +85,7 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
 
   // Navigate to next ad
   const handleNext = () => {
-    console.log('➡️ Navigating to next ad');
+    console.log("➡️ Navigating to next ad");
     setIsAutoPlaying(false);
     setCurrentIndex((prev) => {
       const nextIndex = (prev + 1) % filteredAds.length;
@@ -88,13 +95,13 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
   };
 
   if (filteredAds.length === 0) {
-    console.log('⚠️ AdvertisementModal: No filtered ads, not rendering modal');
     return null;
   }
 
-  console.log('✓ AdvertisementModal: Rendering with', filteredAds.length, 'ads');
-
   const currentAd = filteredAds[currentIndex];
+
+  // Check if ad has only image (no title or content)
+  const isImageOnly = !currentAd.title && !currentAd.content;
 
   return (
     <AnimatePresence>
@@ -115,10 +122,18 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-6 md:p-4"
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className={`fixed inset-0 z-[9999] flex items-center justify-center ${
+              isImageOnly ? "p-4 md:p-4" : "p-6 md:p-4"
+            }`}
           >
-            <div className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[85vh] md:max-h-[90vh] overflow-hidden">
+            <div
+              className={`relative shadow-2xl w-full overflow-hidden ${
+                isImageOnly
+                  ? "max-w-full md:max-w-xl lg:max-w-2xl max-h-[95vh] rounded-2xl bg-transparent"
+                  : "rounded-2xl max-w-4xl max-h-[85vh] md:max-h-[90vh] bg-white"
+              }`}
+            >
               {/* Close Button */}
               <button
                 onClick={handleClose}
@@ -149,7 +164,11 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
               )}
 
               {/* Content Container */}
-              <div className="overflow-y-auto max-h-[85vh] md:max-h-[90vh] scrollbar-thin scrollbar-thumb-primary scrollbar-track-gray-200 hover:scrollbar-thumb-primary-dark">
+              <div
+                className={`overflow-y-auto scrollbar-thin scrollbar-thumb-primary scrollbar-track-gray-200 hover:scrollbar-thumb-primary-dark ${
+                  isImageOnly ? "max-h-[95vh]" : "max-h-[85vh] md:max-h-[90vh]"
+                }`}
+              >
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentAd.id}
@@ -158,81 +177,147 @@ export default function AdvertisementModal({ advertisements }: AdvertisementModa
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.3 }}
                   >
-                    {/* Image Section */}
-                    {currentAd.image && (
-                      <div className="relative w-full h-64 md:h-96 bg-gradient-to-br from-primary to-primary-light">
-                        <Image
-                          src={getAssetUrl(currentAd.image)}
-                          alt={currentAd.title}
-                          fill
-                          className="object-cover"
-                          priority
-                        />
-                      </div>
-                    )}
-
-                    {/* Content Section */}
-                    <div className="p-8 md:p-8 lg:p-10">
-                      {/* Title */}
-                      <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-                        {currentAd.title}
-                      </h2>
-
-                      {/* Content (HTML) */}
-                      <div
-                        className="prose prose-lg max-w-none text-gray-700 mb-6"
-                        dangerouslySetInnerHTML={{ __html: currentAd.content }}
-                      />
-
-                      {/* CTA Button */}
-                      {currentAd.button_text && currentAd.button_url && (
-                        <div className="flex flex-col sm:flex-row gap-4">
-                          <a
-                            href={currentAd.button_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center px-8 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-full transition-all hover:scale-105 shadow-primary"
-                          >
-                            {currentAd.button_text}
-                          </a>
-                          <button
-                            onClick={handleClose}
-                            className="inline-flex items-center justify-center px-8 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold rounded-full transition-all"
-                          >
-                            Close
-                          </button>
-                        </div>
-                      )}
-
-                      {/* Progress Indicators (if multiple ads) */}
-                      {filteredAds.length > 1 && (
-                        <div className="flex items-center justify-center gap-2 mt-6">
-                          {filteredAds.map((_, index) => (
-                            <button
-                              key={index}
-                              onClick={() => {
-                                setIsAutoPlaying(false);
-                                setCurrentIndex(index);
-                                markAdAsDisplayed(filteredAds[index].id);
-                              }}
-                              className={`h-2 rounded-full transition-all ${
-                                index === currentIndex
-                                  ? 'w-8 bg-primary'
-                                  : 'w-2 bg-gray-300 hover:bg-gray-400'
-                              }`}
-                              aria-label={`Go to advertisement ${index + 1}`}
+                    {isImageOnly ? (
+                      /* Full-Screen Image Layout */
+                      <>
+                        <div className="relative w-full">
+                          {/* Image - Full Width, Natural Height with Max */}
+                          {currentAd.image && (
+                            <img
+                              src={getAssetUrl(currentAd.image)}
+                              alt="Advertisement"
+                              className="w-full h-auto max-h-full object-fit"
                             />
-                          ))}
-                        </div>
-                      )}
+                          )}
 
-                      {/* Ad Counter */}
-                      {filteredAds.length > 1 && (
-                        <p className="text-center text-sm text-gray-500 mt-4">
-                          {currentIndex + 1} of {filteredAds.length}
-                        </p>
-                      )}
-                    </div>
+                          {/* CTA Button Below Image */}
+                          {currentAd.button_text && currentAd.button_url && (
+                            <div className="bg-white p-6 flex justify-center">
+                              <a
+                                href={currentAd.button_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center px-8 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-full transition-all hover:scale-105 shadow-lg"
+                              >
+                                {currentAd.button_text}
+                              </a>
+                            </div>
+                          )}
+
+                          {/* Progress Indicators Below (if multiple ads) */}
+                          {filteredAds.length > 1 && (
+                            <div className="bg-white px-4 pb-4 flex flex-col items-center gap-2">
+                              <div className="flex items-center justify-center gap-2">
+                                {filteredAds.map((_, index) => (
+                                  <button
+                                    key={index}
+                                    onClick={() => {
+                                      setIsAutoPlaying(false);
+                                      setCurrentIndex(index);
+                                      markAdAsDisplayed(filteredAds[index].id);
+                                    }}
+                                    className={`h-2 rounded-full transition-all ${
+                                      index === currentIndex
+                                        ? "w-8 bg-primary"
+                                        : "w-2 bg-gray-300 hover:bg-gray-400"
+                                    }`}
+                                    aria-label={`Go to advertisement ${
+                                      index + 1
+                                    }`}
+                                  />
+                                ))}
+                              </div>
+                              <p className="text-center text-sm text-gray-500">
+                                {currentIndex + 1} of {filteredAds.length}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </>
+                    ) : (
+                      /* Standard Layout with Title & Content */
+                      <>
+                        {/* Image Section */}
+                        {currentAd.image && (
+                          <div className="relative w-full h-64 md:h-96 bg-gradient-to-br from-primary to-primary-light">
+                            <Image
+                              src={getAssetUrl(currentAd.image)}
+                              alt={currentAd.title}
+                              fill
+                              className="object-cover"
+                              priority
+                            />
+                          </div>
+                        )}
+
+                        {/* Content Section */}
+                        <div className="p-8 md:p-8 lg:p-10">
+                          {/* Title */}
+                          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+                            {currentAd.title}
+                          </h2>
+
+                          {/* Content (HTML) */}
+                          <div
+                            className="prose prose-lg max-w-none text-gray-700 mb-6"
+                            dangerouslySetInnerHTML={{
+                              __html: currentAd.content,
+                            }}
+                          />
+
+                          {/* CTA Button */}
+                          {currentAd.button_text && currentAd.button_url && (
+                            <div className="flex flex-col sm:flex-row gap-4">
+                              <a
+                                href={currentAd.button_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center px-8 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-full transition-all hover:scale-105 shadow-primary"
+                              >
+                                {currentAd.button_text}
+                              </a>
+                              <button
+                                onClick={handleClose}
+                                className="inline-flex items-center justify-center px-8 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold rounded-full transition-all"
+                              >
+                                Close
+                              </button>
+                            </div>
+                          )}
+
+                          {/* Progress Indicators (if multiple ads) */}
+                          {filteredAds.length > 1 && (
+                            <div className="flex items-center justify-center gap-2 mt-6">
+                              {filteredAds.map((_, index) => (
+                                <button
+                                  key={index}
+                                  onClick={() => {
+                                    setIsAutoPlaying(false);
+                                    setCurrentIndex(index);
+                                    markAdAsDisplayed(filteredAds[index].id);
+                                  }}
+                                  className={`h-2 rounded-full transition-all ${
+                                    index === currentIndex
+                                      ? "w-8 bg-primary"
+                                      : "w-2 bg-gray-300 hover:bg-gray-400"
+                                  }`}
+                                  aria-label={`Go to advertisement ${
+                                    index + 1
+                                  }`}
+                                />
+                              ))}
+                            </div>
+                          )}
+
+                          {/* Ad Counter */}
+                          {filteredAds.length > 1 && (
+                            <p className="text-center text-sm text-gray-500 mt-4">
+                              {currentIndex + 1} of {filteredAds.length}
+                            </p>
+                          )}
+                        </div>
+                      </>
+                    )}
                   </motion.div>
                 </AnimatePresence>
               </div>

@@ -10,7 +10,7 @@ export default async function TeamSection() {
       fetchRoleCategories(),
       fetchTeamMembers()
     ]);
-
+    console.log(categories, teamMembers, "adfadf")
     categories = categoriesRes.data?.filter(cat => cat.status === 'published') || [];
     teamMembers = membersRes.data?.filter(member => member.status === 'published') || [];
   } catch (error) {

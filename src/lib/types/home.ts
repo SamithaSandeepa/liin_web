@@ -4,6 +4,7 @@ export interface ApproachCard {
   img: string;
   title: string;
   desc: string;
+  link?: string; // Optional link for redirect
   fullDetails?: {
     overview: string;
     keyPoints: string[];
@@ -16,7 +17,7 @@ export interface SDGImage {
   alt: string;
 }
 
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon } from "lucide-react";
 
 export interface ImpactMetric {
   icon: LucideIcon;
