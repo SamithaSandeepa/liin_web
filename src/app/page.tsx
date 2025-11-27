@@ -6,6 +6,7 @@ import ImpactMetricsSection from "@/components/sections/ImpactMetricsSection";
 import CTASection from "@/components/sections/CTASection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import AdvertisementModal from "@/components/ui/AdvertisementModal";
+import InitiativesShowcaseSection from "@/components/sections/InitiativesShowcaseSection";
 import { fetchAdvertisements } from "@/lib/api";
 
 /**
@@ -39,6 +40,7 @@ export default async function Home() {
         animatedPhrases={heroAnimatedPhrases}
         backgroundVideo="/videos/hero/hero.mp4"
       />
+      <InitiativesShowcaseSection />
       <ApproachSection />
       <AboutSection />
       <SDGSection />

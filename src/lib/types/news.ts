@@ -14,6 +14,18 @@ export interface NewsItem {
   seo_desc: string;
   image: string;
   publication_date: string;
+  news_category: string;
+}
+
+export interface NewsCategory {
+  id: string;
+  status: string;
+  sort: number | null;
+  news_category: string;
+}
+
+export interface NewsCategoriesResponse {
+  data: NewsCategory[];
 }
 
 export interface NewsResponse {

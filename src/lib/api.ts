@@ -4,7 +4,9 @@ const DIRECTUS_URL = process.env.NEXT_PUBLIC_DIRECTUS_URL;
 
 export const API_ENDPOINTS = {
   news: `${DIRECTUS_URL}/items/news`,
+  newsCategories: `${DIRECTUS_URL}/items/news_categories`,
   partners: `${DIRECTUS_URL}/items/partners`,
+  partnerCategories: `${DIRECTUS_URL}/items/partner_categories`,
   roleCategories: `${DIRECTUS_URL}/items/team_member_categories`,
   teamMembers: `${DIRECTUS_URL}/items/team_members`,
   testimonials: `${DIRECTUS_URL}/items/testimonials`,
@@ -18,6 +20,18 @@ export interface Partner {
   website_url: string;
   status: string;
   sort: number;
+  partner_category: string | null;
+}
+
+export interface PartnerCategory {
+  id: string;
+  status: string;
+  sort: number | null;
+  partner_category: string;
+}
+
+export interface PartnerCategoriesResponse {
+  data: PartnerCategory[];
 }
 
 export interface PartnersResponse {
@@ -153,6 +167,36 @@ export async function fetchPartners(): Promise<PartnersResponse> {
 
   if (!res.ok) {
     throw new Error("Failed to fetch partners");
+  }
+
+  return res.json();
+}
+
+export async function fetchPartnerCategories(): Promise<PartnerCategoriesResponse> {
+  const res = await fetch(
+    `${API_ENDPOINTS.partnerCategories}?filter[status][_eq]=published`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch partner categories");
+  }
+
+  return res.json();
+}
+
+export async function fetchNewsCategories(): Promise<any> {
+  const res = await fetch(
+    `${API_ENDPOINTS.newsCategories}?filter[status][_eq]=published&sort=sort`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch news categories");
   }
 
   return res.json();

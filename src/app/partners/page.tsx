@@ -1,15 +1,21 @@
 import HeroSection from "@/components/sections/HeroSection";
 import Section from "@/components/ui/Section";
-import { fetchPartners, getAssetUrl, Partner } from "@/lib/api";
+import { fetchPartners, fetchPartnerCategories, getAssetUrl, Partner, PartnerCategory } from "@/lib/api";
+import PartnersSectionClient from "@/components/sections/PartnersSectionClient";
 
 export default async function PartnersPage() {
   let partners: Partner[] = [];
+  let categories: PartnerCategory[] = [];
 
   try {
-    const response = await fetchPartners();
-    partners = response.data?.filter((partner) => partner.status === "published") || [];
+    const [partnersRes, categoriesRes] = await Promise.all([
+      fetchPartners(),
+      fetchPartnerCategories()
+    ]);
+    partners = partnersRes.data?.filter((partner) => partner.status === "published") || [];
+    categories = categoriesRes.data?.filter((cat) => cat.status === "published") || [];
   } catch (error) {
-    console.error("Failed to fetch partners:", error);
+    console.error("Failed to fetch partners data:", error);
   }
 
   return (
@@ -25,34 +31,7 @@ export default async function PartnersPage() {
         title="Strategic Partners"
         subtitle="We collaborate with organizations that share our vision for a better Sri Lanka"
       >
-        {partners.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">No partners available at the moment.</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {partners.map((partner) => (
-              <a
-                key={partner.id}
-                href={partner.website_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="animate-on-scroll group"
-              >
-                <div className="bg-white p-8 rounded-2xl shadow-medium hover:shadow-hard transition-all duration-300 flex items-center justify-center h-40 group-hover:scale-105">
-                  <img
-                    src={getAssetUrl(partner.logo)}
-                    alt={partner.name}
-                    className="max-h-24 max-w-full object-contain transition-all duration-300"
-                  />
-                </div>
-                <p className="text-center mt-4 font-semibold text-gray-700 group-hover:text-primary transition-colors">
-                  {partner.name}
-                </p>
-              </a>
-            ))}
-          </div>
-        )}
+        <PartnersSectionClient partners={partners} categories={categories} />
       </Section>
 
       <Section
