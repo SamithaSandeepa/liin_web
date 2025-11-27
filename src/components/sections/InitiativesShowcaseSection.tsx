@@ -97,7 +97,7 @@ export default function InitiativesShowcaseSection() {
 
                   {/* Content */}
                   <div className="text-center">
-                    <h3 className="text-2xl font-bold mb-3 text-gray-800 group-hover:text-primary transition-colors">
+                    <h3 className="text-2xl font-bold mb-3 text-gray-800 text-primary transition-colors">
                       {initiative.title}
                     </h3>
                     <p className="text-gray-600 leading-relaxed mb-6 text-sm">
