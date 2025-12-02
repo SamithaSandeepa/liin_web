@@ -42,20 +42,17 @@ const navItems: NavItem[] = [
       {
         label: "Ongoing Projects",
         href: "/projects/ongoing",
-        subItems: [
-          { label: "GRIT", href: "https://www.liin.lk/grit/" },
-          { label: "Climate Challenge", href: "/projects/climate-challenge" },
-          { label: "PIF", href: "/projects/pif" },
-          { label: "Emerging Women", href: "/projects/emerging-women" },
-          { label: "Linked Way", href: "/projects/linked-way" },
-        ]
+        subItems: [{ label: "GRIT", href: "https://www.liin.lk/grit/" }],
       },
       {
         label: "Past Projects",
         href: "/projects/past",
         subItems: [
-          { label: "Ath Pavura", href: "/initiatives/ath-pavura" },
-        ]
+          { label: "Climate Challenge", href: "/projects/climate-challenge" },
+          { label: "PIF", href: "/projects/pif" },
+          { label: "Emerging Women", href: "/projects/emerging-women" },
+          { label: "Linked Way", href: "/projects/linked-way" },
+        ],
       },
     ],
   },
@@ -94,11 +91,15 @@ const sidebarItems: NavItem[] = [
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [openNestedDropdown, setOpenNestedDropdown] = useState<string | null>(null);
+  const [openNestedDropdown, setOpenNestedDropdown] = useState<string | null>(
+    null
+  );
   const [openSidebarDropdown, setOpenSidebarDropdown] = useState<string | null>(
     null
   );
-  const [openSidebarNested, setOpenSidebarNested] = useState<string | null>(null);
+  const [openSidebarNested, setOpenSidebarNested] = useState<string | null>(
+    null
+  );
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => {
@@ -175,7 +176,10 @@ export default function Header() {
                               <div
                                 key={subItem.href}
                                 className="relative"
-                                onMouseEnter={() => subItem.subItems && setOpenNestedDropdown(subItem.label)}
+                                onMouseEnter={() =>
+                                  subItem.subItems &&
+                                  setOpenNestedDropdown(subItem.label)
+                                }
                                 onMouseLeave={() => setOpenNestedDropdown(null)}
                               >
                                 <a
@@ -183,7 +187,12 @@ export default function Header() {
                                   className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors"
                                 >
                                   {subItem.label}
-                                  {subItem.subItems && <ChevronDown size={12} className="-rotate-90" />}
+                                  {subItem.subItems && (
+                                    <ChevronDown
+                                      size={12}
+                                      className="-rotate-90"
+                                    />
+                                  )}
                                 </a>
                                 {/* Nested Dropdown */}
                                 {subItem.subItems && (
@@ -307,36 +316,55 @@ export default function Header() {
                                       {subItem.subItems ? (
                                         <>
                                           <button
-                                            onClick={() => setOpenSidebarNested(openSidebarNested === subItem.label ? null : subItem.label)}
+                                            onClick={() =>
+                                              setOpenSidebarNested(
+                                                openSidebarNested ===
+                                                  subItem.label
+                                                  ? null
+                                                  : subItem.label
+                                              )
+                                            }
                                             className="flex items-center justify-between w-full px-4 py-2 text-white/80 text-sm hover:text-white hover:bg-white/10 rounded-lg transition-all"
                                           >
                                             {subItem.label}
                                             <ChevronDown
                                               size={12}
                                               className={`transition-transform ${
-                                                openSidebarNested === subItem.label ? "rotate-180" : ""
+                                                openSidebarNested ===
+                                                subItem.label
+                                                  ? "rotate-180"
+                                                  : ""
                                               }`}
                                             />
                                           </button>
                                           <AnimatePresence>
-                                            {openSidebarNested === subItem.label && (
+                                            {openSidebarNested ===
+                                              subItem.label && (
                                               <motion.ul
-                                                initial={{ height: 0, opacity: 0 }}
-                                                animate={{ height: "auto", opacity: 1 }}
+                                                initial={{
+                                                  height: 0,
+                                                  opacity: 0,
+                                                }}
+                                                animate={{
+                                                  height: "auto",
+                                                  opacity: 1,
+                                                }}
                                                 exit={{ height: 0, opacity: 0 }}
                                                 className="overflow-hidden pl-4"
                                               >
-                                                {subItem.subItems.map((nestedItem) => (
-                                                  <li key={nestedItem.href}>
-                                                    <a
-                                                      href={nestedItem.href}
-                                                      onClick={closeMenu}
-                                                      className="block px-4 py-2 text-white/60 text-xs hover:text-white hover:bg-white/10 rounded-lg transition-all"
-                                                    >
-                                                      {nestedItem.label}
-                                                    </a>
-                                                  </li>
-                                                ))}
+                                                {subItem.subItems.map(
+                                                  (nestedItem) => (
+                                                    <li key={nestedItem.href}>
+                                                      <a
+                                                        href={nestedItem.href}
+                                                        onClick={closeMenu}
+                                                        className="block px-4 py-2 text-white/60 text-xs hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                                                      >
+                                                        {nestedItem.label}
+                                                      </a>
+                                                    </li>
+                                                  )
+                                                )}
                                               </motion.ul>
                                             )}
                                           </AnimatePresence>
