@@ -1,4 +1,11 @@
 import { ctaData } from '@/lib/data/cta';
+import { TrendingUp, Lightbulb } from 'lucide-react';
+
+// Icon mapping
+const iconMap = {
+  TrendingUp: TrendingUp,
+  Lightbulb: Lightbulb,
+};
 
 export default function CTASection() {
   return (
@@ -18,7 +25,12 @@ export default function CTASection() {
 
           {/* Content */}
           <div className="relative z-10 text-center max-w-md animate-on-scroll">
-            <div className="text-5xl mb-6">{ctaData[0].icon}</div>
+            <div className="mb-6">
+              {(() => {
+                const IconComponent = iconMap[ctaData[0].icon as keyof typeof iconMap];
+                return IconComponent ? <IconComponent size={64} className="mx-auto text-white" strokeWidth={1.5} /> : null;
+              })()}
+            </div>
             <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">
               {ctaData[0].title}
             </h3>
@@ -48,7 +60,12 @@ export default function CTASection() {
 
           {/* Content */}
           <div className="relative z-10 text-center max-w-md animate-on-scroll">
-            <div className="text-5xl mb-6">{ctaData[1].icon}</div>
+            <div className="mb-6">
+              {(() => {
+                const IconComponent = iconMap[ctaData[1].icon as keyof typeof iconMap];
+                return IconComponent ? <IconComponent size={64} className="mx-auto text-white" strokeWidth={1.5} /> : null;
+              })()}
+            </div>
             <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">
               {ctaData[1].title}
             </h3>
