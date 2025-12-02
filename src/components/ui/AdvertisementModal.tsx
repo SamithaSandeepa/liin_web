@@ -128,34 +128,36 @@ export default function AdvertisementModal({
             }`}
           >
             <div
-              className={`relative shadow-2xl w-full overflow-hidden ${
+              className={`relative w-full overflow-hidden ${
                 isImageOnly
                   ? "max-w-full md:max-w-xl lg:max-w-2xl max-h-[95vh] rounded-2xl bg-transparent"
-                  : "rounded-2xl max-w-4xl max-h-[85vh] md:max-h-[90vh] bg-white"
+                  : "rounded-2xl max-w-4xl max-h-[85vh] md:max-h-[90vh] bg-white shadow-2xl"
               }`}
             >
-              {/* Close Button */}
-              <button
-                onClick={handleClose}
-                className="absolute top-4 right-4 z-10 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
-                aria-label="Close advertisement"
-              >
-                <X size={24} className="text-gray-700" />
-              </button>
+              {/* Close Button - Only for standard ads */}
+              {!isImageOnly && (
+                <button
+                  onClick={handleClose}
+                  className="absolute top-2 right-2 z-10 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
+                  aria-label="Close advertisement"
+                >
+                  <X size={24} className="text-gray-700" />
+                </button>
+              )}
 
-              {/* Navigation Buttons (if multiple ads) */}
-              {filteredAds.length > 1 && (
+              {/* Navigation Buttons - Only for standard ads with multiple ads */}
+              {!isImageOnly && filteredAds.length > 1 && (
                 <>
                   <button
                     onClick={handlePrevious}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 z-10 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
                     aria-label="Previous advertisement"
                   >
                     <ChevronLeft size={24} className="text-gray-700" />
                   </button>
                   <button
                     onClick={handleNext}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 z-10 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
                     aria-label="Next advertisement"
                   >
                     <ChevronRight size={24} className="text-gray-700" />
@@ -178,62 +180,94 @@ export default function AdvertisementModal({
                     transition={{ duration: 0.3 }}
                   >
                     {isImageOnly ? (
-                      /* Full-Screen Image Layout */
-                      <>
-                        <div className="relative w-full">
-                          {/* Image - Full Width, Natural Height with Max */}
+                      /* Image-Only Layout - Clean & Simple */
+                      <div className="flex flex-col">
+                        {/* Image with buttons */}
+                        <div className="relative">
                           {currentAd.image && (
                             <img
                               src={getAssetUrl(currentAd.image)}
                               alt="Advertisement"
-                              className="w-full h-auto max-h-full object-fit"
+                              className="w-full h-auto md:h-[600px] object-contain rounded-2xl"
                             />
                           )}
 
-                          {/* CTA Button Below Image */}
-                          {currentAd.button_text && currentAd.button_url && (
-                            <div className="bg-white p-6 flex justify-center">
-                              <a
-                                href={currentAd.button_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center px-8 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-full transition-all hover:scale-105 shadow-lg"
-                              >
-                                {currentAd.button_text}
-                              </a>
-                            </div>
-                          )}
+                          {/* Close Button on Image */}
+                          <button
+                            onClick={handleClose}
+                            className="absolute top-2 right-2 z-10 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
+                            aria-label="Close advertisement"
+                          >
+                            <X size={20} className="text-gray-700" />
+                          </button>
 
-                          {/* Progress Indicators Below (if multiple ads) */}
+                          {/* Navigation Buttons on Image (if multiple ads) */}
                           {filteredAds.length > 1 && (
-                            <div className="bg-white px-4 pb-4 flex flex-col items-center gap-2">
-                              <div className="flex items-center justify-center gap-2">
-                                {filteredAds.map((_, index) => (
-                                  <button
-                                    key={index}
-                                    onClick={() => {
-                                      setIsAutoPlaying(false);
-                                      setCurrentIndex(index);
-                                      markAdAsDisplayed(filteredAds[index].id);
-                                    }}
-                                    className={`h-2 rounded-full transition-all ${
-                                      index === currentIndex
-                                        ? "w-8 bg-primary"
-                                        : "w-2 bg-gray-300 hover:bg-gray-400"
-                                    }`}
-                                    aria-label={`Go to advertisement ${
-                                      index + 1
-                                    }`}
-                                  />
-                                ))}
-                              </div>
-                              <p className="text-center text-sm text-gray-500">
-                                {currentIndex + 1} of {filteredAds.length}
-                              </p>
-                            </div>
+                            <>
+                              <button
+                                onClick={handlePrevious}
+                                className="absolute left-2 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
+                                aria-label="Previous advertisement"
+                              >
+                                <ChevronLeft
+                                  size={20}
+                                  className="text-gray-700"
+                                />
+                              </button>
+                              <button
+                                onClick={handleNext}
+                                className="absolute right-2 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
+                                aria-label="Next advertisement"
+                              >
+                                <ChevronRight
+                                  size={20}
+                                  className="text-gray-700"
+                                />
+                              </button>
+                            </>
                           )}
                         </div>
-                      </>
+
+                        {/* Button (if exists) */}
+                        {currentAd.button_text && currentAd.button_url && (
+                          <div className="mt-4 flex justify-center">
+                            <a
+                              href={currentAd.button_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center px-8 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-full transition-all hover:scale-105 shadow-lg"
+                            >
+                              {currentAd.button_text}
+                            </a>
+                          </div>
+                        )}
+
+                        {/* Progress Indicators (if multiple ads) */}
+                        {filteredAds.length > 1 && (
+                          <div className="mt-4 flex flex-col items-center gap-2">
+                            <div className="flex items-center justify-center gap-2">
+                              {filteredAds.map((_, index) => (
+                                <button
+                                  key={index}
+                                  onClick={() => {
+                                    setIsAutoPlaying(false);
+                                    setCurrentIndex(index);
+                                    markAdAsDisplayed(filteredAds[index].id);
+                                  }}
+                                  className={`h-2 rounded-full transition-all ${
+                                    index === currentIndex
+                                      ? "w-8 bg-white"
+                                      : "w-2 bg-white/60 hover:bg-white/80"
+                                  }`}
+                                  aria-label={`Go to advertisement ${
+                                    index + 1
+                                  }`}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     ) : (
                       /* Standard Layout with Title & Content */
                       <>
