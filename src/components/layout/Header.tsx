@@ -37,7 +37,7 @@ const navItems: NavItem[] = [
   },
   {
     label: "Projects",
-    href: "/projects",
+    href: "#projects",
     subItems: [
       {
         label: "Ongoing Projects",

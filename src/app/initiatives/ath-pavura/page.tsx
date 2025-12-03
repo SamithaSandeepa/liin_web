@@ -1,6 +1,7 @@
 import HeroSection from "@/components/sections/HeroSection";
 import Section from "@/components/ui/Section";
 import CounterAnimation from "@/components/ui/CounterAnimation";
+import JoinNetworkSection from "@/components/sections/JoinNetworkSection";
 import Image from "next/image";
 import {
   Youtube,
@@ -354,27 +355,15 @@ export default function AthPavuraPage() {
       </Section>
 
       {/* CTA */}
-      <Section id="cta" title="Join the Movement" background="gradient-primary">
-        <div className="text-center">
-          <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
-            Be part of Sri Lanka's social entrepreneurship revolution
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              className="inline-block bg-white text-primary px-10 py-4 rounded-full font-bold hover:scale-105 transition-transform"
-            >
-              Contact Us
-            </a>
-            <a
-              href="/investments"
-              className="inline-block bg-white/20 backdrop-blur-sm text-white border-2 border-white px-10 py-4 rounded-full font-bold hover:bg-white/30 transition-colors"
-            >
-              View Investments
-            </a>
-          </div>
-        </div>
-      </Section>
+      <JoinNetworkSection
+        title="Join the Movement"
+        subtitle="Be part of Sri Lanka's social entrepreneurship revolution"
+        description=""
+        primaryButtonText="Contact Us"
+        primaryButtonLink="/contact"
+        secondaryButtonText="View Investments"
+        secondaryButtonLink="/investments"
+      />
     </>
   );
 }
