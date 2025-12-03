@@ -18,7 +18,7 @@ export default function JoinNetworkSection({
   primaryButtonText = "Get In Touch",
   primaryButtonLink = "/contact",
   secondaryButtonText = "Back to Home",
-  secondaryButtonLink = "/"
+  secondaryButtonLink = "/",
 }: JoinNetworkSectionProps) {
   return (
     <Section
@@ -36,7 +36,7 @@ export default function JoinNetworkSection({
         <div className="flex flex-col sm:flex-row gap-6 justify-center">
           <a
             href={primaryButtonLink}
-            className="inline-block bg-white text-primary px-10 py-4 rounded-full font-bold hover:scale-105 transition-transform shadow-lg"
+            className="inline-block bg-white/20 backdrop-blur-sm text-white border-2 border-white px-10 py-4 rounded-full font-bold hover:bg-white/30 transition-colors"
           >
             {primaryButtonText}
           </a>

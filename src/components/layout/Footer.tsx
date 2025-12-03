@@ -122,12 +122,6 @@ export default function Footer() {
                 >
                   Terms of Service
                 </a>
-                <a
-                  href="/cookies"
-                  className="hover:opacity-100 transition-opacity"
-                >
-                  Cookie Policy
-                </a>
               </div>
             </div>
           </div>
