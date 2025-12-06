@@ -122,7 +122,7 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 bg-primary shadow-lg">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="flex items-center justify-between py-4 gap-4">
+          <div className="flex items-center justify-between py-6 gap-4">
             {/* Logo */}
             <a
               href="/"
@@ -132,8 +132,8 @@ export default function Header() {
               <Image
                 src="/images/logo.png"
                 alt="LIIN Logo"
-                width={100}
-                height={100}
+                width={120}
+                height={120}
                 className="object-contain"
                 priority
               />
@@ -155,7 +155,7 @@ export default function Header() {
                   >
                     <a
                       href={item.href}
-                      className="flex items-center gap-1 text-white text-sm font-medium hover:bg-white/10 px-3 py-2 rounded-lg transition-all whitespace-nowrap"
+                      className="flex items-center gap-1 text-white text-base font-medium hover:bg-white/10 px-3 py-2 rounded-lg transition-all whitespace-nowrap uppercase"
                     >
                       {item.label}
                       {item.subItems && <ChevronDown size={14} />}
@@ -184,7 +184,7 @@ export default function Header() {
                               >
                                 <a
                                   href={subItem.href}
-                                  className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors"
+                                  className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors uppercase"
                                 >
                                   {subItem.label}
                                   {subItem.subItems && (
@@ -209,7 +209,7 @@ export default function Header() {
                                           <a
                                             key={nestedItem.href}
                                             href={nestedItem.href}
-                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors uppercase"
                                           >
                                             {nestedItem.label}
                                           </a>
@@ -270,7 +270,7 @@ export default function Header() {
             <div className="flex flex-col h-full">
               {/* Menu Header */}
               <div className="flex items-center justify-between p-6 border-b border-white/20">
-                <h2 className="text-white text-2xl font-bold">MENU</h2>
+                <h2 className="text-white text-3xl font-bold">MENU</h2>
                 <button
                   onClick={closeMenu}
                   className="text-white hover:opacity-80 transition-opacity p-2 hover:bg-white/10 rounded-full"
@@ -291,7 +291,7 @@ export default function Header() {
                           <>
                             <button
                               onClick={() => toggleSidebarDropdown(item.label)}
-                              className="flex items-center justify-between w-full px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all"
+                              className="flex items-center justify-between w-full px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all uppercase"
                             >
                               {item.label}
                               <ChevronDown
@@ -324,7 +324,7 @@ export default function Header() {
                                                   : subItem.label
                                               )
                                             }
-                                            className="flex items-center justify-between w-full px-4 py-2 text-white/80 text-sm hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                                            className="flex items-center justify-between w-full px-4 py-2 text-white/80 text-base hover:text-white hover:bg-white/10 rounded-lg transition-all uppercase"
                                           >
                                             {subItem.label}
                                             <ChevronDown
@@ -358,7 +358,7 @@ export default function Header() {
                                                       <a
                                                         href={nestedItem.href}
                                                         onClick={closeMenu}
-                                                        className="block px-4 py-2 text-white/60 text-xs hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                                                        className="block px-4 py-2 text-white/60 text-sm hover:text-white hover:bg-white/10 rounded-lg transition-all uppercase"
                                                       >
                                                         {nestedItem.label}
                                                       </a>
@@ -373,7 +373,7 @@ export default function Header() {
                                         <a
                                           href={subItem.href}
                                           onClick={closeMenu}
-                                          className="block px-4 py-2 text-white/80 text-sm hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                                          className="block px-4 py-2 text-white/80 text-base hover:text-white hover:bg-white/10 rounded-lg transition-all uppercase"
                                         >
                                           {subItem.label}
                                         </a>
@@ -388,7 +388,7 @@ export default function Header() {
                           <a
                             href={item.href}
                             onClick={closeMenu}
-                            className="block px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all"
+                            className="block px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all uppercase"
                           >
                             {item.label}
                           </a>
@@ -405,7 +405,7 @@ export default function Header() {
                           <>
                             <button
                               onClick={() => toggleSidebarDropdown(item.label)}
-                              className="flex items-center justify-between w-full px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all"
+                              className="flex items-center justify-between w-full px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all uppercase"
                             >
                               {item.label}
                               <ChevronDown
@@ -430,7 +430,7 @@ export default function Header() {
                                       <a
                                         href={subItem.href}
                                         onClick={closeMenu}
-                                        className="block px-4 py-2 text-white/80 text-sm hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                                        className="block px-4 py-2 text-white/80 text-base hover:text-white hover:bg-white/10 rounded-lg transition-all uppercase"
                                       >
                                         {subItem.label}
                                       </a>
@@ -444,7 +444,7 @@ export default function Header() {
                           <a
                             href={item.href}
                             onClick={closeMenu}
-                            className="block px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all"
+                            className="block px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all uppercase"
                           >
                             {item.label}
                           </a>

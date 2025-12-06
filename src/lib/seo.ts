@@ -6,9 +6,10 @@ export const siteConfig = {
   url: 'https://liin-web.vercel.app',
   ogImage: 'https://liin-web.vercel.app/images/logo.png',
   links: {
-    facebook: 'https://facebook.com/liin',
-    linkedin: 'https://linkedin.com/company/liin',
-    youtube: 'https://youtube.com/liin'
+    facebook: 'https://www.facebook.com/liin.sl',
+    linkedin: 'https://www.linkedin.com/company/liin-lanka-impact-investing-network/',
+    instagram: 'https://www.instagram.com/liin.sl/',
+    youtube: 'https://www.youtube.com/@lankaimpactinvestingnetwork'
   }
 };
 

@@ -12,7 +12,7 @@ export default function AboutPage() {
       <HeroSection
         title="About LIIN"
         subtitle="Building a thriving social enterprise sector in Sri Lanka"
-        backgroundImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920"
+        backgroundImage="/images/aboutus/cover.jpeg"
       />
 
       {/* What Makes Us Different */}

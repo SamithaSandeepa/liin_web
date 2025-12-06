@@ -1,29 +1,42 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import Section from '@/components/ui/Section';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Linkedin, Facebook, Instagram, Twitter } from 'lucide-react';
-import { RoleCategory, TeamMember, getAssetUrl } from '@/lib/api';
+import { useState } from "react";
+import Image from "next/image";
+import Section from "@/components/ui/Section";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Linkedin, Facebook, Instagram, Twitter } from "lucide-react";
+import { RoleCategory, TeamMember, getAssetUrl } from "@/lib/api";
 
 interface TeamSectionClientProps {
   categories: RoleCategory[];
   teamMembers: TeamMember[];
 }
 
-export default function TeamSectionClient({ categories, teamMembers }: TeamSectionClientProps) {
+export default function TeamSectionClient({
+  categories,
+  teamMembers,
+}: TeamSectionClientProps) {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
-  const [activeCategory, setActiveCategory] = useState<string>(categories[0]?.id || '');
+  const [activeCategory, setActiveCategory] = useState<string>(
+    categories[0]?.id || ""
+  );
 
   const getImageUrl = (assetId: string | null) => {
-    if (!assetId) return '/images/default-team-member.svg';
+    if (!assetId) return "/images/default-team-member.svg";
     return getAssetUrl(assetId);
   };
 
-  const currentTeam = teamMembers.filter(member => member.team_member_category === activeCategory);
+  const currentTeam = teamMembers.filter(
+    (member) => member.team_member_category === activeCategory
+  );
 
-  const TeamMemberCard = ({ member, index }: { member: TeamMember; index: number }) => (
+  const TeamMemberCard = ({
+    member,
+    index,
+  }: {
+    member: TeamMember;
+    index: number;
+  }) => (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -43,7 +56,9 @@ export default function TeamSectionClient({ categories, teamMembers }: TeamSecti
           <div className="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/10 transition-colors" />
         </div>
         <h4 className="font-bold text-lg text-center">{member.name}</h4>
-        <p className="text-primary text-base font-medium text-center">{member.job_title}</p>
+        <p className="text-primary text-base font-medium text-center">
+          {member.job_title}
+        </p>
       </div>
     </motion.article>
   );
@@ -67,8 +82,12 @@ export default function TeamSectionClient({ categories, teamMembers }: TeamSecti
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-              <h3 className="text-2xl md:text-3xl font-bold">Driving Impact Together</h3>
-              <p className="text-white/90">Our dedicated team working towards sustainable development</p>
+              <h3 className="text-2xl md:text-3xl font-bold">
+                Driving Impact Together
+              </h3>
+              <p className="text-white/90">
+                Our dedicated team working towards sustainable development
+              </p>
             </div>
           </div>
         </div>
@@ -83,8 +102,8 @@ export default function TeamSectionClient({ categories, teamMembers }: TeamSecti
                   onClick={() => setActiveCategory(category.id)}
                   className={`px-8 py-3 rounded-full text-sm font-semibold transition-all ${
                     activeCategory === category.id
-                      ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
-                      : 'text-gray-600 hover:text-primary'
+                      ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg"
+                      : "text-gray-600 hover:text-primary"
                   }`}
                 >
                   {category.team_member_category}
@@ -106,7 +125,9 @@ export default function TeamSectionClient({ categories, teamMembers }: TeamSecti
           >
             {currentTeam.length === 0 ? (
               <div className="col-span-full text-center py-12">
-                <p className="text-gray-500">No team members in this category.</p>
+                <p className="text-gray-500">
+                  No team members in this category.
+                </p>
               </div>
             ) : (
               currentTeam.map((member, idx) => (
@@ -178,7 +199,6 @@ export default function TeamSectionClient({ categories, teamMembers }: TeamSecti
                       className="flex items-center gap-2 px-4 py-2 bg-[#0077b5] text-white rounded-lg hover:bg-[#006699] transition-colors"
                     >
                       <Linkedin size={18} />
-                      <span className="text-sm font-medium">LinkedIn</span>
                     </a>
                   )}
                   {selectedMember.facebook_url && (
@@ -189,7 +209,6 @@ export default function TeamSectionClient({ categories, teamMembers }: TeamSecti
                       className="flex items-center gap-2 px-4 py-2 bg-[#1877f2] text-white rounded-lg hover:bg-[#166fe5] transition-colors"
                     >
                       <Facebook size={18} />
-                      <span className="text-sm font-medium">Facebook</span>
                     </a>
                   )}
                   {selectedMember.instagram_url && (
@@ -200,7 +219,6 @@ export default function TeamSectionClient({ categories, teamMembers }: TeamSecti
                       className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#f09433] via-[#e6683c] to-[#bc1888] text-white rounded-lg hover:opacity-90 transition-opacity"
                     >
                       <Instagram size={18} />
-                      <span className="text-sm font-medium">Instagram</span>
                     </a>
                   )}
                   {selectedMember.twitter_url && (
@@ -211,7 +229,6 @@ export default function TeamSectionClient({ categories, teamMembers }: TeamSecti
                       className="flex items-center gap-2 px-4 py-2 bg-[#1da1f2] text-white rounded-lg hover:bg-[#1a91da] transition-colors"
                     >
                       <Twitter size={18} />
-                      <span className="text-sm font-medium">Twitter</span>
                     </a>
                   )}
                 </div>

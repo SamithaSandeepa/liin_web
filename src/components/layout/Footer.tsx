@@ -25,19 +25,25 @@ const socialLinks: SocialLink[] = [
   {
     name: "Facebook",
     icon: "f",
-    href: "https://facebook.com/liin",
+    href: "https://www.facebook.com/liin.sl",
     ariaLabel: "Visit LIIN on Facebook",
   },
   {
     name: "LinkedIn",
     icon: "in",
-    href: "https://linkedin.com/company/liin",
+    href: "https://www.linkedin.com/company/liin-lanka-impact-investing-network/",
     ariaLabel: "Visit LIIN on LinkedIn",
+  },
+  {
+    name: "Instagram",
+    icon: "📷",
+    href: "https://www.instagram.com/liin.sl/",
+    ariaLabel: "Visit LIIN on Instagram",
   },
   {
     name: "YouTube",
     icon: "▶",
-    href: "https://youtube.com/liin",
+    href: "https://www.youtube.com/@lankaimpactinvestingnetwork",
     ariaLabel: "Visit LIIN on YouTube",
   },
 ];
@@ -55,7 +61,9 @@ export default function Footer() {
             <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
               {/* Quick Links */}
               <div>
-                <h3 className="font-bold mb-3 text-base">Quick Links</h3>
+                <h3 className="font-bold mb-3 text-base bg-white/10 inline-block px-4 py-2 rounded-lg uppercase">
+                  Quick Links
+                </h3>
                 <nav className="flex flex-col gap-2">
                   {navItems.slice(0, 4).map((item) => (
                     <a
@@ -71,7 +79,9 @@ export default function Footer() {
 
               {/* Address */}
               <div>
-                <h3 className="font-bold mb-3 text-base">Address</h3>
+                <h3 className="font-bold mb-3 text-base bg-white/10 inline-block px-4 py-2 rounded-lg uppercase">
+                  Address
+                </h3>
                 <address className="text-sm opacity-90 not-italic">
                   123 Galle Road
                   <br />
@@ -81,7 +91,9 @@ export default function Footer() {
 
               {/* Contact */}
               <div>
-                <h3 className="font-bold mb-3 text-base">Contact</h3>
+                <h3 className="font-bold mb-3 text-base bg-white/10 inline-block px-4 py-2 rounded-lg uppercase">
+                  Contact
+                </h3>
                 <div className="text-sm opacity-90">
                   <a
                     href="tel:+94771234567"
@@ -128,7 +140,9 @@ export default function Footer() {
 
           {/* Right Side - Social Media (Spans Both Rows) */}
           <div className="hidden lg:flex flex-col items-center justify-center gap-3 pl-12">
-            <h3 className="font-bold text-base mb-3">Follow Us</h3>
+            <h3 className="font-bold text-base mb-3 bg-white/10 px-4 py-2 rounded-lg uppercase">
+              Follow Us
+            </h3>
             <div className="flex flex-col gap-2">
               {socialLinks.map((social) => (
                 <a
@@ -148,7 +162,9 @@ export default function Footer() {
 
         {/* Mobile Social Icons */}
         <div className="lg:hidden py-6 flex flex-col items-center gap-3 border-t border-white/30">
-          <h3 className="font-bold text-base">Follow Us</h3>
+          <h3 className="font-bold text-base bg-white/10 px-4 py-2 rounded-lg uppercase">
+            Follow Us
+          </h3>
           <div className="flex gap-2">
             {socialLinks.map((social) => (
               <a
