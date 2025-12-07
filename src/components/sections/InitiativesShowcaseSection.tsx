@@ -44,28 +44,49 @@ const loopedPlatforms = [...platforms, ...platforms, ...platforms, ...platforms]
 export default function InitiativesShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number | null>(null);
+  const lastTimeRef = useRef<number>(0);
   
   // State for interaction handling
   const [isPaused, setIsPaused] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const startX = useRef(0);
   const scrollLeftStart = useRef(0);
   const isTouchInteraction = useRef(false);
   const hasTouched = useRef(false);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Auto-scroll with requestAnimationFrame (better mobile support)
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const animate = () => {
+    const animate = (currentTime: number) => {
       if (!isPaused && !isDragging && container) {
-        const speed = 0.5; // pixels per frame
+        // Calculate delta time for smooth scrolling
+        if (lastTimeRef.current === 0) {
+          lastTimeRef.current = currentTime;
+        }
+        const deltaTime = currentTime - lastTimeRef.current;
+        lastTimeRef.current = currentTime;
+
+        // Scroll based on time (30 pixels per second = 0.03 pixels per millisecond)
+        const speed = 0.03 * deltaTime;
         container.scrollLeft += speed;
 
         // Infinite Loop Logic
-        if (container.scrollLeft >= container.scrollWidth / 2) {
-          container.scrollLeft -= container.scrollWidth / 2;
+        const halfWidth = container.scrollWidth / 2;
+        if (container.scrollLeft >= halfWidth) {
+          container.scrollLeft = container.scrollLeft - halfWidth;
         }
       }
       animationRef.current = requestAnimationFrame(animate);
@@ -77,6 +98,7 @@ export default function InitiativesShowcaseSection() {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
+      lastTimeRef.current = 0;
     };
   }, [isPaused, isDragging]);
 
@@ -169,11 +191,18 @@ export default function InitiativesShowcaseSection() {
           <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-gray-50 to-transparent z-20 pointer-events-none" />
           <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-gray-50 to-transparent z-20 pointer-events-none" />
 
+          {/* Mobile Scroll Indicator */}
+          {isMobile && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-primary/90 text-white px-4 py-2 rounded-full text-sm animate-bounce pointer-events-none">
+              👈 Swipe to explore 👉
+            </div>
+          )}
+
           {/* Scrollable Area */}
           <div 
             ref={containerRef}
             className={`
-                flex overflow-x-auto gap-8 px-8 pt-4 no-scrollbar 
+                flex overflow-x-auto gap-8 px-8 pt-4 pb-16 no-scrollbar 
                 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}
             `}
             // Mouse Events (Desktop Drag & Hover)
@@ -191,6 +220,7 @@ export default function InitiativesShowcaseSection() {
             style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
+              WebkitOverflowScrolling: 'touch', // Enable smooth scrolling on iOS
             }}
           >
             {/* Hide scrollbar for Webkit */}
@@ -250,11 +280,6 @@ export default function InitiativesShowcaseSection() {
             ))}
           </div>
         </div>
-        
-        {/* Mobile Swipe Hint */}
-        {/* <div className="text-center md:hidden text-gray-400 text-sm mt-4 animate-pulse">
-           Swipe to explore
-        </div> */}
       </div>
     </Section>
   );
