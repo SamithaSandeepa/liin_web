@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Section from '@/components/ui/Section';
 import PlatformsBackground from '@/components/ui/PlatformsBackground';
 import { ArrowRight, TrendingUp, Users, Globe } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 const platforms = [
   {
@@ -43,13 +43,17 @@ const loopedPlatforms = [...platforms, ...platforms, ...platforms, ...platforms]
 
 export default function InitiativesShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isTouching, setIsTouching] = useState(false);
+  
+  // State for interaction handling
+  const [isPaused, setIsPaused] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const startX = useRef(0);
+  const scrollLeftStart = useRef(0);
 
   // Auto-scroll Logic
   useAnimationFrame((time, delta) => {
     const container = containerRef.current;
-    if (!container || isHovered || isTouching) return;
+    if (!container || isPaused || isDragging) return;
 
     // Scroll speed (pixels per frame)
     const speed = 0.5;
@@ -61,6 +65,46 @@ export default function InitiativesShowcaseSection() {
     }
   });
 
+  // Desktop Drag Handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    setIsDragging(true);
+    setIsPaused(true);
+    startX.current = e.pageX - containerRef.current.offsetLeft;
+    scrollLeftStart.current = containerRef.current.scrollLeft;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !containerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - containerRef.current.offsetLeft;
+    const walk = (x - startX.current) * 1.5; // Scroll-fast multiplier
+    containerRef.current.scrollLeft = scrollLeftStart.current - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    setIsPaused(false);
+  };
+
+  const handleMouseLeave = () => {
+     setIsDragging(false);
+     setIsPaused(false);
+  };
+
+  // Mobile Touch Handlers
+  const handleTouchStart = () => {
+    setIsPaused(true);
+    // Native touch scroll handles the movement, we just need to pause auto-scroll
+  };
+
+  const handleTouchEnd = () => {
+    // Resume auto-scroll after a short delay to let momentum settle
+    setTimeout(() => {
+        setIsPaused(false);
+    }, 1000);
+  };
+
   return (
     <Section
       id="initiatives"
@@ -71,6 +115,7 @@ export default function InitiativesShowcaseSection() {
       <div className="absolute inset-0 z-0">
         <PlatformsBackground />
       </div>
+      
       <div className="relative z-10 w-full">
         <div className="text-center">
           <motion.h2
@@ -102,11 +147,21 @@ export default function InitiativesShowcaseSection() {
           {/* Scrollable Area */}
           <div 
             ref={containerRef}
-            className="flex overflow-x-auto gap-8 px-8 pt-4 no-scrollbar cursor-grab active:cursor-grabbing"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            onTouchStart={() => setIsTouching(true)}
-            onTouchEnd={() => setIsTouching(false)}
+            className={`
+                flex overflow-x-auto gap-8 px-8 pt-4 no-scrollbar 
+                ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}
+            `}
+            // Mouse Events (Desktop Drag & Hover)
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
+            onMouseEnter={() => setIsPaused(true)}
+            
+            // Touch Events (Mobile Swipe)
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+
             style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
@@ -123,16 +178,14 @@ export default function InitiativesShowcaseSection() {
               <Link 
                 href={platform.link} 
                 key={`${platform.name}-${index}`}
-                className="relative block flex-shrink-0 w-[300px] md:w-[380px]"
+                className="relative block flex-shrink-0 w-[300px] md:w-[380px] select-none" // select-none prevents text selection while dragging
                 draggable={false}
+                onClick={(e) => {
+                    // Prevent navigation if it was a drag gesture
+                    if (isDragging) e.preventDefault();
+                }}
               >
-                {/* 
-                  Removed Card UI: 
-                  - No bg-white/xx
-                  - No border
-                  - No shadow
-                  - Kept structural padding and hover lift
-                */}
+                {/* Clean Floating Item */}
                 <div className={`
                   group/card h-full p-6 transition-all duration-300
                   hover:-translate-y-2
@@ -173,9 +226,9 @@ export default function InitiativesShowcaseSection() {
         </div>
         
         {/* Mobile Swipe Hint */}
-        <div className="text-center md:hidden text-gray-400 text-sm mt-4 animate-pulse">
+        {/* <div className="text-center md:hidden text-gray-400 text-sm mt-4 animate-pulse">
            Swipe to explore
-        </div>
+        </div> */}
       </div>
     </Section>
   );
