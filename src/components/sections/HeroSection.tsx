@@ -29,7 +29,9 @@ export default function HeroSection({
         // Essential for mobile autoplay
         video.muted = true;
         video.defaultMuted = true;
-        video.playsInline = true; 
+        video.playsInline = true;
+        video.setAttribute('muted', '');
+        video.setAttribute('playsinline', '');
         
         const playVideo = async () => {
             try {
@@ -38,7 +40,24 @@ export default function HeroSection({
                 console.log("Video autoplay failed:", err);
             }
         };
+        
+        // Try to play immediately
         playVideo();
+        
+        // Retry on user interaction (for strict mobile policies)
+        const handleInteraction = () => {
+            playVideo();
+            document.removeEventListener('touchstart', handleInteraction);
+            document.removeEventListener('click', handleInteraction);
+        };
+        
+        document.addEventListener('touchstart', handleInteraction, { once: true });
+        document.addEventListener('click', handleInteraction, { once: true });
+        
+        return () => {
+            document.removeEventListener('touchstart', handleInteraction);
+            document.removeEventListener('click', handleInteraction);
+        };
     }
   }, [backgroundVideo]);
 
@@ -53,13 +72,16 @@ export default function HeroSection({
           ref={videoRef}
           autoPlay
           loop
-          muted={true}
-          playsInline={true}
+          muted
+          playsInline
           controls={false}
+          preload="auto"
           poster={backgroundImage}
           className="absolute inset-0 w-full h-full object-cover"
+          style={{ pointerEvents: 'none' }}
         >
           <source src={backgroundVideo} type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
       )}
 
