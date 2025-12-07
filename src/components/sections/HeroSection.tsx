@@ -24,13 +24,21 @@ export default function HeroSection({
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (videoRef.current) {
-        // Ensure muted is true (React hydration mismatch fallback)
-        videoRef.current.muted = true;
-        // Force play programmatically
-        videoRef.current.play().catch(error => {
-            console.log("Autoplay prevented:", error);
-        });
+    const video = videoRef.current;
+    if (video) {
+        // Essential for mobile autoplay
+        video.muted = true;
+        video.defaultMuted = true;
+        video.playsInline = true; 
+        
+        const playVideo = async () => {
+            try {
+                await video.play();
+            } catch (err) {
+                console.log("Video autoplay failed:", err);
+            }
+        };
+        playVideo();
     }
   }, [backgroundVideo]);
 
@@ -45,8 +53,10 @@ export default function HeroSection({
           ref={videoRef}
           autoPlay
           loop
-          muted
-          playsInline
+          muted={true}
+          playsInline={true}
+          controls={false}
+          poster={backgroundImage}
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src={backgroundVideo} type="video/mp4" />
