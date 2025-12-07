@@ -39,7 +39,7 @@ export default async function Home() {
     <>
       <HeroSection
         animatedPhrases={heroAnimatedPhrases}
-        backgroundVideo="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920"
+        backgroundVideo="/videos/hero/hero.mp4"
       />
       <SectionAnimator animation="fade-up">
         <InitiativesShowcaseSection />
