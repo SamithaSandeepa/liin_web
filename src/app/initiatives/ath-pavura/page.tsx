@@ -111,7 +111,7 @@ export default function AthPavuraPage() {
       {/* Introduction */}
       <Section id="intro" title="Empowering Social Entrepreneurs">
         <div className="max-w-4xl mx-auto">
-          <div className="space-y-6 text-gray-700 leading-relaxed">
+          <div className="space-y-6 text-gray-700 leading-relaxed text-justify">
             <p className="text-lg">
               <strong>Ath Pavura</strong> is a groundbreaking TV reality show
               that promotes social entrepreneurship by giving existing social
@@ -213,15 +213,15 @@ export default function AthPavuraPage() {
 
       {/* Online Presence */}
       <Section id="online" title="Online Presence & Engagement">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
             <div className="animate-on-scroll">
               <div className="bg-white p-6 rounded-2xl shadow-medium hover:shadow-hard transition-all text-center">
                 <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
                   <Youtube size={24} className="text-red-600" />
                 </div>
                 <CounterAnimation
-                  value="17,000"
+                  value="17,000 +"
                   duration={2}
                   className="text-2xl font-bold text-primary mb-1"
                 />
@@ -234,7 +234,7 @@ export default function AthPavuraPage() {
                   <Youtube size={24} className="text-red-600" />
                 </div>
                 <CounterAnimation
-                  value="13,500,000"
+                  value="13,500,000 +"
                   duration={2.5}
                   className="text-2xl font-bold text-primary mb-1"
                 />
@@ -247,7 +247,7 @@ export default function AthPavuraPage() {
                   <Facebook size={24} className="text-blue-600" />
                 </div>
                 <CounterAnimation
-                  value="14,000"
+                  value="14,000 +"
                   duration={2}
                   className="text-2xl font-bold text-primary mb-1"
                 />
@@ -260,7 +260,7 @@ export default function AthPavuraPage() {
                   <Facebook size={24} className="text-blue-600" />
                 </div>
                 <CounterAnimation
-                  value="213,000"
+                  value="213,000 +"
                   duration={2}
                   className="text-2xl font-bold text-primary mb-1"
                 />

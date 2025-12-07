@@ -101,6 +101,7 @@ export function getAssetUrl(assetId: string): string {
   return `${DIRECTUS_URL}/assets/${assetId}`;
 }
 
+
 /**
  * Fixes image URLs in Directus WYSIWYG content
  * Routes images through Next.js proxy to avoid CORS issues

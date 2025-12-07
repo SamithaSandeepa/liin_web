@@ -41,7 +41,9 @@ export default async function Home() {
         animatedPhrases={heroAnimatedPhrases}
         backgroundVideo="/videos/hero/hero.mp4"
       />
-      <InitiativesShowcaseSection />
+      <SectionAnimator animation="fade-up">
+        <InitiativesShowcaseSection />
+      </SectionAnimator>
       <SectionAnimator animation="fade-up">
         <ApproachSection />
       </SectionAnimator>
