@@ -4,7 +4,7 @@ import { motion, useAnimationFrame } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import Section from '@/components/ui/Section';
-import InvestmentBackground from '@/components/ui/InvestmentBackground';
+import PlatformsBackground from '@/components/ui/PlatformsBackground';
 import { ArrowRight, TrendingUp, Users, Globe } from 'lucide-react';
 import { useRef, useState } from 'react';
 
@@ -14,7 +14,6 @@ const platforms = [
     logo: '/images/platformslogos/ath-pavura.png',
     description: 'Pioneering social entrepreneurship through reality TV, connecting innovators with impact investors.',
     link: '/initiatives/ath-pavura',
-    icon: TrendingUp,
     color: 'text-primary',
     bg: 'bg-primary/10',
     border: 'border-primary/20',
@@ -24,7 +23,6 @@ const platforms = [
     logo: '/images/platformslogos/oew-logo.gif',
     description: 'A transformative journey nurturing SMEs into key drivers of the national economy.',
     link: '/initiatives/eagles-wings',
-    icon: Users,
     color: 'text-primary',
     bg: 'bg-primary/10',
     border: 'border-primary/20',
@@ -34,7 +32,6 @@ const platforms = [
     logo: '/images/platformslogos/awakasha.png',
     description: 'Empowering the next generation of digital innovators through technology and mentorship.',
     link: '/projects/pif',
-    icon: Globe,
     color: 'text-primary-dark',
     bg: 'bg-primary-dark/10',
     border: 'border-primary-dark/20',
@@ -68,14 +65,12 @@ export default function InitiativesShowcaseSection() {
     <Section
       id="initiatives"
       className="relative overflow-hidden !pb-8"
-      background="white"
+      background="gray"
     >
       {/* Background Animation */}
       <div className="absolute inset-0 z-0">
-        <InvestmentBackground />
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white" />
+        <PlatformsBackground />
       </div>
-
       <div className="relative z-10 w-full">
         <div className="text-center">
           <motion.h2
@@ -101,8 +96,8 @@ export default function InitiativesShowcaseSection() {
         {/* Interactive Slider Container */}
         <div className="w-full relative group">
           {/* Gradient Masks */}
-          <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
-          <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-gray-50 to-transparent z-20 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-gray-50 to-transparent z-20 pointer-events-none" />
 
           {/* Scrollable Area */}
           <div 
@@ -142,15 +137,6 @@ export default function InitiativesShowcaseSection() {
                   group/card h-full p-6 transition-all duration-300
                   hover:-translate-y-2
                 `}>
-                  
-                  {/* Icon Badge - Kept as purely decorative floating element if desired, or remove. Keeping for now. */}
-                  {/* <div className={`
-                    absolute top-0 right-4 w-10 h-10 rounded-full flex items-center justify-center
-                    opacity-0 group-hover/card:opacity-100 transition-all duration-300
-                    ${platform.bg} ${platform.color}
-                  `}>
-                    <platform.icon size={18} />
-                  </div> */}
 
                   {/* Logo Container */}
                   <div className="relative w-full h-24 mb-6 flex items-start justify-start grayscale group-hover/card:grayscale-0 opacity-80 group-hover/card:opacity-100 transition-all duration-500">
