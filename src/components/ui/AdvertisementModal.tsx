@@ -185,9 +185,11 @@ export default function AdvertisementModal({
                         {/* Image with buttons */}
                         <div className="relative">
                           {currentAd.image && (
-                            <img
+                            <Image
                               src={getAssetUrl(currentAd.image)}
                               alt="Advertisement"
+                              width={800}
+                              height={600}
                               className="w-full h-auto md:h-[600px] object-contain rounded-2xl"
                             />
                           )}
