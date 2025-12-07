@@ -131,7 +131,7 @@ export default function EaglesWingsPage() {
                 href="/news"
                 className="inline-block bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-primary/90 hover:scale-105 transition-all"
               >
-                More About the Launch Event
+                More About the Program
               </a>
             </div>
           </div>

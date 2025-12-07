@@ -1,6 +1,8 @@
+import { Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
+
 interface SocialLink {
   name: string;
-  icon: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
   href: string;
   ariaLabel: string;
 }
@@ -13,31 +15,37 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
-  { label: "On Eagle's Wings", href: "#eagles-wings" },
-  { label: "Projects", href: "#projects" },
-  { label: "Investments", href: "#investments" },
-  { label: "Impact Funds", href: "#impact" },
-  { label: "Our Partners", href: "#partners" },
-  { label: "News", href: "#news" },
+  { label: "On Eagle's Wings", href: "/eagles-wings" },
+  { label: "News and Insights", href: "/news" },
+  { label: "Investments", href: "/investments" },
+  { label: "Impact Funds", href: "/impact" },
+  { label: "Our Partners", href: "/partners" },
+  { label: "News", href: "/news" },
 ];
 
 const socialLinks: SocialLink[] = [
   {
     name: "Facebook",
-    icon: "f",
-    href: "https://facebook.com/liin",
+    icon: Facebook,
+    href: "https://www.facebook.com/liin.sl",
     ariaLabel: "Visit LIIN on Facebook",
   },
   {
     name: "LinkedIn",
-    icon: "in",
-    href: "https://linkedin.com/company/liin",
+    icon: Linkedin,
+    href: "https://www.linkedin.com/company/liin-lanka-impact-investing-network/",
     ariaLabel: "Visit LIIN on LinkedIn",
   },
   {
+    name: "Instagram",
+    icon: Instagram,
+    href: "https://www.instagram.com/liin.sl/",
+    ariaLabel: "Visit LIIN on Instagram",
+  },
+  {
     name: "YouTube",
-    icon: "▶",
-    href: "https://youtube.com/liin",
+    icon: Youtube,
+    href: "https://www.youtube.com/@lankaimpactinvestingnetwork",
     ariaLabel: "Visit LIIN on YouTube",
   },
 ];
@@ -55,7 +63,9 @@ export default function Footer() {
             <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
               {/* Quick Links */}
               <div>
-                <h3 className="font-bold mb-3 text-base">Quick Links</h3>
+                <h3 className="font-bold mb-3 text-base bg-white/10 inline-block px-4 py-2 rounded-lg uppercase">
+                  Quick Links
+                </h3>
                 <nav className="flex flex-col gap-2">
                   {navItems.slice(0, 4).map((item) => (
                     <a
@@ -71,7 +81,9 @@ export default function Footer() {
 
               {/* Address */}
               <div>
-                <h3 className="font-bold mb-3 text-base">Address</h3>
+                <h3 className="font-bold mb-3 text-base bg-white/10 inline-block px-4 py-2 rounded-lg uppercase">
+                  Address
+                </h3>
                 <address className="text-sm opacity-90 not-italic">
                   123 Galle Road
                   <br />
@@ -81,7 +93,9 @@ export default function Footer() {
 
               {/* Contact */}
               <div>
-                <h3 className="font-bold mb-3 text-base">Contact</h3>
+                <h3 className="font-bold mb-3 text-base bg-white/10 inline-block px-4 py-2 rounded-lg uppercase">
+                  Contact
+                </h3>
                 <div className="text-sm opacity-90">
                   <a
                     href="tel:+94771234567"
@@ -97,6 +111,30 @@ export default function Footer() {
                     info@liin.lk
                   </a>
                 </div>
+              </div>
+            </div>
+
+            {/* Mobile Social Icons */}
+            <div className="lg:hidden py-6 flex flex-col items-center gap-3 border-t border-white/30">
+              <h3 className="font-bold text-base bg-white/10 px-4 py-2 rounded-lg uppercase">
+                Follow Us
+              </h3>
+              <div className="flex gap-2">
+                {socialLinks.map((social) => {
+                  const IconComponent = social.icon;
+                  return (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      className="w-8 h-8 bg-white rounded-md flex items-center justify-center text-primary hover:scale-110 transition-transform"
+                      aria-label={social.ariaLabel}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <IconComponent size={16} />
+                    </a>
+                  );
+                })}
               </div>
             </div>
 
@@ -128,40 +166,26 @@ export default function Footer() {
 
           {/* Right Side - Social Media (Spans Both Rows) */}
           <div className="hidden lg:flex flex-col items-center justify-center gap-3 pl-12">
-            <h3 className="font-bold text-base mb-3">Follow Us</h3>
+            <h3 className="font-bold text-base mb-3 bg-white/10 px-4 py-2 rounded-lg uppercase">
+              Follow Us
+            </h3>
             <div className="flex flex-col gap-2">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  className="w-8 h-8 bg-white rounded-md flex items-center justify-center text-primary text-xs font-bold hover:scale-110 transition-transform"
-                  aria-label={social.ariaLabel}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {social.icon}
-                </a>
-              ))}
+              {socialLinks.map((social) => {
+                const IconComponent = social.icon;
+                return (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    className="w-8 h-8 bg-white rounded-md flex items-center justify-center text-primary hover:scale-110 transition-transform"
+                    aria-label={social.ariaLabel}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <IconComponent size={14} />
+                  </a>
+                );
+              })}
             </div>
-          </div>
-        </div>
-
-        {/* Mobile Social Icons */}
-        <div className="lg:hidden py-6 flex flex-col items-center gap-3 border-t border-white/30">
-          <h3 className="font-bold text-base">Follow Us</h3>
-          <div className="flex gap-2">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.href}
-                className="w-8 h-8 bg-white rounded-md flex items-center justify-center text-primary text-xs font-bold hover:scale-110 transition-transform"
-                aria-label={social.ariaLabel}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {social.icon}
-              </a>
-            ))}
           </div>
         </div>
       </div>
