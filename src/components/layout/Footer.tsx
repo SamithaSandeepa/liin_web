@@ -1,6 +1,8 @@
+import { Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
+
 interface SocialLink {
   name: string;
-  icon: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
   href: string;
   ariaLabel: string;
 }
@@ -13,36 +15,36 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
-  { label: "On Eagle's Wings", href: "#eagles-wings" },
-  { label: "Projects", href: "#projects" },
-  { label: "Investments", href: "#investments" },
-  { label: "Impact Funds", href: "#impact" },
-  { label: "Our Partners", href: "#partners" },
-  { label: "News", href: "#news" },
+  { label: "On Eagle's Wings", href: "/eagles-wings" },
+  { label: "News and Insights", href: "/news" },
+  { label: "Investments", href: "/investments" },
+  { label: "Impact Funds", href: "/impact" },
+  { label: "Our Partners", href: "/partners" },
+  { label: "News", href: "/news" },
 ];
 
 const socialLinks: SocialLink[] = [
   {
     name: "Facebook",
-    icon: "f",
+    icon: Facebook,
     href: "https://www.facebook.com/liin.sl",
     ariaLabel: "Visit LIIN on Facebook",
   },
   {
     name: "LinkedIn",
-    icon: "in",
+    icon: Linkedin,
     href: "https://www.linkedin.com/company/liin-lanka-impact-investing-network/",
     ariaLabel: "Visit LIIN on LinkedIn",
   },
   {
     name: "Instagram",
-    icon: "📷",
+    icon: Instagram,
     href: "https://www.instagram.com/liin.sl/",
     ariaLabel: "Visit LIIN on Instagram",
   },
   {
     name: "YouTube",
-    icon: "▶",
+    icon: Youtube,
     href: "https://www.youtube.com/@lankaimpactinvestingnetwork",
     ariaLabel: "Visit LIIN on YouTube",
   },
@@ -144,18 +146,21 @@ export default function Footer() {
               Follow Us
             </h3>
             <div className="flex flex-col gap-2">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  className="w-8 h-8 bg-white rounded-md flex items-center justify-center text-primary text-xs font-bold hover:scale-110 transition-transform"
-                  aria-label={social.ariaLabel}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {social.icon}
-                </a>
-              ))}
+              {socialLinks.map((social) => {
+                const IconComponent = social.icon;
+                return (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    className="w-8 h-8 bg-white rounded-md flex items-center justify-center text-primary hover:scale-110 transition-transform"
+                    aria-label={social.ariaLabel}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <IconComponent size={14} />
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -166,18 +171,21 @@ export default function Footer() {
             Follow Us
           </h3>
           <div className="flex gap-2">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.href}
-                className="w-8 h-8 bg-white rounded-md flex items-center justify-center text-primary text-xs font-bold hover:scale-110 transition-transform"
-                aria-label={social.ariaLabel}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {social.icon}
-              </a>
-            ))}
+            {socialLinks.map((social) => {
+              const IconComponent = social.icon;
+              return (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  className="w-8 h-8 bg-white rounded-md flex items-center justify-center text-primary hover:scale-110 transition-transform"
+                  aria-label={social.ariaLabel}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <IconComponent size={16} />
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>
