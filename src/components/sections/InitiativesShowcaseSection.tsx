@@ -49,6 +49,7 @@ export default function InitiativesShowcaseSection() {
   const [isDragging, setIsDragging] = useState(false);
   const startX = useRef(0);
   const scrollLeftStart = useRef(0);
+  const isTouchInteraction = useRef(false);
 
   // Auto-scroll Logic
   useAnimationFrame((time, delta) => {
@@ -92,16 +93,25 @@ export default function InitiativesShowcaseSection() {
      setIsPaused(false);
   };
 
+  const handleMouseEnter = () => {
+    // Only pause if not currently in a touch interaction
+    // This prevents "sticky hover" on mobile from pausing the slider forever
+    if (!isTouchInteraction.current) {
+        setIsPaused(true);
+    }
+  };
+
   // Mobile Touch Handlers
   const handleTouchStart = () => {
+    isTouchInteraction.current = true;
     setIsPaused(true);
-    // Native touch scroll handles the movement, we just need to pause auto-scroll
   };
 
   const handleTouchEnd = () => {
     // Resume auto-scroll after a short delay to let momentum settle
     setTimeout(() => {
         setIsPaused(false);
+        isTouchInteraction.current = false;
     }, 1000);
   };
 
@@ -156,11 +166,12 @@ export default function InitiativesShowcaseSection() {
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseLeave}
-            onMouseEnter={() => setIsPaused(true)}
+            onMouseEnter={handleMouseEnter}
             
             // Touch Events (Mobile Swipe)
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
+            onTouchCancel={handleTouchEnd}
 
             style={{
               scrollbarWidth: 'none',

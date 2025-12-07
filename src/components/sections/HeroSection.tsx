@@ -1,3 +1,6 @@
+'use client';
+
+import { useRef, useEffect } from 'react';
 import AnimatedTextLoop from '@/components/ui/AnimatedTextLoop';
 
 interface HeroSectionProps {
@@ -18,6 +21,18 @@ export default function HeroSection({
   height = 'default'
 }: HeroSectionProps) {
   const heightClass = height === 'fullscreen' ? 'min-h-screen' : 'min-h-[600px]';
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+        // Ensure muted is true (React hydration mismatch fallback)
+        videoRef.current.muted = true;
+        // Force play programmatically
+        videoRef.current.play().catch(error => {
+            console.log("Autoplay prevented:", error);
+        });
+    }
+  }, [backgroundVideo]);
 
   return (
     <section
@@ -27,6 +42,7 @@ export default function HeroSection({
       {/* Background Video */}
       {backgroundVideo && (
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
