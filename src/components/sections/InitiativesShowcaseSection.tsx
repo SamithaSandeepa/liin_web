@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useAnimationFrame } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import Section from '@/components/ui/Section';
@@ -43,6 +43,7 @@ const loopedPlatforms = [...platforms, ...platforms, ...platforms, ...platforms]
 
 export default function InitiativesShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number | null>(null);
   
   // State for interaction handling
   const [isPaused, setIsPaused] = useState(false);
@@ -52,20 +53,32 @@ export default function InitiativesShowcaseSection() {
   const isTouchInteraction = useRef(false);
   const hasTouched = useRef(false);
 
-  // Auto-scroll Logic
-  useAnimationFrame((time, delta) => {
+  // Auto-scroll with requestAnimationFrame (better mobile support)
+  useEffect(() => {
     const container = containerRef.current;
-    if (!container || isPaused || isDragging) return;
+    if (!container) return;
 
-    // Scroll speed (pixels per frame)
-    const speed = 0.5;
-    container.scrollLeft += speed;
+    const animate = () => {
+      if (!isPaused && !isDragging && container) {
+        const speed = 0.5; // pixels per frame
+        container.scrollLeft += speed;
 
-    // Infinite Loop Logic
-    if (container.scrollLeft >= container.scrollWidth / 2) {
-      container.scrollLeft -= container.scrollWidth / 2;
-    }
-  });
+        // Infinite Loop Logic
+        if (container.scrollLeft >= container.scrollWidth / 2) {
+          container.scrollLeft -= container.scrollWidth / 2;
+        }
+      }
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isPaused, isDragging]);
 
   // Desktop Drag Handlers
   const handleMouseDown = (e: React.MouseEvent) => {
