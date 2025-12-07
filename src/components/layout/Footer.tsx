@@ -114,6 +114,30 @@ export default function Footer() {
               </div>
             </div>
 
+            {/* Mobile Social Icons */}
+            <div className="lg:hidden py-6 flex flex-col items-center gap-3 border-t border-white/30">
+              <h3 className="font-bold text-base bg-white/10 px-4 py-2 rounded-lg uppercase">
+                Follow Us
+              </h3>
+              <div className="flex gap-2">
+                {socialLinks.map((social) => {
+                  const IconComponent = social.icon;
+                  return (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      className="w-8 h-8 bg-white rounded-md flex items-center justify-center text-primary hover:scale-110 transition-transform"
+                      aria-label={social.ariaLabel}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <IconComponent size={16} />
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+
             {/* Divider Line */}
             <div className="w-full border-t border-white/30" />
 
@@ -162,30 +186,6 @@ export default function Footer() {
                 );
               })}
             </div>
-          </div>
-        </div>
-
-        {/* Mobile Social Icons */}
-        <div className="lg:hidden py-6 flex flex-col items-center gap-3 border-t border-white/30">
-          <h3 className="font-bold text-base bg-white/10 px-4 py-2 rounded-lg uppercase">
-            Follow Us
-          </h3>
-          <div className="flex gap-2">
-            {socialLinks.map((social) => {
-              const IconComponent = social.icon;
-              return (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  className="w-8 h-8 bg-white rounded-md flex items-center justify-center text-primary hover:scale-110 transition-transform"
-                  aria-label={social.ariaLabel}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <IconComponent size={16} />
-                </a>
-              );
-            })}
           </div>
         </div>
       </div>

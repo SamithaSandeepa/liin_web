@@ -44,8 +44,8 @@ export default function TeamSectionClient({
       onClick={() => setSelectedMember(member)}
       className="group cursor-pointer"
     >
-      <div className="bg-white p-8 rounded-2xl shadow-medium hover:shadow-hard transition-all duration-300 hover:-translate-y-2">
-        <div className="relative w-32 h-32 mx-auto mb-5">
+      <div className="bg-white p-4 md:p-8 rounded-2xl shadow-medium hover:shadow-hard transition-all duration-300 hover:-translate-y-2">
+        <div className="relative w-20 h-20 md:w-32 md:h-32 mx-auto mb-4 md:mb-5">
           <Image
             src={getImageUrl(member.profile_photo)}
             alt={member.name}
@@ -55,8 +55,8 @@ export default function TeamSectionClient({
           />
           <div className="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/10 transition-colors" />
         </div>
-        <h4 className="font-bold text-lg text-center">{member.name}</h4>
-        <p className="text-primary text-base font-medium text-center">
+        <h4 className="font-bold text-sm md:text-lg text-center">{member.name}</h4>
+        <p className="text-primary text-xs md:text-base font-medium text-center">
           {member.job_title}
         </p>
       </div>
