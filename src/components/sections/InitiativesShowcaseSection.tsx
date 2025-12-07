@@ -67,7 +67,7 @@ export default function InitiativesShowcaseSection() {
   return (
     <Section
       id="initiatives"
-      className="relative overflow-hidden"
+      className="relative overflow-hidden !pb-8"
       background="white"
     >
       {/* Background Animation */}
@@ -144,13 +144,13 @@ export default function InitiativesShowcaseSection() {
                 `}>
                   
                   {/* Icon Badge - Kept as purely decorative floating element if desired, or remove. Keeping for now. */}
-                  <div className={`
+                  {/* <div className={`
                     absolute top-0 right-4 w-10 h-10 rounded-full flex items-center justify-center
                     opacity-0 group-hover/card:opacity-100 transition-all duration-300
                     ${platform.bg} ${platform.color}
                   `}>
                     <platform.icon size={18} />
-                  </div>
+                  </div> */}
 
                   {/* Logo Container */}
                   <div className="relative w-full h-24 mb-6 flex items-start justify-start grayscale group-hover/card:grayscale-0 opacity-80 group-hover/card:opacity-100 transition-all duration-500">
