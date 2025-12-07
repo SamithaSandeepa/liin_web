@@ -50,6 +50,7 @@ export default function InitiativesShowcaseSection() {
   const startX = useRef(0);
   const scrollLeftStart = useRef(0);
   const isTouchInteraction = useRef(false);
+  const hasTouched = useRef(false);
 
   // Auto-scroll Logic
   useAnimationFrame((time, delta) => {
@@ -94,9 +95,9 @@ export default function InitiativesShowcaseSection() {
   };
 
   const handleMouseEnter = () => {
-    // Only pause if not currently in a touch interaction
-    // This prevents "sticky hover" on mobile from pausing the slider forever
-    if (!isTouchInteraction.current) {
+    // If the user has ever touched the screen, ignore mouse hover events forever.
+    // This prevents "sticky hover" on mobile from pausing the slider.
+    if (!hasTouched.current) {
         setIsPaused(true);
     }
   };
@@ -104,6 +105,7 @@ export default function InitiativesShowcaseSection() {
   // Mobile Touch Handlers
   const handleTouchStart = () => {
     isTouchInteraction.current = true;
+    hasTouched.current = true; // Mark as touch device
     setIsPaused(true);
   };
 
