@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Section from '@/components/ui/Section';
 import PlatformsBackground from '@/components/ui/PlatformsBackground';
-import { ArrowRight, TrendingUp, Users, Globe } from 'lucide-react';
+import { ArrowRight, TrendingUp, Users, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 
 const platforms = [
@@ -50,6 +50,7 @@ export default function InitiativesShowcaseSection() {
   const [isPaused, setIsPaused] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const startX = useRef(0);
   const scrollLeftStart = useRef(0);
   const isTouchInteraction = useRef(false);
@@ -63,6 +64,22 @@ export default function InitiativesShowcaseSection() {
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Track scroll position for dots indicator
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const scrollLeft = container.scrollLeft;
+      const cardWidth = 300 + 32; // card width + gap
+      const index = Math.round(scrollLeft / cardWidth) % platforms.length;
+      setActiveIndex(index);
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Auto-scroll with requestAnimationFrame (better mobile support)
@@ -79,8 +96,9 @@ export default function InitiativesShowcaseSection() {
         const deltaTime = currentTime - lastTimeRef.current;
         lastTimeRef.current = currentTime;
 
-        // Scroll based on time (30 pixels per second = 0.03 pixels per millisecond)
-        const speed = 0.03 * deltaTime;
+        // Increased speed: 50 pixels per second = 0.05 pixels per millisecond
+        // This gives smoother, more visible scrolling
+        const speed = 0.05 * deltaTime;
         container.scrollLeft += speed;
 
         // Infinite Loop Logic
@@ -152,6 +170,17 @@ export default function InitiativesShowcaseSection() {
     }, 1000);
   };
 
+  // Manual scroll function for arrow buttons
+  const scroll = (direction: 'left' | 'right') => {
+    if (!containerRef.current) return;
+    const scrollAmount = 350; // Scroll by one card width approximately
+    const targetScroll = containerRef.current.scrollLeft + (direction === 'right' ? scrollAmount : -scrollAmount);
+    containerRef.current.scrollTo({
+      left: targetScroll,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <Section
       id="initiatives"
@@ -191,12 +220,21 @@ export default function InitiativesShowcaseSection() {
           <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-gray-50 to-transparent z-20 pointer-events-none" />
           <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-gray-50 to-transparent z-20 pointer-events-none" />
 
-          {/* Mobile Scroll Indicator */}
-          {isMobile && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-primary/90 text-white px-4 py-2 rounded-full text-sm animate-bounce pointer-events-none">
-              👈 Swipe to explore 👉
-            </div>
-          )}
+          {/* Navigation Arrows - Only visible on desktop hover */}
+          <button
+            onClick={() => scroll('left')}
+            className="hidden md:block absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            aria-label="Scroll left"
+          >
+            <ChevronLeft className="w-5 h-5 text-primary" />
+          </button>
+          <button
+            onClick={() => scroll('right')}
+            className="hidden md:block absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            aria-label="Scroll right"
+          >
+            <ChevronRight className="w-5 h-5 text-primary" />
+          </button>
 
           {/* Scrollable Area */}
           <div 
@@ -221,6 +259,7 @@ export default function InitiativesShowcaseSection() {
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
               WebkitOverflowScrolling: 'touch', // Enable smooth scrolling on iOS
+              scrollBehavior: 'auto', // Ensure programmatic scrolling is instant, not smooth
             }}
           >
             {/* Hide scrollbar for Webkit */}
@@ -279,6 +318,32 @@ export default function InitiativesShowcaseSection() {
               </Link>
             ))}
           </div>
+
+          {/* Scroll Indicator Dots - Mobile only */}
+          {isMobile && (
+            <div className="flex justify-center gap-2 mt-6">
+              {platforms.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    if (containerRef.current) {
+                      const cardWidth = 300 + 32; // card width + gap
+                      containerRef.current.scrollTo({
+                        left: cardWidth * index,
+                        behavior: 'smooth'
+                      });
+                    }
+                  }}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    activeIndex === index 
+                      ? 'w-8 bg-primary' 
+                      : 'w-2 bg-gray-300'
+                  }`}
+                  aria-label={`Go to platform ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </Section>
