@@ -126,7 +126,9 @@ export default function Header() {
             {/* Logo */}
             <a
               href="/"
-              className="flex items-center gap-3 hover:opacity-90 transition-opacity"
+              className={`flex items-center gap-3 hover:opacity-90 transition-opacity ${
+                isMenuOpen ? "lg:flex hidden" : "flex"
+              }`}
               aria-label="LIIN Home"
             >
               <Image
@@ -142,7 +144,7 @@ export default function Header() {
             {/* Navigation */}
             <nav
               aria-label="Main navigation"
-              className="flex items-center gap-4"
+              className="flex items-center gap-4 ml-auto"
             >
               {/* Primary Navigation Items with Dropdowns */}
               <ul className="hidden lg:flex items-center gap-1">
@@ -270,7 +272,26 @@ export default function Header() {
             <div className="flex flex-col h-full">
               {/* Menu Header */}
               <div className="flex items-center justify-between py-4 px-6 border-b border-white/20">
-                <h2 className="text-white text-3xl font-bold h-12 flex items-center">MENU</h2>
+                {/* Logo - Mobile only */}
+                <a
+                  href="/"
+                  onClick={closeMenu}
+                  className="flex items-center gap-3 hover:opacity-90 transition-opacity lg:hidden"
+                  aria-label="LIIN Home"
+                >
+                  <Image
+                    src="/images/logo.png"
+                    alt="LIIN Logo"
+                    width={120}
+                    height={120}
+                    className="object-contain h-12 w-auto"
+                    priority
+                  />
+                </a>
+                {/* Menu Text - Desktop only */}
+                <h2 className="text-white text-3xl font-bold h-12 items-center hidden lg:flex">
+                  MENU
+                </h2>
                 <button
                   onClick={closeMenu}
                   className="text-white hover:opacity-80 transition-opacity p-2 hover:bg-white/10 rounded-full"
