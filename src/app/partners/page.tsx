@@ -33,7 +33,7 @@ export default async function PartnersPage() {
       <HeroSection
         title="Our Partners"
         subtitle="Working together to drive impact and create sustainable change"
-        backgroundImage="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920"
+        backgroundImage="/images/partners/cover.JPG"
       />
 
       <Section
