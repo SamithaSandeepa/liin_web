@@ -51,85 +51,77 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* Core Values */}
-      <Section id="values" title="Our Core Values" background="gray">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="animate-on-scroll bg-white p-6 rounded-2xl shadow-medium text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">🎯</span>
+      {/* Core Values, Vision & Mission */}
+      <Section id="values-mission" background="gray">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Left Side - Core Values Image */}
+          <div className="animate-on-scroll flex flex-col">
+            <div className="relative flex-1 rounded-2xl overflow-hidden shadow-hard bg-white p-8">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-primary">
+                Our Core Values
+              </h2>
+              <img
+                src="/images/aboutus/corevalues.png"
+                alt="LIIN Core Values"
+                className="w-full h-auto object-cover"
+              />
             </div>
-            <h3 className="text-lg font-bold mb-2 text-primary">
-              Impact with Integrity
-            </h3>
-            <p className="text-sm text-gray-600">
-              We uphold the highest standards of honesty and ethics in all our
-              interactions.
-            </p>
           </div>
-          <div className="animate-on-scroll bg-white p-6 rounded-2xl shadow-medium text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">🤝</span>
-            </div>
-            <h3 className="text-lg font-bold mb-2 text-primary">
-              Collaboration for Change
-            </h3>
-            <p className="text-sm text-gray-600">
-              We believe in the power of partnerships to drive meaningful
-              impact.
-            </p>
-          </div>
-          <div className="animate-on-scroll bg-white p-6 rounded-2xl shadow-medium text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">⚖️</span>
-            </div>
-            <h3 className="text-lg font-bold mb-2 text-primary">
-              Inclusivity & Equity
-            </h3>
-            <p className="text-sm text-gray-600">
-              We are committed to creating opportunities for all, especially
-              underserved communities.
-            </p>
-          </div>
-          <div className="animate-on-scroll bg-white p-6 rounded-2xl shadow-medium text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">🌱</span>
-            </div>
-            <h3 className="text-lg font-bold mb-2 text-primary">
-              Innovation & Sustainability
-            </h3>
-            <p className="text-sm text-gray-600">
-              We embrace creative solutions that are environmentally and
-              financially sustainable.
-            </p>
-          </div>
-        </div>
-      </Section>
 
-      {/* Vision & Mission */}
-      <Section id="vision-mission" title="Vision & Mission">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Right Side - Vision & Mission */}
+          <div className="flex flex-col space-y-8">
             {/* Vision */}
-            <div className="animate-on-scroll">
-              <div className="bg-white border-l-4 border-primary p-8 rounded-2xl shadow-medium hover:shadow-hard transition-all h-full">
-                <h3 className="text-2xl font-bold text-primary mb-4">Vision</h3>
-                <p className="text-lg text-gray-700 leading-relaxed">
+            <div className="animate-on-scroll flex-1 flex flex-col">
+              <div className="bg-gradient-to-br from-white to-primary/5 border-l-4 border-primary p-8 rounded-2xl shadow-medium hover:shadow-hard transition-all flex-1 flex flex-col relative overflow-hidden group">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-primary relative z-10">
+                  Our Vision
+                </h2>
+                <p className="text-lg text-gray-700 leading-relaxed text-justify relative z-10">
                   A thriving social enterprise sector driving inclusive and
                   sustainable development in Sri Lanka.
                 </p>
+                {/* Animated Background Elements */}
+                <div className="absolute inset-0 opacity-20">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/30 rounded-full blur-3xl animate-pulse"></div>
+                </div>
+                <div className="absolute bottom-0 right-0 w-40 h-40 bg-primary/10 rounded-full blur-2xl transform translate-x-1/4 translate-y-1/4 group-hover:scale-150 transition-transform duration-700"></div>
+                <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-xl transform -translate-x-1/4 -translate-y-1/4 group-hover:scale-125 transition-transform duration-700"></div>
+                {/* Geometric Pattern */}
+                <div className="absolute bottom-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <svg width="120" height="120" viewBox="0 0 120 120" className="text-primary">
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="currentColor" strokeWidth="2" />
+                    <circle cx="60" cy="60" r="35" fill="none" stroke="currentColor" strokeWidth="2" />
+                    <circle cx="60" cy="60" r="20" fill="none" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                </div>
               </div>
             </div>
+
             {/* Mission */}
-            <div className="animate-on-scroll">
-              <div className="bg-white border-l-4 border-secondary p-8 rounded-2xl shadow-medium hover:shadow-hard transition-all h-full">
-                <h3 className="text-2xl font-bold text-secondary mb-4">
-                  Mission
-                </h3>
-                <p className="text-lg text-gray-700 leading-relaxed">
+            <div className="animate-on-scroll flex-1 flex flex-col">
+              <div className="bg-gradient-to-br from-white to-secondary/5 border-l-4 border-secondary p-8 rounded-2xl shadow-medium hover:shadow-hard transition-all flex-1 flex flex-col relative overflow-hidden group">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-secondary relative z-10">
+                  Our Mission
+                </h2>
+                <p className="text-lg text-gray-700 leading-relaxed text-justify relative z-10">
                   To mobilize and deploy capital that supports social
                   enterprises in creating scalable, sustainable solutions for
                   social and environmental challenges.
                 </p>
+                {/* Animated Background Elements */}
+                <div className="absolute inset-0 opacity-20">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                </div>
+                <div className="absolute bottom-0 right-0 w-40 h-40 bg-secondary/10 rounded-full blur-2xl transform translate-x-1/4 translate-y-1/4 group-hover:scale-150 transition-transform duration-700"></div>
+                <div className="absolute top-0 left-0 w-32 h-32 bg-secondary/10 rounded-full blur-xl transform -translate-x-1/4 -translate-y-1/4 group-hover:scale-125 transition-transform duration-700"></div>
+                {/* Geometric Pattern */}
+                <div className="absolute bottom-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <svg width="120" height="120" viewBox="0 0 120 120" className="text-secondary">
+                    <rect x="10" y="10" width="100" height="100" fill="none" stroke="currentColor" strokeWidth="2" rx="10" />
+                    <rect x="25" y="25" width="70" height="70" fill="none" stroke="currentColor" strokeWidth="2" rx="8" />
+                    <rect x="40" y="40" width="40" height="40" fill="none" stroke="currentColor" strokeWidth="2" rx="6" />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
