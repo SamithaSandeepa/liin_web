@@ -128,7 +128,7 @@ export default function SMEJourneySection({
         {/* Vertical Connection Line - Mobile Only */}
         <div
           className="md:hidden absolute left-1/2 -translate-x-1/2 w-1 pointer-events-none z-0"
-          style={{ top: "calc(2rem + 64px)", bottom: "calc(2rem + 64px)" }}
+          style={{ top: "calc(2rem + 64px)", bottom: "calc(2rem + 64px + 1rem + 3rem)" }}
           aria-hidden="true"
         >
           <div className="w-full h-full bg-gradient-to-b from-blue-800 via-blue-600 to-blue-400 opacity-30"></div>
