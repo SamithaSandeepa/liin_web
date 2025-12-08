@@ -49,7 +49,7 @@ const navItems: NavItem[] = [
         href: "/projects/past",
         subItems: [
           { label: "Climate Challenge", href: "/projects/climate-challenge" },
-          { label: "PIF", href: "/projects/pif" },
+          { label: "PIE", href: "/projects/pie" },
           { label: "Emerging Women", href: "/projects/emerging-women" },
           { label: "Linked Way", href: "/projects/linked-way" },
         ],
