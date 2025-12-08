@@ -40,21 +40,23 @@ export default function TestimonialsSectionClient({
   };
 
   return (
-    <div className="relative">
+    <div className="relative px-4 md:px-12">
       {/* Navigation Arrows */}
       {totalPages > 1 && (
         <>
           <button
             onClick={goToPrevious}
-            className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white rounded-full shadow-medium flex items-center justify-center hover:shadow-hard transition-shadow"
+            className="absolute left-0 md:-left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white rounded-full shadow-medium flex items-center justify-center hover:shadow-hard transition-shadow"
             aria-label="Previous testimonials"
+            type="button"
           >
             <ChevronLeft size={24} className="text-primary" />
           </button>
           <button
             onClick={goToNext}
-            className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white rounded-full shadow-medium flex items-center justify-center hover:shadow-hard transition-shadow"
+            className="absolute right-0 md:-right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white rounded-full shadow-medium flex items-center justify-center hover:shadow-hard transition-shadow"
             aria-label="Next testimonials"
+            type="button"
           >
             <ChevronRight size={24} className="text-primary" />
           </button>
