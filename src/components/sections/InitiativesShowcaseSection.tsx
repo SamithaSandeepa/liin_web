@@ -1,51 +1,66 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
-import Section from '@/components/ui/Section';
-import PlatformsBackground from '@/components/ui/PlatformsBackground';
-import { ArrowRight, TrendingUp, Users, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useRef, useState, useEffect } from 'react';
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import Section from "@/components/ui/Section";
+import PlatformsBackground from "@/components/ui/PlatformsBackground";
+import {
+  ArrowRight,
+  TrendingUp,
+  Users,
+  Globe,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { useRef, useState, useEffect } from "react";
 
 const platforms = [
   {
-    name: 'Ath Pavura',
-    logo: '/images/platformslogos/ath-pavura.png',
-    description: 'Pioneering social entrepreneurship through reality TV, connecting innovators with impact investors.',
-    link: '/initiatives/ath-pavura',
-    color: 'text-primary',
-    bg: 'bg-primary/10',
-    border: 'border-primary/20',
+    name: "Ath Pavura",
+    logo: "/images/platformslogos/ath-pavura.png",
+    description:
+      "Pioneering social entrepreneurship through reality TV, connecting innovators with impact investors.",
+    link: "/initiatives/ath-pavura",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-primary/20",
   },
   {
     name: "On Eagle's Wings",
-    logo: '/images/platformslogos/oew-logo.gif',
-    description: 'A transformative journey nurturing SMEs into key drivers of the national economy.',
-    link: '/initiatives/eagles-wings',
-    color: 'text-primary',
-    bg: 'bg-primary/10',
-    border: 'border-primary/20',
+    logo: "/images/platformslogos/oew-logo.gif",
+    description:
+      "A transformative journey nurturing SMEs into key drivers of the national economy.",
+    link: "/initiatives/eagles-wings",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-primary/20",
   },
   {
-    name: 'Awakasha',
-    logo: '/images/platformslogos/awakasha.png',
-    description: 'Empowering the next generation of digital innovators through technology and mentorship.',
-    link: '/projects/pif',
-    color: 'text-primary-dark',
-    bg: 'bg-primary-dark/10',
-    border: 'border-primary-dark/20',
+    name: "Awakasha",
+    logo: "/images/platformslogos/awakasha.png",
+    description:
+      "Empowering the next generation of digital innovators through technology and mentorship.",
+    link: "/projects/pif",
+    color: "text-primary-dark",
+    bg: "bg-primary-dark/10",
+    border: "border-primary-dark/20",
   },
 ];
 
 // Duplicate items for infinite loop
-const loopedPlatforms = [...platforms, ...platforms, ...platforms, ...platforms];
+const loopedPlatforms = [
+  ...platforms,
+  ...platforms,
+  ...platforms,
+  ...platforms,
+];
 
 export default function InitiativesShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number>(0);
-  
+
   // State for interaction handling
   const [isPaused, setIsPaused] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -59,11 +74,14 @@ export default function InitiativesShowcaseSection() {
   // Detect mobile device
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768);
+      setIsMobile(
+        /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
+          window.innerWidth < 768
+      );
     };
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   // Track scroll position for dots indicator
@@ -78,8 +96,8 @@ export default function InitiativesShowcaseSection() {
       setActiveIndex(index);
     };
 
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Auto-scroll with requestAnimationFrame (better mobile support)
@@ -143,15 +161,15 @@ export default function InitiativesShowcaseSection() {
   };
 
   const handleMouseLeave = () => {
-     setIsDragging(false);
-     setIsPaused(false);
+    setIsDragging(false);
+    setIsPaused(false);
   };
 
   const handleMouseEnter = () => {
     // If the user has ever touched the screen, ignore mouse hover events forever.
     // This prevents "sticky hover" on mobile from pausing the slider.
     if (!hasTouched.current) {
-        setIsPaused(true);
+      setIsPaused(true);
     }
   };
 
@@ -165,19 +183,21 @@ export default function InitiativesShowcaseSection() {
   const handleTouchEnd = () => {
     // Resume auto-scroll after a short delay to let momentum settle
     setTimeout(() => {
-        setIsPaused(false);
-        isTouchInteraction.current = false;
+      setIsPaused(false);
+      isTouchInteraction.current = false;
     }, 1000);
   };
 
   // Manual scroll function for arrow buttons
-  const scroll = (direction: 'left' | 'right') => {
+  const scroll = (direction: "left" | "right") => {
     if (!containerRef.current) return;
     const scrollAmount = 350; // Scroll by one card width approximately
-    const targetScroll = containerRef.current.scrollLeft + (direction === 'right' ? scrollAmount : -scrollAmount);
+    const targetScroll =
+      containerRef.current.scrollLeft +
+      (direction === "right" ? scrollAmount : -scrollAmount);
     containerRef.current.scrollTo({
       left: targetScroll,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
@@ -191,7 +211,7 @@ export default function InitiativesShowcaseSection() {
       <div className="absolute inset-0 z-0">
         <PlatformsBackground />
       </div>
-      
+
       <div className="relative z-10 w-full">
         <div className="text-center">
           <motion.h2
@@ -222,14 +242,14 @@ export default function InitiativesShowcaseSection() {
 
           {/* Navigation Arrows - Only visible on desktop hover */}
           <button
-            onClick={() => scroll('left')}
+            onClick={() => scroll("left")}
             className="hidden md:block absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             aria-label="Scroll left"
           >
             <ChevronLeft className="w-5 h-5 text-primary" />
           </button>
           <button
-            onClick={() => scroll('right')}
+            onClick={() => scroll("right")}
             className="hidden md:block absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             aria-label="Scroll right"
           >
@@ -237,11 +257,11 @@ export default function InitiativesShowcaseSection() {
           </button>
 
           {/* Scrollable Area */}
-          <div 
+          <div
             ref={containerRef}
             className={`
                 flex overflow-x-auto gap-8 px-8 pt-4 pb-16 no-scrollbar 
-                ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}
+                ${isDragging ? "cursor-grabbing" : "cursor-grab"}
             `}
             // Mouse Events (Desktop Drag & Hover)
             onMouseDown={handleMouseDown}
@@ -249,17 +269,15 @@ export default function InitiativesShowcaseSection() {
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseLeave}
             onMouseEnter={handleMouseEnter}
-            
             // Touch Events (Mobile Swipe)
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onTouchCancel={handleTouchEnd}
-
             style={{
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
-              WebkitOverflowScrolling: 'touch', // Enable smooth scrolling on iOS
-              scrollBehavior: 'auto', // Ensure programmatic scrolling is instant, not smooth
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              WebkitOverflowScrolling: "touch", // Enable smooth scrolling on iOS
+              scrollBehavior: "auto", // Ensure programmatic scrolling is instant, not smooth
             }}
           >
             {/* Hide scrollbar for Webkit */}
@@ -268,26 +286,27 @@ export default function InitiativesShowcaseSection() {
                 display: none;
               }
             `}</style>
-            
+
             {loopedPlatforms.map((platform, index) => (
-              <Link 
-                href={platform.link} 
+              <Link
+                href={platform.link}
                 key={`${platform.name}-${index}`}
                 className="relative block flex-shrink-0 w-[300px] md:w-[380px] select-none" // select-none prevents text selection while dragging
                 draggable={false}
                 onClick={(e) => {
-                    // Prevent navigation if it was a drag gesture
-                    if (isDragging) e.preventDefault();
+                  // Prevent navigation if it was a drag gesture
+                  if (isDragging) e.preventDefault();
                 }}
               >
                 {/* Clean Floating Item */}
-                <div className={`
+                <div
+                  className={`
                   group/card h-full p-6 transition-all duration-300
                   hover:-translate-y-2
-                `}>
-
+                `}
+                >
                   {/* Logo Container */}
-                  <div className="relative w-full h-24 mb-6 flex items-start justify-start grayscale group-hover/card:grayscale-0 opacity-80 group-hover/card:opacity-100 transition-all duration-500">
+                  <div className="relative w-full h-24 mb-6 flex items-start justify-start md:grayscale md:group-hover/card:grayscale-0 md:opacity-80 md:group-hover/card:opacity-100 transition-all duration-500">
                     <Image
                       src={platform.logo}
                       alt={platform.name}
@@ -307,12 +326,17 @@ export default function InitiativesShowcaseSection() {
                   </p>
 
                   {/* Learn More Link */}
-                  <div className={`
+                  <div
+                    className={`
                     inline-flex items-center gap-2 font-bold uppercase tracking-wider text-xs
                     ${platform.color} opacity-0 group-hover/card:opacity-100 transition-all
-                  `}>
+                  `}
+                  >
                     Explore Platform
-                    <ArrowRight size={16} className="transform group-hover/card:translate-x-1 transition-transform" />
+                    <ArrowRight
+                      size={16}
+                      className="transform group-hover/card:translate-x-1 transition-transform"
+                    />
                   </div>
                 </div>
               </Link>
@@ -330,14 +354,12 @@ export default function InitiativesShowcaseSection() {
                       const cardWidth = 300 + 32; // card width + gap
                       containerRef.current.scrollTo({
                         left: cardWidth * index,
-                        behavior: 'smooth'
+                        behavior: "smooth",
                       });
                     }
                   }}
                   className={`h-2 rounded-full transition-all duration-300 ${
-                    activeIndex === index 
-                      ? 'w-8 bg-primary' 
-                      : 'w-2 bg-gray-300'
+                    activeIndex === index ? "w-8 bg-primary" : "w-2 bg-gray-300"
                   }`}
                   aria-label={`Go to platform ${index + 1}`}
                 />
