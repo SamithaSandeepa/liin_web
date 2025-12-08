@@ -262,27 +262,91 @@ export default function EaglesWingsPage() {
               preserveAspectRatio="xMidYMid meet"
             >
               <defs>
-                <linearGradient
-                  id="lineGradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="0%"
-                >
-                  <stop offset="0%" stopColor="#1e40af" stopOpacity="0.8" />
-                  <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.9" />
-                  <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.8" />
+                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#1e40af" stopOpacity="0.8">
+                    <animate
+                      attributeName="stop-color"
+                      values="#1e40af; #3b82f6; #60a5fa; #3b82f6; #1e40af"
+                      dur="4s"
+                      repeatCount="indefinite"
+                    />
+                  </stop>
+                  <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.9">
+                    <animate
+                      attributeName="stop-color"
+                      values="#3b82f6; #60a5fa; #93c5fd; #60a5fa; #3b82f6"
+                      dur="4s"
+                      repeatCount="indefinite"
+                    />
+                  </stop>
+                  <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.8">
+                    <animate
+                      attributeName="stop-color"
+                      values="#60a5fa; #93c5fd; #bfdbfe; #93c5fd; #60a5fa"
+                      dur="4s"
+                      repeatCount="indefinite"
+                    />
+                  </stop>
+                  <animate
+                    attributeName="x1"
+                    values="0%; -50%; 0%"
+                    dur="6s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="x2"
+                    values="100%; 150%; 100%"
+                    dur="6s"
+                    repeatCount="indefinite"
+                  />
                 </linearGradient>
+                
+                {/* Radial gradient for the traveling light */}
+                <radialGradient id="lightGradient">
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
+                  <stop offset="50%" stopColor="#60a5fa" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
+                </radialGradient>
               </defs>
-              {/* Smooth wave through circles - using cubic bezier for smoother curves */}
+              
+              {/* Main wave path */}
               <path
+                id="wavePath"
                 d="M 120 120 C 180 120, 220 300, 360 300 C 500 300, 540 120, 600 120 C 660 120, 700 300, 840 300 C 980 300, 1020 120, 1080 120"
                 stroke="url(#lineGradient)"
                 strokeWidth="5"
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-              />
+              >
+                <animate
+                  attributeName="stroke-width"
+                  values="5; 6; 5"
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="stroke-opacity"
+                  values="0.8; 1; 0.8"
+                  dur="2s"
+                  repeatCount="indefinite"
+                />
+              </path>
+              
+              {/* Traveling light effect */}
+              <circle r="15" fill="url(#lightGradient)" opacity="0.9">
+                <animateMotion
+                  dur="5s"
+                  repeatCount="indefinite"
+                  path="M 120 120 C 180 120, 220 300, 360 300 C 500 300, 540 120, 600 120 C 660 120, 700 300, 840 300 C 980 300, 1020 120, 1080 120"
+                />
+                <animate
+                  attributeName="r"
+                  values="12; 18; 12"
+                  dur="1.5s"
+                  repeatCount="indefinite"
+                />
+              </circle>
             </svg>
 
             {/* Wavy Connection Line SVG - Mobile - Replaced with connecting lines */}
