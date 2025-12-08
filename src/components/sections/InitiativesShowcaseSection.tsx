@@ -204,7 +204,7 @@ export default function InitiativesShowcaseSection() {
   return (
     <Section
       id="initiatives"
-      className="relative overflow-hidden !pb-8"
+      className="relative overflow-hidden"
       background="gray"
     >
       {/* Background Animation */}
@@ -213,25 +213,14 @@ export default function InitiativesShowcaseSection() {
       </div>
 
       <div className="relative z-10 w-full">
-        <div className="text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl md:text-5xl font-bold mb-4 text-primary"
-          >
+        {/* Title and Subtitle */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-primary">
             Our Platforms
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
-          >
+          </h2>
+          <p className="text-lg lg:text-xl max-w-4xl mx-auto text-gray-600">
             Driving transformative change through innovative programs
-          </motion.p>
+          </p>
         </div>
 
         {/* Interactive Slider Container */}
@@ -245,6 +234,7 @@ export default function InitiativesShowcaseSection() {
             onClick={() => scroll("left")}
             className="hidden md:block absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             aria-label="Scroll left"
+            type="button"
           >
             <ChevronLeft className="w-5 h-5 text-primary" />
           </button>
@@ -252,6 +242,7 @@ export default function InitiativesShowcaseSection() {
             onClick={() => scroll("right")}
             className="hidden md:block absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             aria-label="Scroll right"
+            type="button"
           >
             <ChevronRight className="w-5 h-5 text-primary" />
           </button>
@@ -260,7 +251,7 @@ export default function InitiativesShowcaseSection() {
           <div
             ref={containerRef}
             className={`
-                flex overflow-x-auto gap-8 px-8 pt-4 pb-16 no-scrollbar 
+                flex overflow-x-auto gap-8 px-8 pt-4 no-scrollbar 
                 ${isDragging ? "cursor-grabbing" : "cursor-grab"}
             `}
             // Mouse Events (Desktop Drag & Hover)
@@ -345,7 +336,7 @@ export default function InitiativesShowcaseSection() {
 
           {/* Scroll Indicator Dots - Mobile only */}
           {isMobile && (
-            <div className="flex justify-center gap-2 mt-6">
+            <div className="flex justify-center gap-2 mt-4">
               {platforms.map((_, index) => (
                 <button
                   key={index}
