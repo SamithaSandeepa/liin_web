@@ -2,7 +2,7 @@ import { ApproachCard } from "@/lib/types/home";
 
 export const approachData: ApproachCard[] = [
   {
-    img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400",
+    img: "/images/ourapproach/capital-mobilization.jpg",
     title: "Capital Mobilization",
     desc: "Through a rigorous capital mobilization strategy, we identify high-potential impact ventures and align them with suitable investors, ensuring strategic funding that drives measurable and long-term development outcomes.",
     link: "/partners", // Impact Fund page
