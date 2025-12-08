@@ -82,7 +82,7 @@ const sidebarItems: NavItem[] = [
     subItems: [
       { label: "News & Insights", href: "/news" },
       { label: "Events", href: "/news?category=events" },
-      { label: "Testimonials", href: "/news?category=testimonials" },
+      // { label: "Testimonials", href: "/news?category=testimonials" },
     ],
   },
   { label: "Contact Us", href: "/contact" },
