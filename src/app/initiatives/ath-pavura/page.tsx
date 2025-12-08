@@ -73,20 +73,20 @@ const awards = [
 ];
 
 const partnersWithLogos = [
-  { name: "HNB", logo: "/images/athpaura/hnb.jpg" },
-  { name: "Sampath Bank", logo: "/images/athpaura/sampath.png" },
+  { name: "HNB", logo: "/images/athpavura/hnb.jpg" },
+  { name: "Sampath Bank", logo: "/images/athpavura/sampath.png" },
   {
     name: "Sri Lanka Insurance",
-    logo: "/images/athpaura/Sri_Lanka_Insurance_new_logo.jpg",
+    logo: "/images/athpavura/Sri_Lanka_Insurance_new_logo.jpg",
   },
-  { name: "Dialog", logo: "/images/athpaura/Dialog_Axiata_logo.png" },
-  { name: "Horizon Campus", logo: "/images/athpaura/horizon_campus.png" },
+  { name: "Dialog", logo: "/images/athpavura/Dialog_Axiata_logo.png" },
+  { name: "Horizon Campus", logo: "/images/athpavura/horizon_campus.png" },
   {
     name: "Wijaya Publications",
-    logo: "/images/athpaura/wijaya_publications.png",
+    logo: "/images/athpavura/wijaya_publications.png",
   },
-  { name: "BDO", logo: "/images/athpaura/bdo.png" },
-  { name: "UNDP", logo: "/images/athpaura/undp.png" },
+  { name: "BDO", logo: "/images/athpavura/bdo.png" },
+  { name: "UNDP", logo: "/images/athpavura/undp.png" },
 ];
 
 // const partnersTextOnly = [""];
@@ -105,7 +105,7 @@ export default function AthPavuraPage() {
       <HeroSection
         title="Ath Pavura"
         subtitle="Pioneering Social Entrepreneurship in Sri Lanka"
-        backgroundImage="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=1920"
+        backgroundImage="/images/athpavura/cover.jpg"
       />
 
       {/* Introduction */}
