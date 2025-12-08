@@ -100,10 +100,15 @@ export default function InitiativesShowcaseSection() {
     return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Auto-scroll with requestAnimationFrame (better mobile support)
+  // Auto-scroll with requestAnimationFrame (desktop only for better performance)
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+
+    // Disable auto-scroll on mobile devices to prevent lag
+    if (isMobile) {
+      return;
+    }
 
     const animate = (currentTime: number) => {
       if (!isPaused && !isDragging && container) {
@@ -136,7 +141,7 @@ export default function InitiativesShowcaseSection() {
       }
       lastTimeRef.current = 0;
     };
-  }, [isPaused, isDragging]);
+  }, [isPaused, isDragging, isMobile]);
 
   // Desktop Drag Handlers
   const handleMouseDown = (e: React.MouseEvent) => {
