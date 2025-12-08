@@ -20,9 +20,16 @@ function formatDate(dateString: string): string {
   });
 }
 
-export default async function NewsPage() {
+export default async function NewsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>;
+}) {
   let news: NewsItem[] = [];
   let categories: NewsCategory[] = [];
+  
+  // Await searchParams
+  const params = await searchParams;
 
   try {
     const [newsRes, categoriesRes] = await Promise.all([
@@ -47,7 +54,11 @@ export default async function NewsPage() {
         id="news-list"
         title="Latest News"
       >
-        <NewsSectionClient news={news} categories={categories} />
+        <NewsSectionClient 
+          news={news} 
+          categories={categories} 
+          initialCategory={params.category}
+        />
       </Section>
     </>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -11,6 +11,7 @@ import { getAssetUrl } from '@/lib/api';
 interface NewsSectionClientProps {
   news: NewsItem[];
   categories: NewsCategory[];
+  initialCategory?: string;
 }
 
 function stripHtml(html: string): string {
@@ -26,8 +27,21 @@ function formatDate(dateString: string): string {
   });
 }
 
-export default function NewsSectionClient({ news, categories }: NewsSectionClientProps) {
+export default function NewsSectionClient({ news, categories, initialCategory }: NewsSectionClientProps) {
   const [activeCategory, setActiveCategory] = useState<string>(categories[0]?.id || '');
+
+  // Set initial category based on URL parameter or category name
+  useEffect(() => {
+    if (initialCategory && categories.length > 0) {
+      // Try to find category by name (case-insensitive)
+      const matchedCategory = categories.find(
+        cat => cat.news_category.toLowerCase() === initialCategory.toLowerCase()
+      );
+      if (matchedCategory) {
+        setActiveCategory(matchedCategory.id);
+      }
+    }
+  }, [initialCategory, categories]);
 
   const filteredNews = activeCategory
     ? news.filter((item) => item.news_category === activeCategory)
