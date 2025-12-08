@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import HeroSection from "@/components/sections/HeroSection";
@@ -242,14 +242,24 @@ export default function EaglesWingsPage() {
         subtitle="Click on each stage to explore the journey"
         background="gray"
       >
-        <div className="max-w-6xl mx-auto relative">
+        <div 
+          className="max-w-6xl mx-auto relative"
+          onClick={(e) => {
+            // Close description when clicking outside on mobile
+            const target = e.target as HTMLElement;
+            if (!target.closest('[data-stage-container]')) {
+              setActiveStage(null);
+            }
+          }}
+        >
           {/* Journey Path Container */}
-          <div className="relative py-12">
-            {/* Wavy Connection Line SVG */}
+          <div className="relative py-12 md:pb-16 pb-8">
+            {/* Wavy Connection Line SVG - Desktop */}
             <svg
-              className="absolute inset-0 w-full h-full pointer-events-none"
+              className="absolute top-0 left-0 w-full h-full pointer-events-none hidden md:block"
               style={{ zIndex: 0 }}
-              preserveAspectRatio="none"
+              viewBox="0 0 1200 500"
+              preserveAspectRatio="xMidYMid meet"
             >
               <defs>
                 <linearGradient
@@ -264,76 +274,80 @@ export default function EaglesWingsPage() {
                   <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.8" />
                 </linearGradient>
               </defs>
+              {/* Smooth wave through circles - using cubic bezier for smoother curves */}
               <path
-                d="M 150 20 Q 300 80, 450 20 T 750 20 Q 900 80, 1050 20"
+                d="M 120 120 C 180 120, 220 300, 360 300 C 500 300, 540 120, 600 120 C 660 120, 700 300, 840 300 C 980 300, 1020 120, 1080 120"
                 stroke="url(#lineGradient)"
-                strokeWidth="4"
+                strokeWidth="5"
                 fill="none"
                 strokeLinecap="round"
-                className="hidden md:block"
-              />
-              {/* Mobile: Vertical wavy line */}
-              <path
-                d="M 50 100 Q 80 200, 50 300 T 50 500 Q 80 600, 50 700"
-                stroke="url(#lineGradient)"
-                strokeWidth="4"
-                fill="none"
-                strokeLinecap="round"
-                className="md:hidden"
+                strokeLinejoin="round"
               />
             </svg>
 
+            {/* Wavy Connection Line SVG - Mobile - Replaced with connecting lines */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-full pointer-events-none md:hidden z-0">
+              <div className="w-full h-full bg-gradient-to-b from-blue-800 via-blue-600 to-blue-400 opacity-30"></div>
+            </div>
+
             {/* Journey Stages */}
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-4 relative z-10">
               {journeyStages.map((stage, idx) => (
                 <div
                   key={stage.id}
-                  className={`flex flex-col items-center transition-all duration-500 ${
+                  data-stage-container
+                  className={`flex flex-col items-center ${
                     idx % 2 === 0 ? "md:mt-0" : "md:mt-24"
                   }`}
+                  onMouseEnter={() => setActiveStage(stage.id)}
+                  onMouseLeave={() => setActiveStage(null)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveStage(stage.id);
+                  }}
                 >
-                  {/* Circular Image Container */}
-                  <button
-                    onClick={() => toggleStage(stage.id)}
-                    className="group relative mb-4 focus:outline-none"
-                    aria-label={`Toggle ${stage.title}`}
-                  >
+                  {/* Circular Image Container - Fixed height container */}
+                  <div className="relative mb-4 h-40 md:h-44 flex items-center justify-center z-20">
                     <div
-                      className={`
+                      className="group relative focus:outline-none cursor-pointer"
+                      aria-label={stage.title}
+                    >
+                      <div
+                        className={`
                       relative w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden
                       shadow-lg hover:shadow-2xl transition-all duration-300
-                      transform hover:scale-110 cursor-pointer
                       ${
                         activeStage === stage.id
                           ? "ring-4 ring-primary ring-offset-4 scale-110"
-                          : "ring-2 ring-white ring-offset-2"
+                          : "ring-2 ring-white ring-offset-2 hover:scale-105"
                       }
                     `}
-                    >
-                      <img
-                        src={stage.image}
-                        alt={stage.title}
-                        className="w-full h-full object-cover"
-                      />
-                      {/* Overlay on hover */}
-                      <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      >
+                        <img
+                          src={stage.image}
+                          alt={stage.title}
+                          className="w-full h-full object-cover"
+                        />
+                        {/* Overlay on hover */}
+                        <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </div>
+
+                      {/* Stage Number Badge */}
+                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg z-10">
+                        {stage.id}
+                      </div>
+
+                      {/* Pulse Animation for Active */}
+                      {activeStage === stage.id && (
+                        <div className="absolute inset-0 rounded-full bg-primary/30 animate-ping" />
+                      )}
                     </div>
+                  </div>
 
-                    {/* Stage Number Badge */}
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
-                      {stage.id}
-                    </div>
-
-                    {/* Pulse Animation for Active */}
-                    {activeStage === stage.id && (
-                      <div className="absolute inset-0 rounded-full bg-primary/30 animate-ping" />
-                    )}
-                  </button>
-
-                  {/* Title */}
+                  {/* Title - Fixed height */}
                   <h3
                     className={`
-                    text-center font-bold text-sm md:text-base px-2 mb-2
+                    text-center font-bold text-sm md:text-base px-2 mb-2 min-h-[3rem] flex items-center justify-center z-20 relative
                     transition-colors duration-300 cursor-pointer
                     ${
                       activeStage === stage.id
@@ -341,33 +355,31 @@ export default function EaglesWingsPage() {
                         : "text-gray-700 hover:text-primary"
                     }
                   `}
-                    onClick={() => toggleStage(stage.id)}
                   >
                     {stage.title}
                   </h3>
 
-                  {/* Expandable Description */}
-                  <div
-                    className={`
-                    overflow-hidden transition-all duration-500 ease-in-out
-                    ${activeStage === stage.id ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}
-                  `}
-                  >
-                    <div className="bg-white rounded-xl shadow-medium p-4 mt-2 mx-2">
-                      <p className="text-gray-600 text-sm leading-relaxed text-center">
-                        {stage.description}
-                      </p>
+                  {/* Expandable Description - Absolute positioning to not affect layout */}
+                  <div className="relative w-full z-30">
+                    <div
+                      className={`
+                      absolute top-0 left-0 right-0 overflow-hidden transition-all duration-500 ease-in-out
+                      ${
+                        activeStage === stage.id
+                          ? "max-h-96 opacity-100"
+                          : "max-h-0 opacity-0"
+                      }
+                    `}
+                    >
+                      <div className="bg-white rounded-xl shadow-hard p-4 mt-2 mx-2 relative z-30">
+                        <p className="text-gray-600 text-sm leading-relaxed text-center">
+                          {stage.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Interactive Instructions */}
-            <div className="text-center mt-12">
-              <p className="text-gray-500 italic text-sm">
-                💡 Click on any stage to learn more about the journey
-              </p>
             </div>
           </div>
         </div>
@@ -392,7 +404,7 @@ export default function EaglesWingsPage() {
         id="sectors"
         title="Sectors Covered"
         subtitle="The program supports businesses in key sectors"
-        background="gray"
+        background="white"
       >
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
