@@ -155,7 +155,7 @@ export default function PIEPage() {
         subtitle="5-Step Journey to Transform Your Business"
         background="gray"
       >
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto text-justify">
           <div className="space-y-8">
             {programSteps.map((item, idx) => (
               <div
@@ -291,7 +291,7 @@ export default function PIEPage() {
       <Section id="apply" title="JOIN THE NEXT COHORT">
         <div className="max-w-4xl mx-auto text-center">
           <div className="animate-on-scroll">
-            <div className="max-w-2xl mx-auto space-y-4 text-gray-700 text-lg leading-relaxed mb-10">
+            <div className="max-w-2xl mx-auto space-y-4 text-gray-700 text-lg leading-relaxed mb-10 text-justify">
               <p>
                 We are excited to announce that a new cohort of entrepreneurs
                 will soon begin their journey with PIE. If you are an
