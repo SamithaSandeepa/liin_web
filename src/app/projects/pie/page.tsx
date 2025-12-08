@@ -94,7 +94,7 @@ export default function PIEPage() {
       <Section id="what-is-pie" title="What is PIE?">
         <div className="max-w-5xl mx-auto">
           <div className="animate-on-scroll text-center mb-12">
-            <div className="max-w-3xl mx-auto space-y-4 text-gray-700 text-lg leading-relaxed">
+            <div className="max-w-3xl mx-auto space-y-4 text-gray-700 text-lg leading-relaxed text-justify">
               <p>
                 PIE is a{" "}
                 <strong className="text-primary">one stop Digital Hub</strong>{" "}
@@ -188,19 +188,26 @@ export default function PIEPage() {
       </Section>
 
       {/* Story Telling */}
-      <Section id="storytelling" title="Story Telling" subtitle="Share Your Entrepreneurial Journey">
+      <Section
+        id="storytelling"
+        title="Story Telling"
+        subtitle="Share Your Entrepreneurial Journey"
+      >
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <div className="animate-on-scroll">
               <div className="flex items-start gap-4">
-                <CheckCircle2 className="text-primary flex-shrink-0 mt-1" size={24} />
+                <CheckCircle2
+                  className="text-primary flex-shrink-0 mt-1"
+                  size={24}
+                />
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     5-10 Minutes Story Telling
                   </h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Share your Business, Enterprise, Challenges and Business Plans
-                    in a concise, impactful presentation.
+                    Share your Business, Enterprise, Challenges and Business
+                    Plans in a concise, impactful presentation.
                   </p>
                 </div>
               </div>
@@ -208,7 +215,10 @@ export default function PIEPage() {
 
             <div className="animate-on-scroll">
               <div className="flex items-start gap-4">
-                <CheckCircle2 className="text-primary flex-shrink-0 mt-1" size={24} />
+                <CheckCircle2
+                  className="text-primary flex-shrink-0 mt-1"
+                  size={24}
+                />
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     Profile Creation
