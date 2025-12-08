@@ -1,6 +1,7 @@
 import HeroSection from "@/components/sections/HeroSection";
 import Section from "@/components/ui/Section";
 import JoinNetworkSection from "@/components/sections/JoinNetworkSection";
+import SMEJourneySection from "@/components/sections/SMEJourneySection";
 import {
   Sprout,
   Zap,
@@ -89,6 +90,44 @@ const sectors = [
   { name: "Healthcare & Education", icon: Heart },
   { name: "IT & Technology", icon: Laptop },
   { name: "Apparel & Textiles", icon: Shirt },
+];
+
+const journeyStages = [
+  {
+    id: 1,
+    image: "/images/eagleswings/1.png",
+    title: "Application & Selection",
+    description:
+      "Entrepreneurs submit applications showcasing their business ideas. A rigorous selection process identifies the most promising ventures based on innovation, impact potential, and scalability.",
+  },
+  {
+    id: 2,
+    image: "/images/eagleswings/2.png",
+    title: "Investor Readiness Training",
+    description:
+      "Selected entrepreneurs undergo comprehensive training to refine their business models, develop compelling pitches, and understand investor expectations. This phase prepares them for the reality show and real-world investment opportunities.",
+  },
+  {
+    id: 3,
+    image: "/images/eagleswings/3.png",
+    title: "Reality Show Pitch",
+    description:
+      "Entrepreneurs present their ventures on national television, pitching to a panel of experienced investors and judges. This high-visibility platform provides exposure and the opportunity to secure investment commitments.",
+  },
+  {
+    id: 4,
+    image: "/images/eagleswings/4.png",
+    title: "Investment & Partnership",
+    description:
+      "Successful pitches lead to investment deals and strategic partnerships. Investors provide capital and expertise to help businesses scale, while entrepreneurs gain the resources needed for growth.",
+  },
+  {
+    id: 5,
+    image: "/images/eagleswings/5.png",
+    title: "Post-Investment Support",
+    description:
+      "LIIN provides ongoing mentorship, monitoring, and strategic guidance to ensure sustainable growth. Regular check-ins and performance evaluations help businesses overcome challenges and maximize their impact.",
+  },
 ];
 
 export default function EaglesWingsPage() {
@@ -189,12 +228,22 @@ export default function EaglesWingsPage() {
         </div>
       </Section>
 
+      {/* SME Journey */}
+      <Section
+        id="sme-journey"
+        title="SME Journey through 'On Eagle's Wings'"
+        subtitle="Hover over each stage to explore the journey"
+        background="gray"
+      >
+        <SMEJourneySection stages={journeyStages} />
+      </Section>
+
       {/* Sectors */}
       <Section
         id="sectors"
         title="Sectors Covered"
         subtitle="The program supports businesses in key sectors"
-        background="gray"
+        background="white"
       >
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
