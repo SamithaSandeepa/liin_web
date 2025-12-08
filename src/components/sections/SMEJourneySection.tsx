@@ -28,7 +28,7 @@ export default function SMEJourneySection({
       }}
     >
       {/* Journey Path Container */}
-      <div className="relative py-12 md:pb-16 pb-8">
+      <div className="relative">
         {/* Wavy Connection Line SVG - Desktop */}
         <svg
           className="absolute top-0 left-0 w-full h-full pointer-events-none hidden md:block"
@@ -128,14 +128,14 @@ export default function SMEJourneySection({
         {/* Vertical Connection Line - Mobile Only */}
         <div
           className="md:hidden absolute left-1/2 -translate-x-1/2 w-1 pointer-events-none z-0"
-          style={{ top: "80px", bottom: "80px" }}
+          style={{ top: "calc(2rem + 64px)", bottom: "calc(2rem + 64px)" }}
           aria-hidden="true"
         >
           <div className="w-full h-full bg-gradient-to-b from-blue-800 via-blue-600 to-blue-400 opacity-30"></div>
         </div>
 
         {/* Journey Stages */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-4 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-4 relative z-10 py-8">
           {stages.map((stage, idx) => (
             <article
               key={stage.id}
