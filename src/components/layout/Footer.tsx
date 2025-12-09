@@ -85,7 +85,7 @@ export default function Footer() {
                   Address
                 </h3>
                 <address className="text-sm opacity-90 not-italic">
-                  <div className="flex items-start gap-2">
+                  <div className="flex items-start gap-2 justify-center md:justify-start">
                     <MapPin size={16} className="flex-shrink-0 mt-1" />
                     <span>
                       No: 209/3, 02nd Floor,
@@ -106,7 +106,7 @@ export default function Footer() {
                   Contact
                 </h3>
                 <div className="text-sm opacity-90 space-y-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 justify-center md:justify-start">
                     <Phone size={16} className="flex-shrink-0" />
                     <a
                       href="tel:+94776051256"
@@ -115,7 +115,7 @@ export default function Footer() {
                       +94 77 605 1256
                     </a>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 justify-center md:justify-start">
                     <Mail size={16} className="flex-shrink-0" />
                     <a
                       href="mailto:info@liin.lk"
