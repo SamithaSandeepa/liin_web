@@ -1,36 +1,31 @@
-import { ContactInfo, Office } from '@/lib/types/contact';
+import { ContactInfo, Office } from "@/lib/types/contact";
 
 export const contactInfo: ContactInfo[] = [
   {
-    icon: '📧',
-    label: 'Email',
-    value: 'info@liin.lk',
-    link: 'mailto:info@liin.lk'
+    icon: "📧",
+    label: "Email",
+    value: "info@liin.lk",
+    link: "mailto:info@liin.lk",
   },
   {
-    icon: '📞',
-    label: 'Phone',
-    value: '+94 11 234 5678',
-    link: 'tel:+94112345678'
+    icon: "📞",
+    label: "Phone",
+    value: "+94 77 605 1256",
+    link: "tel:+94776051256",
   },
   {
-    icon: '📍',
-    label: 'Address',
-    value: 'Colombo, Sri Lanka'
-  }
+    icon: "📍",
+    label: "Address",
+    value: "No: 209/3, 02nd Floor, Dr. Colvin R de Silva Mawatha, Colombo-02, 10350, Sri Lanka",
+  },
 ];
 
 export const offices: Office[] = [
   {
-    city: 'Colombo',
-    address: '123 Main Street, Colombo 03, Sri Lanka',
-    phone: '+94 11 234 5678',
-    email: 'colombo@liin.lk'
+    city: "Head Office",
+    address:
+      "No: 209/3, 02nd Floor, Dr. Colvin R de Silva Mawatha, Colombo-02, 10350, Sri Lanka",
+    phone: "+94 77 605 1256",
+    email: "info@liin.lk",
   },
-  {
-    city: 'Kandy',
-    address: '456 Hill Street, Kandy, Sri Lanka',
-    phone: '+94 81 234 5678',
-    email: 'kandy@liin.lk'
-  }
 ];
