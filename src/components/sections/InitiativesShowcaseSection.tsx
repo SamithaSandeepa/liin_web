@@ -213,9 +213,9 @@ export default function InitiativesShowcaseSection() {
       background="gray"
     >
       {/* Background Animation */}
-      <div className="absolute inset-0 z-0">
+      {/* <div className="absolute inset-0 z-0">
         <PlatformsBackground />
-      </div>
+      </div> */}
 
       <div className="relative z-10 w-full">
         {/* Title and Subtitle */}
@@ -302,7 +302,7 @@ export default function InitiativesShowcaseSection() {
                 `}
                 >
                   {/* Logo Container */}
-                  <div className="relative w-full h-24 mb-6 flex items-start justify-start md:grayscale md:group-hover/card:grayscale-0 md:opacity-80 md:group-hover/card:opacity-100 transition-all duration-500">
+                  <div className="relative w-full h-24 mb-6 flex items-start justify-center transition-all duration-500">
                     <Image
                       src={platform.logo}
                       alt={platform.name}
@@ -314,10 +314,10 @@ export default function InitiativesShowcaseSection() {
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-2xl font-bold text-gray-800 mb-3 group-hover/card:text-primary transition-colors">
+                  <h3 className="text-2xl font-bold text-gray-800 text-center mb-3 group-hover/card:text-primary transition-colors">
                     {platform.name}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed mb-8 text-sm md:text-base border-l-2 border-transparent group-hover/card:border-primary/30 pl-0 group-hover/card:pl-3 transition-all duration-300">
+                  <p className="text-gray-600 text-justify leading-relaxed mb-8 text-sm md:text-base border-l-2 border-transparent group-hover/card:border-primary/30 pl-0 group-hover/card:pl-3 transition-all duration-300">
                     {platform.description}
                   </p>
 
