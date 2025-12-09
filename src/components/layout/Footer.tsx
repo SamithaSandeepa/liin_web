@@ -1,4 +1,4 @@
-import { Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
+import { Facebook, Linkedin, Instagram, Youtube, MapPin, Phone, Mail } from "lucide-react";
 
 interface SocialLink {
   name: string;
@@ -85,9 +85,18 @@ export default function Footer() {
                   Address
                 </h3>
                 <address className="text-sm opacity-90 not-italic">
-                  123 Galle Road
-                  <br />
-                  Colombo 03, Sri Lanka
+                  <div className="flex items-start gap-2">
+                    <MapPin size={16} className="flex-shrink-0 mt-1" />
+                    <span>
+                      No: 209/3, 02nd Floor,
+                      <br />
+                      Dr. Colvin R de Silva Mawatha,
+                      <br />
+                      Colombo-02, 10350
+                      <br />
+                      Sri Lanka
+                    </span>
+                  </div>
                 </address>
               </div>
 
@@ -96,20 +105,25 @@ export default function Footer() {
                 <h3 className="font-bold mb-3 text-base bg-white/10 inline-block px-4 py-2 rounded-lg uppercase">
                   Contact
                 </h3>
-                <div className="text-sm opacity-90">
-                  <a
-                    href="tel:+94771234567"
-                    className="hover:opacity-100 transition-opacity"
-                  >
-                    +94 77 123 4567
-                  </a>
-                  <br />
-                  <a
-                    href="mailto:info@liin.lk"
-                    className="hover:opacity-100 transition-opacity"
-                  >
-                    info@liin.lk
-                  </a>
+                <div className="text-sm opacity-90 space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Phone size={16} className="flex-shrink-0" />
+                    <a
+                      href="tel:+94776051256"
+                      className="hover:opacity-100 transition-opacity"
+                    >
+                      +94 77 605 1256
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Mail size={16} className="flex-shrink-0" />
+                    <a
+                      href="mailto:info@liin.lk"
+                      className="hover:opacity-100 transition-opacity"
+                    >
+                      info@liin.lk
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
