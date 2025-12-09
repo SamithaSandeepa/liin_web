@@ -45,6 +45,9 @@ export default async function Home() {
         <InitiativesShowcaseSection />
       </SectionAnimator>
       <SectionAnimator animation="fade-up">
+        <ImpactMetricsSection />
+      </SectionAnimator>
+      <SectionAnimator animation="fade-up">
         <ApproachSection />
       </SectionAnimator>
       <SectionAnimator animation="fade-up" delay={0.1}>
@@ -52,9 +55,6 @@ export default async function Home() {
       </SectionAnimator>
       <SectionAnimator animation="scale-up">
         <SDGSection />
-      </SectionAnimator>
-      <SectionAnimator animation="fade-up">
-        <ImpactMetricsSection />
       </SectionAnimator>
       <SectionAnimator animation="fade-up" delay={0.1}>
         <CTASection />
