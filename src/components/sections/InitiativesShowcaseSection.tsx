@@ -28,7 +28,7 @@ const platforms = [
   },
   {
     name: "On Eagle's Wings",
-    logo: "/images/platformslogos/oew-logo.gif",
+    logo: "/images/platformslogos/oew-logo.png",
     description:
       "A transformative journey nurturing SMEs into key drivers of the national economy.",
     link: "/initiatives/eagles-wings",

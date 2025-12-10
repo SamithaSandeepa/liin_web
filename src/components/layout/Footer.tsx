@@ -60,9 +60,9 @@ export default function Footer() {
           {/* Left Side - Main Content */}
           <div className="flex-1">
             {/* Top Row - Navigation, Address & Contact */}
-            <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-              {/* Quick Links */}
-              <div>
+            <div className="py-12">
+              {/* Quick Links - Full Width on Mobile, Part of Grid on Desktop */}
+              <div className="mb-8 md:mb-0 text-center md:text-left md:hidden">
                 <h3 className="font-bold mb-3 text-base bg-white/10 inline-block px-4 py-2 rounded-lg uppercase">
                   Quick Links
                 </h3>
@@ -79,50 +79,71 @@ export default function Footer() {
                 </nav>
               </div>
 
-              {/* Address */}
-              <div>
-                <h3 className="font-bold mb-3 text-base bg-white/10 inline-block px-4 py-2 rounded-lg uppercase">
-                  Address
-                </h3>
-                <address className="text-sm opacity-90 not-italic">
-                  <div className="flex items-start gap-2 justify-center md:justify-start">
-                    <MapPin size={16} className="flex-shrink-0 mt-1" />
-                    <span>
-                      No: 209/3, 02nd Floor,
-                      <br />
-                      Dr. Colvin R de Silva Mawatha,
-                      <br />
-                      Colombo-02, 10350
-                      <br />
-                      Sri Lanka
-                    </span>
-                  </div>
-                </address>
-              </div>
+              {/* Desktop: 3 Column Grid | Mobile: Quick Links hidden (shown above), Address & Contact in 2 columns */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-left">
+                {/* Quick Links - Desktop Only */}
+                <div className="hidden md:block">
+                  <h3 className="font-bold mb-3 text-base bg-white/10 inline-block px-4 py-2 rounded-lg uppercase">
+                    Quick Links
+                  </h3>
+                  <nav className="flex flex-col gap-2">
+                    {navItems.slice(0, 4).map((item) => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        className="text-sm opacity-90 hover:opacity-100 transition-opacity"
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </nav>
+                </div>
 
-              {/* Contact */}
-              <div>
-                <h3 className="font-bold mb-3 text-base bg-white/10 inline-block px-4 py-2 rounded-lg uppercase">
-                  Contact
-                </h3>
-                <div className="text-sm opacity-90 space-y-2">
-                  <div className="flex items-center gap-2 justify-center md:justify-start">
-                    <Phone size={16} className="flex-shrink-0" />
-                    <a
-                      href="tel:+94776051256"
-                      className="hover:opacity-100 transition-opacity"
-                    >
-                      +94 77 605 1256
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-2 justify-center md:justify-start">
-                    <Mail size={16} className="flex-shrink-0" />
-                    <a
-                      href="mailto:info@liin.lk"
-                      className="hover:opacity-100 transition-opacity"
-                    >
-                      info@liin.lk
-                    </a>
+                {/* Address */}
+                <div>
+                  <h3 className="font-bold mb-3 text-base bg-white/10 inline-block px-4 py-2 rounded-lg uppercase">
+                    Address
+                  </h3>
+                  <address className="text-sm opacity-90 not-italic">
+                    <div className="flex items-start gap-2">
+                      <MapPin size={16} className="flex-shrink-0 mt-1" />
+                      <span>
+                        No: 209/3, 02nd Floor,
+                        <br />
+                        Dr. Colvin R de Silva Mawatha,
+                        <br />
+                        Colombo-02, 10350
+                        <br />
+                        Sri Lanka
+                      </span>
+                    </div>
+                  </address>
+                </div>
+
+                {/* Contact */}
+                <div>
+                  <h3 className="font-bold mb-3 text-base bg-white/10 inline-block px-4 py-2 rounded-lg uppercase">
+                    Contact
+                  </h3>
+                  <div className="text-sm opacity-90 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Phone size={16} className="flex-shrink-0" />
+                      <a
+                        href="tel:+94776051256"
+                        className="hover:opacity-100 transition-opacity"
+                      >
+                        +94 77 605 1256
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Mail size={16} className="flex-shrink-0" />
+                      <a
+                        href="mailto:info@liin.lk"
+                        className="hover:opacity-100 transition-opacity"
+                      >
+                        info@liin.lk
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
