@@ -25,12 +25,6 @@ const navItems: NavItem[] = [
 
 const socialLinks: SocialLink[] = [
   {
-    name: "Facebook",
-    icon: Facebook,
-    href: "https://www.facebook.com/liin.sl",
-    ariaLabel: "Visit LIIN on Facebook",
-  },
-  {
     name: "LinkedIn",
     icon: Linkedin,
     href: "https://www.linkedin.com/company/liin-lanka-impact-investing-network/",
@@ -41,6 +35,12 @@ const socialLinks: SocialLink[] = [
     icon: Instagram,
     href: "https://www.instagram.com/liin.sl/",
     ariaLabel: "Visit LIIN on Instagram",
+  },
+  {
+    name: "Facebook",
+    icon: Facebook,
+    href: "https://www.facebook.com/liin.sl",
+    ariaLabel: "Visit LIIN on Facebook",
   },
   {
     name: "YouTube",
@@ -112,7 +112,7 @@ export default function Footer() {
                         <br />
                         Dr. Colvin R de Silva Mawatha,
                         <br />
-                        Colombo-02,
+                        Colombo-02
                         <br />
                         10350 Sri Lanka
                       </span>
