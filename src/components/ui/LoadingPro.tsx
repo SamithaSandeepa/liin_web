@@ -44,7 +44,7 @@ export default function LoadingPro({
           />
 
           {/* Logo */}
-          <div className="relative w-[100px] h-[100px] animate-pulse-subtle">
+          {/* <div className="relative w-[100px] h-[100px] animate-pulse-subtle">
             <Image
               src="/images/LIIN_logo/Logomark_Full_Color.png"
               alt="LIIN Logo"
@@ -53,7 +53,7 @@ export default function LoadingPro({
               className="object-contain"
               priority
             />
-          </div>
+          </div> */}
 
           {/* Loading text with dots */}
           <div className="text-center">
