@@ -249,7 +249,7 @@ export default function EaglesWingsPage() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {sectors.map((sector, idx) => (
               <div key={idx} className="animate-on-scroll">
-                <div className="bg-white p-6 rounded-2xl shadow-medium hover:shadow-hard transition-all text-center group">
+                <div className="bg-white p-6 rounded-2xl shadow-medium hover:shadow-hard transition-all text-center group h-full flex flex-col items-center justify-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                     <sector.icon size={32} className="text-primary" />
                   </div>
