@@ -25,12 +25,6 @@ const navItems: NavItem[] = [
 
 const socialLinks: SocialLink[] = [
   {
-    name: "Facebook",
-    icon: Facebook,
-    href: "https://www.facebook.com/liin.sl",
-    ariaLabel: "Visit LIIN on Facebook",
-  },
-  {
     name: "LinkedIn",
     icon: Linkedin,
     href: "https://www.linkedin.com/company/liin-lanka-impact-investing-network/",
@@ -41,6 +35,12 @@ const socialLinks: SocialLink[] = [
     icon: Instagram,
     href: "https://www.instagram.com/liin.sl/",
     ariaLabel: "Visit LIIN on Instagram",
+  },
+  {
+    name: "Facebook",
+    icon: Facebook,
+    href: "https://www.facebook.com/liin.sl",
+    ariaLabel: "Visit LIIN on Facebook",
   },
   {
     name: "YouTube",
