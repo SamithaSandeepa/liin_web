@@ -13,7 +13,7 @@ export default function CTASection() {
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
         {/* Become an Investor - Left Side */}
         <div
-          className="relative flex items-center justify-center p-8 md:p-12 lg:p-16"
+          className="relative flex items-center justify-center p-8 md:p-12 lg:p-16 h-full"
           style={{
             backgroundImage: 'url(https://images.unsplash.com/photo-1560472355-536de3962603?w=800)',
             backgroundSize: 'cover',
@@ -24,22 +24,22 @@ export default function CTASection() {
           <div className="absolute inset-0 bg-primary/85" />
 
           {/* Content */}
-          <div className="relative z-10 text-center max-w-md animate-on-scroll">
-            <div className="mb-6">
+          <div className="relative z-10 text-center max-w-md animate-on-scroll flex flex-col items-center">
+            <div className="mb-6 h-16 flex items-center justify-center">
               {(() => {
                 const IconComponent = iconMap[ctaData[0].icon as keyof typeof iconMap];
                 return IconComponent ? <IconComponent size={64} className="mx-auto text-white" strokeWidth={1.5} /> : null;
               })()}
             </div>
-            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+            <h3 className="text-3xl md:text-4xl font-bold mb-2 text-white h-20 flex items-center justify-center">
               {ctaData[0].title}
             </h3>
-            <p className="text-base leading-relaxed mb-8 text-white/90">
+            <p className="text-base leading-relaxed mb-8 text-white/90 h-24 flex items-start text-justify justify-center">
               {ctaData[0].desc}
             </p>
             <a
               href={ctaData[0].link}
-              className="inline-block bg-white text-primary px-10 py-4 rounded-full font-bold hover:bg-gray-100 hover:scale-105 transition-all shadow-lg"
+              className="inline-block bg-white text-primary px-10 py-4 mt-8 rounded-full font-bold hover:bg-gray-100 hover:scale-105 transition-all shadow-lg"
             >
               {ctaData[0].btn}
             </a>
@@ -48,7 +48,7 @@ export default function CTASection() {
 
         {/* Apply for Funding - Right Side */}
         <div
-          className="relative flex items-center justify-center p-8 md:p-12 lg:p-16"
+          className="relative flex items-center justify-center p-8 md:p-12 lg:p-16 h-full"
           style={{
             backgroundImage: 'url(https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800)',
             backgroundSize: 'cover',
@@ -59,22 +59,22 @@ export default function CTASection() {
           <div className="absolute inset-0 bg-secondary/90" />
 
           {/* Content */}
-          <div className="relative z-10 text-center max-w-md animate-on-scroll">
-            <div className="mb-6">
+          <div className="relative z-10 text-center max-w-md animate-on-scroll flex flex-col items-center">
+            <div className="mb-6 h-16 flex items-center justify-center">
               {(() => {
                 const IconComponent = iconMap[ctaData[1].icon as keyof typeof iconMap];
                 return IconComponent ? <IconComponent size={64} className="mx-auto text-white" strokeWidth={1.5} /> : null;
               })()}
             </div>
-            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+            <h3 className="text-3xl md:text-4xl font-bold mb-2 text-white h-20 flex items-center justify-center">
               {ctaData[1].title}
             </h3>
-            <p className="text-base leading-relaxed mb-8 text-white/90">
+            <p className="text-base leading-relaxed mb-8 text-white/90 h-24 flex items-start text-justify justify-center">
               {ctaData[1].desc}
             </p>
             <a
               href={ctaData[1].link}
-              className="inline-block bg-white text-secondary px-10 py-4 rounded-full font-bold hover:bg-gray-100 hover:scale-105 transition-all shadow-lg"
+              className="inline-block bg-white text-secondary px-10 py-4 mt-8 rounded-full font-bold hover:bg-gray-100 hover:scale-105 transition-all shadow-lg"
             >
               {ctaData[1].btn}
             </a>
