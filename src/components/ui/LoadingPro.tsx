@@ -2,15 +2,15 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { HashLoader } from "react-spinners";
 
 interface LoadingProProps {
   message?: string;
 }
 
 /**
- * Clean Loading Component for LIIN
- * Simple, attractive, and matches the theme
- * Enhanced with fade-in animations matching the site's animation system
+ * Loading Component for LIIN using react-spinners HashLoader
+ * Attractive hash spinner animation matching the brand colors
  */
 export default function LoadingPro({
   message = "Loading...",
@@ -28,37 +28,36 @@ export default function LoadingPro({
 
   return (
     <>
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-primary/95 backdrop-blur-sm animate-fade-in">
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white animate-fade-in">
         <div
-          className={`flex flex-col items-center gap-6 transition-all duration-700 ease-out ${
+          className={`flex flex-col items-center gap-8 transition-all duration-700 ease-out ${
             isVisible
               ? "opacity-100 translate-y-0 scale-100"
               : "opacity-0 translate-y-8 scale-95"
           }`}
         >
-          {/* Logo with spinning ring */}
-          <div className="relative w-[120px] h-[120px] flex items-center justify-center">
-            {/* Spinning ring */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-[120px] h-[120px] border-4 border-white/30 border-t-white rounded-full animate-spin-slow" />
-            </div>
+          {/* HashLoader Spinner */}
+          <HashLoader 
+            color="#438ac9" 
+            size={80}
+            speedMultiplier={1}
+          />
 
-            {/* Logo container */}
-            <div className="relative w-[80px] h-[80px] bg-primary rounded-full shadow-lg flex items-center justify-center p-3">
-              <Image
-                src="/images/logo.png"
-                alt="LIIN Logo"
-                width={60}
-                height={60}
-                className="object-contain animate-pulse-subtle"
-                priority
-              />
-            </div>
-          </div>
+          {/* Logo */}
+          {/* <div className="relative w-[100px] h-[100px] animate-pulse-subtle">
+            <Image
+              src="/images/LIIN_logo/Logomark_Full_Color.png"
+              alt="LIIN Logo"
+              width={100}
+              height={100}
+              className="object-contain"
+              priority
+            />
+          </div> */}
 
           {/* Loading text with dots */}
           <div className="text-center">
-            <p className="text-white text-lg font-medium">
+            <p className="text-primary text-xl font-semibold">
               {message}
               <span className="inline-flex ml-1">
                 <span
@@ -95,15 +94,6 @@ export default function LoadingPro({
           }
         }
 
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
         @keyframes bounce-dot {
           0%,
           80%,
@@ -119,18 +109,16 @@ export default function LoadingPro({
           0%,
           100% {
             opacity: 1;
+            transform: scale(1);
           }
           50% {
-            opacity: 0.8;
+            opacity: 0.9;
+            transform: scale(0.98);
           }
         }
 
         .animate-fade-in {
           animation: fade-in 0.3s ease-out;
-        }
-
-        .animate-spin-slow {
-          animation: spin-slow 1s linear infinite;
         }
 
         .animate-bounce-dot {
