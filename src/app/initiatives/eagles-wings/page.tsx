@@ -136,7 +136,7 @@ export default function EaglesWingsPage() {
       <HeroSection
         title="On Eagle's Wings"
         subtitle="A Reality TV Journey for Impactful Entrepreneurship"
-        backgroundImage="/images/eagleswings/cover.png"
+        backgroundImage="/images/eagleswings/cover.gif"
       />
 
       {/* Introduction */}
