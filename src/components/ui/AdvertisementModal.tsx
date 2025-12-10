@@ -154,7 +154,7 @@ export default function AdvertisementModal({
                      alt={currentAd.title || "Advertisement"}
                      width={800}
                      height={600}
-                     className="w-auto h-auto max-h-[85vh] md:max-h-[85vh] object-contain block"
+                     className="w-auto h-auto max-h-[95vh] md:max-h-[85vh] object-contain block"
                      priority
                    />
                   )}
