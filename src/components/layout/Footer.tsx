@@ -112,9 +112,9 @@ export default function Footer() {
                         <br />
                         Dr. Colvin R de Silva Mawatha,
                         <br />
-                        Colombo-02, 10350
+                        Colombo-02,
                         <br />
-                        Sri Lanka
+                        10350 Sri Lanka
                       </span>
                     </div>
                   </address>
