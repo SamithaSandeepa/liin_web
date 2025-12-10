@@ -34,12 +34,12 @@ export default function AdvertisementModal({
 
     setFilteredAds(adsToDisplay);
 
-    // Show modal after a short delay (page load complete)
+    // Show modal after page is fully loaded and stable (3 seconds)
     if (adsToDisplay.length > 0) {
       const timer = setTimeout(() => {
         setIsOpen(true);
         markAdAsDisplayed(adsToDisplay[0].id);
-      }, 1500);
+      }, 3000);
 
       return () => clearTimeout(timer);
     }
