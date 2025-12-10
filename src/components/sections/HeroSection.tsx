@@ -88,11 +88,25 @@ export default function HeroSection({
       {/* Background Image (fallback or primary) */}
       {backgroundImage && !backgroundVideo && (
         <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('${backgroundImage}')` }}
+          className="absolute inset-0 bg-cover bg-center md:bg-cover"
+          style={{ 
+            backgroundImage: `url('${backgroundImage}')`,
+            backgroundRepeat: 'no-repeat'
+          }}
           role="img"
           aria-label="Hero background"
-        />
+        >
+            {/* Mobile-optimized background: contain for small screens if needed, otherwise cover */}
+            <style jsx>{`
+                @media (max-width: 768px) {
+                    div[role="img"] {
+                        background-size: contain;
+                        background-color: #000; /* Fallback color for letterboxing */
+                        background-attachment: scroll;
+                    }
+                }
+            `}</style>
+        </div>
       )}
 
       {/* Overlay */}

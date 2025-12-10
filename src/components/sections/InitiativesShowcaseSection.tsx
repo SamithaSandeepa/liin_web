@@ -229,7 +229,7 @@ export default function InitiativesShowcaseSection() {
         {/* Title and Subtitle */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-primary">
-            Our Platforms
+            Our Initiatives
           </h2>
           <p className="text-lg lg:text-xl max-w-4xl mx-auto text-gray-600">
             Driving transformative change through innovative programs

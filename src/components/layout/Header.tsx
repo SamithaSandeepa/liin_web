@@ -157,7 +157,7 @@ export default function Header() {
                   >
                     <a
                       href={item.href}
-                      className="flex items-center gap-1 text-white text-base font-medium hover:bg-white/10 px-3 py-2 rounded-lg transition-all whitespace-nowrap uppercase"
+                      className="flex items-center gap-1 text-white text-base font-medium hover:bg-white/10 px-3 py-2 rounded-lg transition-all whitespace-nowrap"
                     >
                       {item.label}
                       {item.subItems && <ChevronDown size={14} />}
@@ -186,7 +186,7 @@ export default function Header() {
                               >
                                 <a
                                   href={subItem.href}
-                                  className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors uppercase"
+                                  className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors"
                                 >
                                   {subItem.label}
                                   {subItem.subItems && (
@@ -211,7 +211,7 @@ export default function Header() {
                                           <a
                                             key={nestedItem.href}
                                             href={nestedItem.href}
-                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors uppercase"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors"
                                           >
                                             {nestedItem.label}
                                           </a>
@@ -312,7 +312,7 @@ export default function Header() {
                           <>
                             <button
                               onClick={() => toggleSidebarDropdown(item.label)}
-                              className="flex items-center justify-between w-full px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all uppercase"
+                              className="flex items-center justify-between w-full px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all"
                             >
                               {item.label}
                               <ChevronDown
@@ -345,7 +345,7 @@ export default function Header() {
                                                   : subItem.label
                                               )
                                             }
-                                            className="flex items-center justify-between w-full px-4 py-2 text-white/80 text-base hover:text-white hover:bg-white/10 rounded-lg transition-all uppercase"
+                                            className="flex items-center justify-between w-full px-4 py-2 text-white/80 text-base hover:text-white hover:bg-white/10 rounded-lg transition-all"
                                           >
                                             {subItem.label}
                                             <ChevronDown
@@ -379,7 +379,7 @@ export default function Header() {
                                                       <a
                                                         href={nestedItem.href}
                                                         onClick={closeMenu}
-                                                        className="block px-4 py-2 text-white/60 text-sm hover:text-white hover:bg-white/10 rounded-lg transition-all uppercase"
+                                                        className="block px-4 py-2 text-white/60 text-sm hover:text-white hover:bg-white/10 rounded-lg transition-all"
                                                       >
                                                         {nestedItem.label}
                                                       </a>
@@ -394,7 +394,7 @@ export default function Header() {
                                         <a
                                           href={subItem.href}
                                           onClick={closeMenu}
-                                          className="block px-4 py-2 text-white/80 text-base hover:text-white hover:bg-white/10 rounded-lg transition-all uppercase"
+                                          className="block px-4 py-2 text-white/80 text-base hover:text-white hover:bg-white/10 rounded-lg transition-all"
                                         >
                                           {subItem.label}
                                         </a>
@@ -409,7 +409,7 @@ export default function Header() {
                           <a
                             href={item.href}
                             onClick={closeMenu}
-                            className="block px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all uppercase"
+                            className="block px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all"
                           >
                             {item.label}
                           </a>
@@ -426,7 +426,7 @@ export default function Header() {
                           <>
                             <button
                               onClick={() => toggleSidebarDropdown(item.label)}
-                              className="flex items-center justify-between w-full px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all uppercase"
+                              className="flex items-center justify-between w-full px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all"
                             >
                               {item.label}
                               <ChevronDown
@@ -451,7 +451,7 @@ export default function Header() {
                                       <a
                                         href={subItem.href}
                                         onClick={closeMenu}
-                                        className="block px-4 py-2 text-white/80 text-base hover:text-white hover:bg-white/10 rounded-lg transition-all uppercase"
+                                        className="block px-4 py-2 text-white/80 text-base hover:text-white hover:bg-white/10 rounded-lg transition-all"
                                       >
                                         {subItem.label}
                                       </a>
@@ -465,7 +465,7 @@ export default function Header() {
                           <a
                             href={item.href}
                             onClick={closeMenu}
-                            className="block px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all uppercase"
+                            className="block px-4 py-3 text-white text-base font-medium hover:bg-white/10 rounded-xl transition-all"
                           >
                             {item.label}
                           </a>
