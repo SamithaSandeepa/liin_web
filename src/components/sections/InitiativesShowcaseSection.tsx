@@ -48,13 +48,18 @@ const platforms = [
   },
 ];
 
-// Duplicate items for infinite loop
-const loopedPlatforms = [
-  ...platforms,
-  ...platforms,
-  ...platforms,
-  ...platforms,
-];
+// Feature toggle for slider: only enable if we have more than 4 items
+const shouldEnableSlider = platforms.length > 4;
+
+// Duplicate items for infinite loop ONLY if sliding is enabled
+const displayPlatforms = shouldEnableSlider
+  ? [
+      ...platforms,
+      ...platforms,
+      ...platforms,
+      ...platforms,
+    ]
+  : platforms;
 
 export default function InitiativesShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -87,7 +92,7 @@ export default function InitiativesShowcaseSection() {
   // Track scroll position for dots indicator
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container || !shouldEnableSlider) return;
 
     const handleScroll = () => {
       const scrollLeft = container.scrollLeft;
@@ -103,7 +108,7 @@ export default function InitiativesShowcaseSection() {
   // Auto-scroll with requestAnimationFrame (desktop only for better performance)
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container || !shouldEnableSlider) return;
 
     // Disable auto-scroll on mobile devices to prevent lag
     if (isMobile) {
@@ -141,11 +146,11 @@ export default function InitiativesShowcaseSection() {
       }
       lastTimeRef.current = 0;
     };
-  }, [isPaused, isDragging, isMobile]);
+  }, [isPaused, isDragging, isMobile, shouldEnableSlider]);
 
   // Desktop Drag Handlers
   const handleMouseDown = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !shouldEnableSlider) return;
     setIsDragging(true);
     setIsPaused(true);
     startX.current = e.pageX - containerRef.current.offsetLeft;
@@ -153,7 +158,7 @@ export default function InitiativesShowcaseSection() {
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !containerRef.current) return;
+    if (!isDragging || !containerRef.current || !shouldEnableSlider) return;
     e.preventDefault();
     const x = e.pageX - containerRef.current.offsetLeft;
     const walk = (x - startX.current) * 1.5; // Scroll-fast multiplier
@@ -171,6 +176,7 @@ export default function InitiativesShowcaseSection() {
   };
 
   const handleMouseEnter = () => {
+    if (!shouldEnableSlider) return;
     // If the user has ever touched the screen, ignore mouse hover events forever.
     // This prevents "sticky hover" on mobile from pausing the slider.
     if (!hasTouched.current) {
@@ -180,12 +186,14 @@ export default function InitiativesShowcaseSection() {
 
   // Mobile Touch Handlers
   const handleTouchStart = () => {
+    if (!shouldEnableSlider) return;
     isTouchInteraction.current = true;
     hasTouched.current = true; // Mark as touch device
     setIsPaused(true);
   };
 
   const handleTouchEnd = () => {
+    if (!shouldEnableSlider) return;
     // Resume auto-scroll after a short delay to let momentum settle
     setTimeout(() => {
       setIsPaused(false);
@@ -195,7 +203,7 @@ export default function InitiativesShowcaseSection() {
 
   // Manual scroll function for arrow buttons
   const scroll = (direction: "left" | "right") => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !shouldEnableSlider) return;
     const scrollAmount = 350; // Scroll by one card width approximately
     const targetScroll =
       containerRef.current.scrollLeft +
@@ -230,34 +238,43 @@ export default function InitiativesShowcaseSection() {
 
         {/* Interactive Slider Container */}
         <div className="w-full relative group">
-          {/* Gradient Masks */}
-          <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-gray-50 to-transparent z-20 pointer-events-none" />
-          <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-gray-50 to-transparent z-20 pointer-events-none" />
+          {/* Gradient Masks (Only show if slider enabled) */}
+          {shouldEnableSlider && (
+            <>
+              <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-gray-50 to-transparent z-20 pointer-events-none" />
+              <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-gray-50 to-transparent z-20 pointer-events-none" />
+            </>
+          )}
 
-          {/* Navigation Arrows - Only visible on desktop hover */}
-          <button
-            onClick={() => scroll("left")}
-            className="hidden md:block absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            aria-label="Scroll left"
-            type="button"
-          >
-            <ChevronLeft className="w-5 h-5 text-primary" />
-          </button>
-          <button
-            onClick={() => scroll("right")}
-            className="hidden md:block absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            aria-label="Scroll right"
-            type="button"
-          >
-            <ChevronRight className="w-5 h-5 text-primary" />
-          </button>
+          {/* Navigation Arrows - Only visible on desktop hover if slider enabled */}
+          {shouldEnableSlider && (
+            <>
+              <button
+                onClick={() => scroll("left")}
+                className="hidden md:block absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                aria-label="Scroll left"
+                type="button"
+              >
+                <ChevronLeft className="w-5 h-5 text-primary" />
+              </button>
+              <button
+                onClick={() => scroll("right")}
+                className="hidden md:block absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                aria-label="Scroll right"
+                type="button"
+              >
+                <ChevronRight className="w-5 h-5 text-primary" />
+              </button>
+            </>
+          )}
 
           {/* Scrollable Area */}
           <div
             ref={containerRef}
             className={`
-                flex overflow-x-auto gap-8 px-8 pt-4 no-scrollbar 
-                ${isDragging ? "cursor-grabbing" : "cursor-grab"}
+                flex gap-8 px-8 pt-4 no-scrollbar 
+                ${shouldEnableSlider ? "overflow-x-auto" : "justify-center flex-wrap overflow-hidden"}
+                ${isDragging ? "cursor-grabbing" : shouldEnableSlider ? "cursor-grab" : "cursor-default"}
             `}
             // Mouse Events (Desktop Drag & Hover)
             onMouseDown={handleMouseDown}
@@ -283,7 +300,7 @@ export default function InitiativesShowcaseSection() {
               }
             `}</style>
 
-            {loopedPlatforms.map((platform, index) => (
+            {displayPlatforms.map((platform, index) => (
               <Link
                 href={platform.link}
                 key={`${platform.name}-${index}`}
@@ -339,8 +356,8 @@ export default function InitiativesShowcaseSection() {
             ))}
           </div>
 
-          {/* Scroll Indicator Dots - Mobile only */}
-          {isMobile && (
+          {/* Scroll Indicator Dots - Mobile only and ONLY if slider enabled */}
+          {isMobile && shouldEnableSlider && (
             <div className="flex justify-center gap-2 mt-4">
               {platforms.map((_, index) => (
                 <button
