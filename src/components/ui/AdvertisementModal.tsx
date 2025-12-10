@@ -39,7 +39,7 @@ export default function AdvertisementModal({
       const timer = setTimeout(() => {
         setIsOpen(true);
         markAdAsDisplayed(adsToDisplay[0].id);
-      }, 3000);
+      }, 2000);
 
       return () => clearTimeout(timer);
     }
