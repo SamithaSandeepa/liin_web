@@ -39,7 +39,7 @@ export default async function Home() {
   return (
     <>
       <HeroSection
-        // animatedPhrases={heroAnimatedPhrases}
+        animatedPhrases={heroAnimatedPhrases}
         backgroundVideo={mainBanner?.background_video ? getAssetUrl(mainBanner.background_video) : "/videos/hero/hero.webm"}
         buttonText={mainBanner?.button_text}
         buttonUrl={mainBanner?.button_url}
