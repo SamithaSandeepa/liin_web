@@ -105,18 +105,25 @@ export default function Footer() {
                     Address
                   </h3>
                   <address className="text-sm opacity-90 not-italic">
-                    <div className="flex items-start gap-2">
-                      <MapPin size={16} className="flex-shrink-0 mt-1" />
-                      <span>
-                        No: 209/3, 02nd Floor,
-                        <br />
-                        Dr. Colvin R de Silva Mawatha,
-                        <br />
-                        Colombo-02
-                        <br />
-                        10350 Sri Lanka
-                      </span>
-                    </div>
+                    <a 
+                      href="https://www.google.com/maps/dir//lanka+impact+investing+network/@6.921621,79.8536131,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3ae25968acacee83:0x42af46f654d274e7!2m2!1d79.8563538!2d6.9216365?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:opacity-100 transition-opacity block hover:text-white"
+                    >
+                      <div className="flex items-start gap-2">
+                        <MapPin size={16} className="flex-shrink-0 mt-1" />
+                        <span>
+                          No: 209/3, 02nd Floor,
+                          <br />
+                          Dr. Colvin R de Silva Mawatha,
+                          <br />
+                          Colombo-02
+                          <br />
+                          10350 Sri Lanka
+                        </span>
+                      </div>
+                    </a>
                   </address>
                 </div>
 
