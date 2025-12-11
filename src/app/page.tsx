@@ -38,7 +38,7 @@ export default async function Home() {
   return (
     <>
       <HeroSection
-        animatedPhrases={heroAnimatedPhrases}
+        // animatedPhrases={heroAnimatedPhrases}
         backgroundVideo="/videos/hero/hero.webm"
       />
       <SectionAnimator animation="fade-up">
