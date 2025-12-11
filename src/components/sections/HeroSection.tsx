@@ -20,7 +20,7 @@ export default function HeroSection({
   backgroundVideo,
   height = 'default'
 }: HeroSectionProps) {
-  const heightClass = height === 'fullscreen' ? 'min-h-[100dvh]' : 'min-h-[85dvh]';
+  const heightClass = height === 'fullscreen' ? 'min-h-[100dvh]' : 'w-full aspect-video md:aspect-auto md:min-h-[85dvh]';
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -97,15 +97,7 @@ export default function HeroSection({
           aria-label="Hero background"
         >
             {/* Mobile-optimized background: contain for small screens if needed, otherwise cover */}
-            <style jsx>{`
-                @media (max-width: 768px) {
-                    div[role="img"] {
-                        background-size: contain;
-                        background-color: #000; /* Fallback color for letterboxing */
-                        background-attachment: scroll;
-                    }
-                }
-            `}</style>
+
         </div>
       )}
 
@@ -117,12 +109,12 @@ export default function HeroSection({
         {animatedPhrases ? (
           <AnimatedTextLoop
             phrases={animatedPhrases}
-            className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-snug md:leading-tight text-shadow-lg min-h-[200px] flex items-center justify-center"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-snug md:leading-tight text-shadow-lg min-h-[200px] flex items-center justify-center"
           />
         ) : (
           <>
             {title && (
-              <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight text-shadow-lg mb-6 animate-fade-in-up">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight text-shadow-lg mb-6 animate-fade-in-up">
                 {title}
               </h1>
             )}
