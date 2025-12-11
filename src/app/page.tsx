@@ -8,7 +8,7 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import AdvertisementModal from "@/components/ui/AdvertisementModal";
 import InitiativesShowcaseSection from "@/components/sections/InitiativesShowcaseSection";
 import SectionAnimator from "@/components/ui/SectionAnimator";
-import { fetchAdvertisements } from "@/lib/api";
+import { fetchAdvertisements, fetchMainBanner, getAssetUrl } from "@/lib/api";
 
 /**
  * Home Page - Landing page for LIIN
@@ -32,14 +32,17 @@ export default async function Home() {
     "Sri Lanka's Pioneer in Impact Investing",
   ];
 
-  // Fetch advertisements from API (server-side)
+  // Fetch advertisements and hero banner from API (server-side)
   const advertisements = await fetchAdvertisements();
+  const mainBanner = await fetchMainBanner();
 
   return (
     <>
       <HeroSection
         // animatedPhrases={heroAnimatedPhrases}
-        backgroundVideo="/videos/hero/hero.webm"
+        backgroundVideo={mainBanner?.background_video ? getAssetUrl(mainBanner.background_video) : "/videos/hero/hero.webm"}
+        buttonText={mainBanner?.button_text}
+        buttonUrl={mainBanner?.button_url}
       />
       <SectionAnimator animation="fade-up">
         <InitiativesShowcaseSection />

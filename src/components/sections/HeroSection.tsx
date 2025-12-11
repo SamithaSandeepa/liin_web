@@ -10,6 +10,8 @@ interface HeroSectionProps {
   backgroundImage?: string;
   backgroundVideo?: string;
   height?: 'default' | 'fullscreen';
+  buttonText?: string | null;
+  buttonUrl?: string | null;
 }
 
 export default function HeroSection({
@@ -18,7 +20,9 @@ export default function HeroSection({
   animatedPhrases,
   backgroundImage,
   backgroundVideo,
-  height = 'default'
+  height = 'default',
+  buttonText,
+  buttonUrl
 }: HeroSectionProps) {
   const heightClass = height === 'fullscreen' ? 'min-h-[100dvh]' : 'w-full aspect-video';
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -122,6 +126,18 @@ export default function HeroSection({
               <p className="text-lg md:text-xl lg:text-2xl opacity-95 max-w-4xl mx-auto animate-fade-in-up animation-delay-300">
                 {subtitle}
               </p>
+            )}
+            
+            {/* Call to Action Button */}
+            {buttonText && buttonUrl && (
+              <div className="mt-8 animate-fade-in-up animation-delay-500">
+                <a 
+                  href={buttonUrl}
+                  className="inline-block bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                >
+                  {buttonText}
+                </a>
+              </div>
             )}
           </>
         )}
