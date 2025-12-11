@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Section from '@/components/ui/Section';
+import InvestmentBackground from '@/components/ui/InvestmentBackground';
 
 /**
  * ContactFormSection - Client component for form interactivity
@@ -47,8 +48,9 @@ export default function ContactFormSection() {
   };
 
   return (
-    <Section id="contact-form" title="Send Us a Message" background="gray">
-      <div className="max-w-3xl mx-auto">
+    <Section id="contact-form" title="Send Us a Message" background="gray" className="relative overflow-hidden">
+      <InvestmentBackground />
+      <div className="relative z-10 max-w-3xl mx-auto">
         <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 rounded-2xl shadow-hard">
           {/* Inquiry Type */}
           <div className="mb-6">

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, HandHeart, TrendingUp, Coins } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface SubItem {
@@ -41,12 +41,12 @@ const navItems: NavItem[] = [
     subItems: [
       {
         label: "Ongoing Projects",
-        href: "/projects/ongoing",
+        href: "#ongoing-projects",
         subItems: [{ label: "GRIT", href: "https://www.liin.lk/grit/" }],
       },
       {
         label: "Past Projects",
-        href: "/projects/past",
+        href: "#past-projects",
         subItems: [
           { label: "Climate Challenge", href: "/projects/climate-challenge" },
           { label: "PIE", href: "/projects/pie" },
@@ -68,7 +68,7 @@ const navItems: NavItem[] = [
     label: "Impact Funds",
     href: "/impact-funds",
     subItems: [
-      { label: "Social Enterprise Fund (SEF)", href: "/impact-funds/sef" },
+      { label: "Social Enterprise Fund", href: "/impact-funds/sef" },
     ],
   },
 ];
@@ -122,124 +122,158 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 bg-primary shadow-lg">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="flex items-center justify-between py-4 gap-4 border-b border-white/20">
-            {/* Logo */}
+          <div className="flex items-center justify-between lg:gap-12 py-4 lg:py-6">
+            {/* Logo - Left Side */}
             <a
               href="/"
-              className={`flex items-center gap-3 hover:opacity-90 transition-opacity ${
-                isMenuOpen ? "lg:flex hidden" : "flex"
+              className={`flex-shrink-0 flex items-center gap-3 hover:opacity-90 transition-opacity ${
+                isMenuOpen ? "hidden lg:flex" : "flex"
               }`}
               aria-label="LIIN Home"
             >
               <Image
                 src="/images/logo.png"
                 alt="LIIN Logo"
-                width={120}
-                height={120}
-                className="object-contain h-12 w-auto"
+                width={160}
+                height={160}
+                className="object-contain h-12 lg:h-20 w-auto"
                 priority
               />
             </a>
 
-            {/* Navigation */}
-            <nav
-              aria-label="Main navigation"
-              className="flex items-center gap-4 ml-auto"
-            >
-              {/* Primary Navigation Items with Dropdowns */}
-              <ul className="hidden lg:flex items-center gap-1">
-                {navItems.map((item) => (
-                  <li
-                    key={item.label}
-                    className="relative"
-                    onMouseEnter={() => handleDropdownEnter(item.label)}
-                    onMouseLeave={handleDropdownLeave}
-                  >
+            {/* Right Side Column */}
+            <div className="flex flex-col flex-1 items-end">
+              <div className="flex flex-col">
+                {/* Top Bar - Desktop Only */}
+                <div className="hidden lg:flex justify-between items-center pb-3 border-b border-white/20 text-xs font-medium text-white/90 mb-2">
+                  <span className="text-white tracking-wider font-semibold">
+                    Get Involved
+                  </span>
+
+                  <div className="flex items-center gap-8 pl-12">
                     <a
-                      href={item.href}
-                      className="flex items-center gap-1 text-white text-base font-medium hover:bg-white/10 px-3 py-2 rounded-lg transition-all whitespace-nowrap"
+                      href="#"
+                      className="flex items-center gap-2 hover:text-white hover:underline transition-all decoration-white/50"
                     >
-                      {item.label}
-                      {item.subItems && <ChevronDown size={14} />}
+                      <TrendingUp size={14} />
+                      <span>Become an Investor</span>
                     </a>
+                    <a
+                      href="#"
+                      className="flex items-center gap-2 hover:text-white hover:underline transition-all decoration-white/50"
+                    >
+                      <Coins size={14} />
+                      <span>Apply for Funding</span>
+                    </a>
+                  </div>
+                </div>
 
-                    {/* Dropdown Menu */}
-                    {item.subItems && (
-                      <AnimatePresence>
-                        {openDropdown === item.label && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            transition={{ duration: 0.15 }}
-                            className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-xl min-w-[200px] py-2 z-50"
-                          >
-                            {item.subItems.map((subItem) => (
-                              <div
-                                key={subItem.href}
-                                className="relative"
-                                onMouseEnter={() =>
-                                  subItem.subItems &&
-                                  setOpenNestedDropdown(subItem.label)
-                                }
-                                onMouseLeave={() => setOpenNestedDropdown(null)}
+                {/* Navigation Bar */}
+                <nav
+                  aria-label="Main navigation"
+                  className="flex items-center gap-4"
+                >
+                  {/* Primary Navigation Items with Dropdowns */}
+                  <ul className="hidden lg:flex items-center gap-1">
+                    {navItems.map((item) => (
+                      <li
+                        key={item.label}
+                        className="relative"
+                        onMouseEnter={() => handleDropdownEnter(item.label)}
+                        onMouseLeave={handleDropdownLeave}
+                      >
+                        <a
+                          href={item.href}
+                          className="flex items-center gap-1 text-white text-base font-medium hover:bg-white/10 px-3 py-2 rounded-lg transition-all whitespace-nowrap"
+                        >
+                          {item.label}
+                          {item.subItems && <ChevronDown size={14} />}
+                        </a>
+
+                        {/* Dropdown Menu */}
+                        {item.subItems && (
+                          <AnimatePresence>
+                            {openDropdown === item.label && (
+                              <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 10 }}
+                                transition={{ duration: 0.15 }}
+                                className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-xl min-w-[200px] py-2 z-50"
                               >
-                                <a
-                                  href={subItem.href}
-                                  className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors"
-                                >
-                                  {subItem.label}
-                                  {subItem.subItems && (
-                                    <ChevronDown
-                                      size={12}
-                                      className="-rotate-90"
-                                    />
-                                  )}
-                                </a>
-                                {/* Nested Dropdown */}
-                                {subItem.subItems && (
-                                  <AnimatePresence>
-                                    {openNestedDropdown === subItem.label && (
-                                      <motion.div
-                                        initial={{ opacity: 0, x: -10 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -10 }}
-                                        transition={{ duration: 0.15 }}
-                                        className="absolute left-full top-0 ml-1 bg-white rounded-lg shadow-xl min-w-[180px] py-2 z-50"
-                                      >
-                                        {subItem.subItems.map((nestedItem) => (
-                                          <a
-                                            key={nestedItem.href}
-                                            href={nestedItem.href}
-                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors"
+                                {item.subItems.map((subItem) => (
+                                  <div
+                                    key={subItem.href}
+                                    className="relative"
+                                    onMouseEnter={() =>
+                                      subItem.subItems &&
+                                      setOpenNestedDropdown(subItem.label)
+                                    }
+                                    onMouseLeave={() =>
+                                      setOpenNestedDropdown(null)
+                                    }
+                                  >
+                                    <a
+                                      href={subItem.href}
+                                      className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors"
+                                    >
+                                      {subItem.label}
+                                      {subItem.subItems && (
+                                        <ChevronDown
+                                          size={12}
+                                          className="-rotate-90"
+                                        />
+                                      )}
+                                    </a>
+                                    {/* Nested Dropdown */}
+                                    {subItem.subItems && (
+                                      <AnimatePresence>
+                                        {openNestedDropdown ===
+                                          subItem.label && (
+                                          <motion.div
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            exit={{ opacity: 0, x: -10 }}
+                                            transition={{ duration: 0.15 }}
+                                            className="absolute left-full top-0 ml-1 bg-white rounded-lg shadow-xl min-w-[180px] py-2 z-50"
                                           >
-                                            {nestedItem.label}
-                                          </a>
-                                        ))}
-                                      </motion.div>
+                                            {subItem.subItems.map(
+                                              (nestedItem) => (
+                                                <a
+                                                  key={nestedItem.href}
+                                                  href={nestedItem.href}
+                                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors"
+                                                >
+                                                  {nestedItem.label}
+                                                </a>
+                                              )
+                                            )}
+                                          </motion.div>
+                                        )}
+                                      </AnimatePresence>
                                     )}
-                                  </AnimatePresence>
-                                )}
-                              </div>
-                            ))}
-                          </motion.div>
+                                  </div>
+                                ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         )}
-                      </AnimatePresence>
-                    )}
-                  </li>
-                ))}
-              </ul>
+                      </li>
+                    ))}
+                  </ul>
 
-              {/* Menu Button */}
-              <button
-                onClick={toggleMenu}
-                className="p-2 text-white hover:bg-white/10 rounded-lg transition-all"
-                aria-label="Toggle menu"
-                aria-expanded={isMenuOpen}
-              >
-                <Menu size={28} />
-              </button>
-            </nav>
+                  {/* Menu Button */}
+                  <button
+                    onClick={toggleMenu}
+                    className="p-2 text-white hover:bg-white/10 rounded-lg transition-all"
+                    aria-label="Toggle menu"
+                    aria-expanded={isMenuOpen}
+                  >
+                    <Menu size={28} />
+                  </button>
+                </nav>
+              </div>
+            </div>
           </div>
         </div>
       </header>
@@ -271,7 +305,7 @@ export default function Header() {
           >
             <div className="flex flex-col h-full">
               {/* Menu Header */}
-              <div className="flex items-center justify-between py-4 px-6 border-b border-white/20">
+              <div className="flex items-center justify-between py-4 lg:py-6 px-6 border-b border-white/20">
                 {/* Logo - Mobile only */}
                 <a
                   href="/"
@@ -289,7 +323,7 @@ export default function Header() {
                   />
                 </a>
                 {/* Menu Text - Desktop only */}
-                <h2 className="text-white text-3xl font-bold h-12 items-center hidden lg:flex">
+                <h2 className="text-white text-3xl font-bold h-12 lg:h-20 items-center hidden lg:flex">
                   MENU
                 </h2>
                 <button

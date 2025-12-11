@@ -2,6 +2,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import Section from "@/components/ui/Section";
 import CounterAnimation from "@/components/ui/CounterAnimation";
 import JoinNetworkSection from "@/components/sections/JoinNetworkSection";
+import PrismaBackground from "@/components/ui/PrismaBackground";
 import Image from "next/image";
 import {
   Youtube,
@@ -156,33 +157,34 @@ export default function AthPavuraPage() {
       </Section>
 
       {/* Impact & Achievements */}
-      <Section id="impact" title="Impact & Achievements" background="white">
-        <div className="max-w-5xl mx-auto">
+      <Section id="impact" title="Impact & Achievements" background="secondary" className="relative">
+        <PrismaBackground />
+        <div className="max-w-5xl mx-auto relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {impactStats.map((stat, idx) => (
               <div key={idx} className="animate-on-scroll">
-                <div className="bg-white p-6 rounded-2xl shadow-medium hover:shadow-hard transition-all text-center h-full group">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors">
-                    <stat.icon size={24} className="text-primary" />
+                <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl shadow-medium hover:shadow-hard transition-all text-center h-full group">
+                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-white/30 transition-colors">
+                    <stat.icon size={24} className="text-white" />
                   </div>
                   <div className="flex items-center justify-center gap-1">
                     {stat.prefix && (
-                      <span className="text-sm font-bold text-primary">
+                      <span className="text-sm font-bold text-white">
                         {stat.prefix}
                       </span>
                     )}
                     <CounterAnimation
                       value={stat.value}
                       duration={2}
-                      className="text-2xl font-bold text-primary mb-0"
+                      className="text-2xl font-bold text-white mb-0"
                     />
                     {stat.suffix && (
-                      <span className="text-xl font-bold text-primary">
+                      <span className="text-xl font-bold text-white">
                         {stat.suffix}
                       </span>
                     )}
                   </div>
-                  <p className="text-xs text-gray-600 mt-1">{stat.label}</p>
+                  <p className="text-xs text-white/90 mt-1">{stat.label}</p>
                 </div>
               </div>
             ))}
