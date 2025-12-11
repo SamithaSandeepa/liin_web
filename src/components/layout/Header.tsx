@@ -146,7 +146,7 @@ export default function Header() {
               <div className="flex flex-col">
                 {/* Top Bar - Desktop Only */}
                 <div className="hidden lg:flex justify-between items-center pb-3 border-b border-white/20 text-xs font-medium text-white/90 mb-2">
-                  <span className="text-white/80 tracking-wider font-semibold">
+                  <span className="text-white tracking-wider font-semibold">
                     Get Involved
                   </span>
 
