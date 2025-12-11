@@ -11,7 +11,21 @@ export const API_ENDPOINTS = {
   teamMembers: `${DIRECTUS_URL}/items/team_members`,
   testimonials: `${DIRECTUS_URL}/items/testimonials`,
   advertisements: `${DIRECTUS_URL}/items/advertisement_popups`,
+  mainBanners: `${DIRECTUS_URL}/items/main_banners`,
 };
+
+export interface MainBanner {
+  id: string;
+  background_video: string;
+  button_text: string | null;
+  button_url: string | null;
+  status: string;
+  is_enabled: string;
+}
+
+export interface MainBannerResponse {
+  data: MainBanner;
+}
 
 export interface Partner {
   id: string;
@@ -279,6 +293,39 @@ export async function fetchAdvertisements(): Promise<Advertisement[]> {
     return activeAds;
   } catch (error) {
     return [];
+  }
+}
+
+/**
+ * Fetch main banner for Hero section
+ */
+export async function fetchMainBanner(): Promise<MainBanner | null> {
+  try {
+    // Fetch the single object directly if it's a singleton, or handles strict single response
+    const res = await fetch(`${API_ENDPOINTS.mainBanners}?filter[status][_eq]=published&limit=1`, {
+      next: { revalidate: 60 },
+    });
+
+    if (!res.ok) {
+      console.error("Failed to fetch main banner");
+      return null;
+    }
+
+    const json = await res.json();
+    // Directus sometimes returns an array for collection items even with limit=1, 
+    // but the user showed "data": { ...object } which suggests singleton or specific ID fetch. 
+    // However, usually /items/collection returns data: [...]. 
+    // If the user's snippet is correct as a response from /items/main_banners (plural), 
+    // it implies it might be a singleton collection in Directus.
+    // We will handle both array (take first) and object cases to be safe.
+    
+    if (Array.isArray(json.data)) {
+        return json.data[0] || null;
+    }
+    return json.data || null;
+  } catch (error) {
+    console.error("Error fetching main banner:", error);
+    return null;
   }
 }
 
