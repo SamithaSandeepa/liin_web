@@ -20,7 +20,7 @@ export default function HeroSection({
   backgroundVideo,
   height = 'default'
 }: HeroSectionProps) {
-  const heightClass = height === 'fullscreen' ? 'min-h-screen' : 'min-h-[600px]';
+  const heightClass = height === 'fullscreen' ? 'min-h-screen' : 'min-h-[85vh]';
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
