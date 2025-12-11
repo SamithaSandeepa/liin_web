@@ -122,7 +122,7 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 bg-primary shadow-lg">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="flex items-center justify-between lg:gap-12 py-4 lg:pt-8 lg:pb-4">
+          <div className="flex items-center justify-between lg:gap-12 py-4 lg:py-6">
             {/* Logo - Left Side */}
             <a
               href="/"
@@ -136,7 +136,7 @@ export default function Header() {
                 alt="LIIN Logo"
                 width={160}
                 height={160}
-                className="object-contain h-16 lg:h-20 w-auto"
+                className="object-contain h-12 lg:h-20 w-auto"
                 priority
               />
             </a>
@@ -305,7 +305,7 @@ export default function Header() {
           >
             <div className="flex flex-col h-full">
               {/* Menu Header */}
-              <div className="flex items-center justify-between py-4 lg:pt-8 lg:pb-4 px-6 border-b border-white/20">
+              <div className="flex items-center justify-between py-4 lg:py-6 px-6 border-b border-white/20">
                 {/* Logo - Mobile only */}
                 <a
                   href="/"
