@@ -41,12 +41,12 @@ const navItems: NavItem[] = [
     subItems: [
       {
         label: "Ongoing Projects",
-        href: "/projects/ongoing",
+        href: "#ongoing-projects",
         subItems: [{ label: "GRIT", href: "https://www.liin.lk/grit/" }],
       },
       {
         label: "Past Projects",
-        href: "/projects/past",
+        href: "#past-projects",
         subItems: [
           { label: "Climate Challenge", href: "/projects/climate-challenge" },
           { label: "PIE", href: "/projects/pie" },
@@ -68,7 +68,7 @@ const navItems: NavItem[] = [
     label: "Impact Funds",
     href: "/impact-funds",
     subItems: [
-      { label: "Social Enterprise Fund (SEF)", href: "/impact-funds/sef" },
+      { label: "Social Enterprise Fund", href: "/impact-funds/sef" },
     ],
   },
 ];
@@ -146,7 +146,7 @@ export default function Header() {
               <div className="flex flex-col">
                 {/* Top Bar - Desktop Only */}
                 <div className="hidden lg:flex justify-between items-center pb-3 border-b border-white/20 text-xs font-medium text-white/90 mb-2">
-                  <span className="text-white/80 uppercase tracking-wider font-semibold">
+                  <span className="text-white/80 tracking-wider font-semibold">
                     Get Involved
                   </span>
 
