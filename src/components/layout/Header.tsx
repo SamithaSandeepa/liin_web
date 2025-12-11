@@ -305,7 +305,7 @@ export default function Header() {
           >
             <div className="flex flex-col h-full">
               {/* Menu Header */}
-              <div className="flex items-center justify-between py-4 px-6 border-b border-white/20">
+              <div className="flex items-center justify-between py-4 lg:pt-8 lg:pb-4 px-6 border-b border-white/20">
                 {/* Logo - Mobile only */}
                 <a
                   href="/"
@@ -323,7 +323,7 @@ export default function Header() {
                   />
                 </a>
                 {/* Menu Text - Desktop only */}
-                <h2 className="text-white text-3xl font-bold h-12 items-center hidden lg:flex">
+                <h2 className="text-white text-3xl font-bold h-12 lg:h-20 items-center hidden lg:flex">
                   MENU
                 </h2>
                 <button
