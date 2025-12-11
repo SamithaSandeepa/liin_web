@@ -76,7 +76,7 @@ export default function AnimatedTextLoop({
       >
         <div className="inline-block max-w-full">
           {words.map((word, idx) => (
-            <span key={idx} className="inline-block whitespace-nowrap mr-2">
+            <span key={idx} className="inline-block whitespace-nowrap mr-4">
               {word}
             </span>
           ))}
@@ -96,7 +96,7 @@ export default function AnimatedTextLoop({
           {words.map((word, wordIdx) => (
             <span
               key={`word-${wordIdx}`}
-              className="inline-block whitespace-nowrap mr-2"
+              className="inline-block whitespace-nowrap mr-4"
             >
               {word.split("").map((letter, letterIdx) => {
                 const currentLetterCount = letterCount++;
@@ -141,7 +141,7 @@ export default function AnimatedTextLoop({
 
     return (
       <div
-        className={`${className} flex flex-wrap items-center justify-center gap-2 text-center overflow-hidden`}
+        className={`${className} flex flex-wrap items-center justify-center gap-x-4 gap-y-0 text-center overflow-hidden leading-none`}
       >
         {leftWords.map((word, idx) => (
           <span
@@ -201,7 +201,7 @@ export default function AnimatedTextLoop({
     const words = currentPhrase.split(" ");
     return (
       <div
-        className={`${className} flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center leading-tight`}
+        className={`${className} flex flex-wrap items-center justify-center gap-x-4 gap-y-0 text-center leading-none`}
       >
         {words.map((word, idx) => (
           <span
@@ -240,7 +240,7 @@ export default function AnimatedTextLoop({
     const words = currentPhrase.split(" ");
     return (
       <div
-        className={`${className} flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center leading-tight`}
+        className={`${className} flex flex-wrap items-center justify-center gap-x-4 gap-y-0 text-center leading-none`}
       >
         {words.map((word, idx) => (
           <span

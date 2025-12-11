@@ -113,7 +113,7 @@ export default function HeroSection({
         {animatedPhrases ? (
           <AnimatedTextLoop
             phrases={animatedPhrases}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-snug md:leading-tight text-shadow-lg min-h-[200px] flex items-center justify-center"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-snug md:leading-tight text-shadow-lg min-h-[100px] md:min-h-[200px] flex items-center justify-center"
           />
         ) : (
           <>
