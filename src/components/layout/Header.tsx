@@ -150,12 +150,8 @@ export default function Header() {
             <div className="flex flex-col flex-1 items-end">
               <div className="flex flex-col">
                 {/* Top Bar - Desktop Only */}
-                <div className="hidden lg:flex justify-between items-center pb-3 border-b border-white/20 text-xs font-medium text-white/90 mb-2">
-                  <span className="text-white tracking-wider font-semibold">
-                    Get Involved
-                  </span>
-
-                  <div className="flex items-center gap-8 pl-12">
+                <div className="hidden lg:flex justify-end items-center pb-3 border-b border-white/20 text-xs font-medium text-white/90 mb-2">
+                  <div className="flex items-center gap-8">
                     <a
                       href="#"
                       className="flex items-center gap-2 hover:text-white hover:underline transition-all decoration-white/50"
