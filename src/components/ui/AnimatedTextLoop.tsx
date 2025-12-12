@@ -5,12 +5,14 @@ import { useState, useEffect } from "react";
 interface AnimatedTextLoopProps {
   phrases: string[];
   interval?: number;
+  durations?: number[]; // Custom duration for each phrase in milliseconds
   className?: string;
 }
 
 export default function AnimatedTextLoop({
   phrases,
   interval = 4000,
+  durations,
   className = "",
 }: AnimatedTextLoopProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -27,17 +29,20 @@ export default function AnimatedTextLoop({
 
   const currentAnimation = animations[currentIndex % animations.length];
 
+  // Simple continuous loop
   useEffect(() => {
-    const timer = setInterval(() => {
+    const currentDuration = durations?.[currentIndex] || interval;
+
+    const timer = setTimeout(() => {
       setIsAnimating(false);
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % phrases.length);
         setIsAnimating(true);
       }, 800);
-    }, interval);
+    }, currentDuration);
 
-    return () => clearInterval(timer);
-  }, [phrases.length, interval]);
+    return () => clearTimeout(timer);
+  }, [currentIndex, durations, interval, phrases.length]);
 
   const currentPhrase = phrases[currentIndex];
 
