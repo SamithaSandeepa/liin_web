@@ -318,7 +318,7 @@ export default function Header() {
                     alt="LIIN Logo"
                     width={120}
                     height={120}
-                    className="object-contain h-12 w-auto"
+                    className="object-contain h-10 w-auto"
                     priority
                   />
                 </a>
