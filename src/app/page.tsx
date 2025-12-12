@@ -44,7 +44,7 @@ export default async function Home() {
     2970, // "Catalyzing Transformative Change"
     3140, // "Empowering People"
     3050, // "Commitment to a Living Planet"
-    10970, // "Sri Lanka's Pioneer in Impact Investing"
+    8970, // "Sri Lanka's Pioneer in Impact Investing"
   ];
 
   // Fetch advertisements and hero banner from API (server-side)
