@@ -5,16 +5,19 @@ import { useState, useEffect } from "react";
 interface AnimatedTextLoopProps {
   phrases: string[];
   interval?: number;
+  durations?: number[]; // Custom duration for each phrase in milliseconds
   className?: string;
 }
 
 export default function AnimatedTextLoop({
   phrases,
   interval = 4000,
+  durations,
   className = "",
 }: AnimatedTextLoopProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(true);
+  const [isReady, setIsReady] = useState(false);
 
   // Different animation for each phrase
   const animations = [
@@ -27,17 +30,26 @@ export default function AnimatedTextLoop({
 
   const currentAnimation = animations[currentIndex % animations.length];
 
+  // Smooth fade in on mount
   useEffect(() => {
-    const timer = setInterval(() => {
+    const timer = setTimeout(() => setIsReady(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Simple continuous loop
+  useEffect(() => {
+    const currentDuration = durations?.[currentIndex] || interval;
+
+    const timer = setTimeout(() => {
       setIsAnimating(false);
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % phrases.length);
         setIsAnimating(true);
       }, 800);
-    }, interval);
+    }, currentDuration);
 
-    return () => clearInterval(timer);
-  }, [phrases.length, interval]);
+    return () => clearTimeout(timer);
+  }, [currentIndex, durations, interval, phrases.length]);
 
   const currentPhrase = phrases[currentIndex];
 
@@ -63,6 +75,11 @@ export default function AnimatedTextLoop({
     return () => clearInterval(timer);
   }, [currentPhrase, currentAnimation, isAnimating]);
 
+  // Smooth wrapper for all animations
+  const wrapperClasses = `${className} transition-opacity duration-700 ${
+    isReady ? "opacity-100" : "opacity-0"
+  }`;
+
   // Render based on current animation
   if (currentAnimation === "typewriter") {
     // Split into words and show complete words + partial current word
@@ -70,7 +87,7 @@ export default function AnimatedTextLoop({
 
     return (
       <div
-        className={`${className} transition-opacity duration-300 ${
+        className={`${wrapperClasses} transition-opacity duration-300 ${
           isAnimating ? "opacity-100" : "opacity-0"
         } text-center`}
       >
@@ -91,7 +108,7 @@ export default function AnimatedTextLoop({
     let letterCount = 0;
 
     return (
-      <div className={`${className} text-center`}>
+      <div className={`${wrapperClasses} text-center`}>
         <div className="inline-block max-w-full">
           {words.map((word, wordIdx) => (
             <span
@@ -141,7 +158,7 @@ export default function AnimatedTextLoop({
 
     return (
       <div
-        className={`${className} flex flex-wrap items-center justify-center gap-x-4 gap-y-0 text-center overflow-hidden leading-none`}
+        className={`${wrapperClasses} flex flex-wrap items-center justify-center gap-x-4 gap-y-0 text-center overflow-hidden leading-none`}
       >
         {leftWords.map((word, idx) => (
           <span
@@ -201,7 +218,7 @@ export default function AnimatedTextLoop({
     const words = currentPhrase.split(" ");
     return (
       <div
-        className={`${className} flex flex-wrap items-center justify-center gap-x-4 gap-y-0 text-center leading-none`}
+        className={`${wrapperClasses} flex flex-wrap items-center justify-center gap-x-4 gap-y-0 text-center leading-none`}
       >
         {words.map((word, idx) => (
           <span
@@ -240,7 +257,7 @@ export default function AnimatedTextLoop({
     const words = currentPhrase.split(" ");
     return (
       <div
-        className={`${className} flex flex-wrap items-center justify-center gap-x-4 gap-y-0 text-center leading-none`}
+        className={`${wrapperClasses} flex flex-wrap items-center justify-center gap-x-4 gap-y-0 text-center leading-none`}
       >
         {words.map((word, idx) => (
           <span

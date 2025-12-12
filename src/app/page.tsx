@@ -27,9 +27,24 @@ export default async function Home() {
   const heroAnimatedPhrases = [
     "Investing in Profit with Purpose",
     "Catalyzing Transformative Change",
-    "Uplifting the Entrepreneurs Building a Better Future",
+    "Empowering People",
     "Commitment to a Living Planet",
     "Sri Lanka's Pioneer in Impact Investing",
+  ];
+
+  // Custom durations for each phrase to sync with video timeline
+  // Converted from timecode to milliseconds
+  // 00.00.00.06 - 00.00.02.23 = 2.57s
+  // 00.00.03.09 - 00.00.06.06 = 2.97s
+  // 00.00.06.27 - 00.00.10.01 = 3.14s
+  // 00.00.10.19 - 00.00.13.24 = 3.05s
+  // 00.00.14.07 - 00.00.25.04 = 10.97s
+  const heroDurations = [
+    2570, // "Investing in Profit with Purpose"
+    2970, // "Catalyzing Transformative Change"
+    3140, // "Empowering People"
+    3050, // "Commitment to a Living Planet"
+    8970, // "Sri Lanka's Pioneer in Impact Investing"
   ];
 
   // Fetch advertisements and hero banner from API (server-side)
@@ -40,7 +55,12 @@ export default async function Home() {
     <>
       <HeroSection
         animatedPhrases={heroAnimatedPhrases}
-        backgroundVideo={mainBanner?.background_video ? getAssetUrl(mainBanner.background_video) : "/videos/hero/hero.webm"}
+        phraseDurations={heroDurations}
+        backgroundVideo={
+          mainBanner?.background_video
+            ? getAssetUrl(mainBanner.background_video)
+            : "/videos/hero/hero.webm"
+        }
         buttonText={mainBanner?.button_text}
         buttonUrl={mainBanner?.button_url}
       />

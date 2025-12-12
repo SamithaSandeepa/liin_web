@@ -1,12 +1,13 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import AnimatedTextLoop from "@/components/ui/AnimatedTextLoop";
 
 interface HeroSectionProps {
   title?: string;
   subtitle?: string;
   animatedPhrases?: string[];
+  phraseDurations?: number[]; // Custom duration for each phrase in milliseconds
   backgroundImage?: string;
   backgroundVideo?: string;
   height?: "default" | "fullscreen";
@@ -19,6 +20,7 @@ export default function HeroSection({
   title,
   subtitle,
   animatedPhrases,
+  phraseDurations,
   backgroundImage,
   backgroundVideo,
   height = "default",
@@ -29,6 +31,7 @@ export default function HeroSection({
   const heightClass =
     height === "fullscreen" ? "min-h-[100dvh]" : "w-full aspect-video";
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -40,34 +43,69 @@ export default function HeroSection({
       video.setAttribute("muted", "");
       video.setAttribute("playsinline", "");
 
+      // Multiple events to ensure video shows
+      const handleVideoReady = () => {
+        setVideoLoaded(true);
+      };
+
+      // Listen to multiple events for better compatibility
+      video.addEventListener("loadeddata", handleVideoReady);
+      video.addEventListener("canplay", handleVideoReady);
+      video.addEventListener("playing", handleVideoReady);
+
+      // Fallback: show video after short delay to ensure loader is gone
+      const fallbackTimer = setTimeout(() => {
+        setVideoLoaded(true);
+      }, 1500);
+
       const playVideo = async () => {
         try {
+          // Wait a bit for page loader to disappear first
+          await new Promise(resolve => setTimeout(resolve, 100));
           await video.play();
+          setVideoLoaded(true); // Also set on successful play
         } catch (err) {
           console.log("Video autoplay failed:", err);
+          setVideoLoaded(true); // Show video anyway even if autoplay fails
         }
       };
 
-      // Try to play immediately
-      playVideo();
-
-      // Retry on user interaction (for strict mobile policies)
-      const handleInteraction = () => {
+      // Delay play attempt to ensure loader doesn't interfere
+      const playTimer = setTimeout(() => {
         playVideo();
-        document.removeEventListener("touchstart", handleInteraction);
-        document.removeEventListener("click", handleInteraction);
-      };
-
-      document.addEventListener("touchstart", handleInteraction, {
-        once: true,
-      });
-      document.addEventListener("click", handleInteraction, { once: true });
+      }, 200);
 
       return () => {
-        document.removeEventListener("touchstart", handleInteraction);
-        document.removeEventListener("click", handleInteraction);
+        clearTimeout(playTimer);
+        clearTimeout(fallbackTimer);
+        video.removeEventListener("loadeddata", handleVideoReady);
+        video.removeEventListener("canplay", handleVideoReady);
+        video.removeEventListener("playing", handleVideoReady);
       };
+
     }
+
+    // Retry on user interaction (for strict mobile policies)
+    const handleInteraction = () => {
+      const vid = videoRef.current;
+      if (vid) {
+        vid.play().catch(() => {
+          setVideoLoaded(true); // Show anyway
+        });
+      }
+      document.removeEventListener("touchstart", handleInteraction);
+      document.removeEventListener("click", handleInteraction);
+    };
+
+    document.addEventListener("touchstart", handleInteraction, {
+      once: true,
+    });
+    document.addEventListener("click", handleInteraction, { once: true });
+
+    return () => {
+      document.removeEventListener("touchstart", handleInteraction);
+      document.removeEventListener("click", handleInteraction);
+    };
   }, [backgroundVideo]);
 
   return (
@@ -86,7 +124,9 @@ export default function HeroSection({
           controls={false}
           preload="auto"
           poster={backgroundImage}
-          className="absolute inset-0 w-full h-full object-cover"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            videoLoaded ? "opacity-100" : "opacity-0"
+          }`}
           style={{ pointerEvents: "none" }}
         >
           <source src={backgroundVideo} type="video/mp4" />
@@ -116,6 +156,7 @@ export default function HeroSection({
         {animatedPhrases ? (
           <AnimatedTextLoop
             phrases={animatedPhrases}
+            durations={phraseDurations}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-snug md:leading-tight text-shadow-lg min-h-[100px] md:min-h-[200px] flex items-center justify-center"
           />
         ) : (
