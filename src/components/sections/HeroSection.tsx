@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useRef, useEffect } from 'react';
-import AnimatedTextLoop from '@/components/ui/AnimatedTextLoop';
+import { useRef, useEffect } from "react";
+import AnimatedTextLoop from "@/components/ui/AnimatedTextLoop";
 
 interface HeroSectionProps {
   title?: string;
@@ -9,9 +9,10 @@ interface HeroSectionProps {
   animatedPhrases?: string[];
   backgroundImage?: string;
   backgroundVideo?: string;
-  height?: 'default' | 'fullscreen';
+  height?: "default" | "fullscreen";
   buttonText?: string | null;
   buttonUrl?: string | null;
+  backgroundSize?: "cover" | "contain"; // New prop to control background sizing
 }
 
 export default function HeroSection({
@@ -20,48 +21,52 @@ export default function HeroSection({
   animatedPhrases,
   backgroundImage,
   backgroundVideo,
-  height = 'default',
+  height = "default",
   buttonText,
-  buttonUrl
+  buttonUrl,
+  backgroundSize = "cover", // Default to cover for backward compatibility
 }: HeroSectionProps) {
-  const heightClass = height === 'fullscreen' ? 'min-h-[100dvh]' : 'w-full aspect-video';
+  const heightClass =
+    height === "fullscreen" ? "min-h-[100dvh]" : "w-full aspect-video";
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-        // Essential for mobile autoplay
-        video.muted = true;
-        video.defaultMuted = true;
-        video.playsInline = true;
-        video.setAttribute('muted', '');
-        video.setAttribute('playsinline', '');
-        
-        const playVideo = async () => {
-            try {
-                await video.play();
-            } catch (err) {
-                console.log("Video autoplay failed:", err);
-            }
-        };
-        
-        // Try to play immediately
+      // Essential for mobile autoplay
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+
+      const playVideo = async () => {
+        try {
+          await video.play();
+        } catch (err) {
+          console.log("Video autoplay failed:", err);
+        }
+      };
+
+      // Try to play immediately
+      playVideo();
+
+      // Retry on user interaction (for strict mobile policies)
+      const handleInteraction = () => {
         playVideo();
-        
-        // Retry on user interaction (for strict mobile policies)
-        const handleInteraction = () => {
-            playVideo();
-            document.removeEventListener('touchstart', handleInteraction);
-            document.removeEventListener('click', handleInteraction);
-        };
-        
-        document.addEventListener('touchstart', handleInteraction, { once: true });
-        document.addEventListener('click', handleInteraction, { once: true });
-        
-        return () => {
-            document.removeEventListener('touchstart', handleInteraction);
-            document.removeEventListener('click', handleInteraction);
-        };
+        document.removeEventListener("touchstart", handleInteraction);
+        document.removeEventListener("click", handleInteraction);
+      };
+
+      document.addEventListener("touchstart", handleInteraction, {
+        once: true,
+      });
+      document.addEventListener("click", handleInteraction, { once: true });
+
+      return () => {
+        document.removeEventListener("touchstart", handleInteraction);
+        document.removeEventListener("click", handleInteraction);
+      };
     }
   }, [backgroundVideo]);
 
@@ -82,7 +87,7 @@ export default function HeroSection({
           preload="auto"
           poster={backgroundImage}
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ pointerEvents: 'none' }}
+          style={{ pointerEvents: "none" }}
         >
           <source src={backgroundVideo} type="video/mp4" />
           Your browser does not support the video tag.
@@ -92,17 +97,15 @@ export default function HeroSection({
       {/* Background Image (fallback or primary) */}
       {backgroundImage && !backgroundVideo && (
         <div
-          className="absolute inset-0 bg-cover bg-center md:bg-cover"
-          style={{ 
+          className="absolute inset-0 bg-center"
+          style={{
             backgroundImage: `url('${backgroundImage}')`,
-            backgroundRepeat: 'no-repeat'
+            backgroundRepeat: "no-repeat",
+            backgroundSize: backgroundSize, // Use the prop value
           }}
           role="img"
           aria-label="Hero background"
-        >
-            {/* Mobile-optimized background: contain for small screens if needed, otherwise cover */}
-
-        </div>
+        />
       )}
 
       {/* Overlay */}
@@ -127,11 +130,11 @@ export default function HeroSection({
                 {subtitle}
               </p>
             )}
-            
+
             {/* Call to Action Button */}
             {buttonText && buttonUrl && (
               <div className="mt-8 animate-fade-in-up animation-delay-500">
-                <a 
+                <a
                   href={buttonUrl}
                   className="inline-block bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 >
