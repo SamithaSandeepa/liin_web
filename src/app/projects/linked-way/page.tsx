@@ -1,5 +1,5 @@
-import HeroSection from '@/components/sections/HeroSection';
-import Section from '@/components/ui/Section';
+import HeroSection from "@/components/sections/HeroSection";
+import Section from "@/components/ui/Section";
 import {
   Users,
   GraduationCap,
@@ -11,87 +11,87 @@ import {
   Clock,
   ArrowRight,
   CheckCircle2,
-  FileText
-} from 'lucide-react';
+  FileText,
+} from "lucide-react";
 
 const programSteps = [
   {
     step: 1,
-    title: 'Online Application',
-    description: 'Submit your application with optional 2-3 page business plan',
+    title: "Online Application",
+    description: "Submit your application with optional 2-3 page business plan",
     icon: FileText,
   },
   {
     step: 2,
-    title: 'Review & Interview',
-    description: 'Application review and entrepreneur interviews',
+    title: "Review & Interview",
+    description: "Application review and entrepreneur interviews",
     icon: Users,
   },
   {
     step: 3,
-    title: 'Incubation',
-    description: 'Training on valuation, legal, finance, and pitching skills',
+    title: "Incubation",
+    description: "Training on valuation, legal, finance, and pitching skills",
     icon: GraduationCap,
   },
   {
     step: 4,
-    title: 'Pitching Session',
-    description: 'Present to expert panel with potential investors',
+    title: "Pitching Session",
+    description: "Present to expert panel with potential investors",
     icon: Presentation,
   },
   {
     step: 5,
-    title: 'Post-Investment',
-    description: 'Monitoring and learning hub access',
+    title: "Post-Investment",
+    description: "Monitoring and learning hub access",
     icon: TrendingUp,
   },
 ];
 
 const pitchFormat = {
-  pitchTime: '10 minutes',
-  discussionTime: '10 minutes',
+  pitchTime: "10 minutes",
+  discussionTime: "10 minutes",
   panelists: [
-    'Corporate Leaders',
-    'PE Fund Managers',
-    'Entrepreneurs',
-    'Business Advisors',
+    "Corporate Leaders",
+    "PE Fund Managers",
+    "Entrepreneurs",
+    "Business Advisors",
   ],
 };
 
 const benefits = [
   {
-    title: 'Direct Investor Access',
-    description: 'Closed-door pitching opportunities with potential investors',
+    title: "Direct Investor Access",
+    description: "Closed-door pitching opportunities with potential investors",
     icon: DollarSign,
   },
   {
-    title: 'Expert Mentorship',
-    description: 'Guidance for business model development',
+    title: "Expert Mentorship",
+    description: "Guidance for business model development",
     icon: GraduationCap,
   },
   {
-    title: 'Marketing Support',
-    description: 'Help with visibility and market positioning',
+    title: "Marketing Support",
+    description: "Help with visibility and market positioning",
     icon: Target,
   },
   {
-    title: 'Financial Management',
-    description: 'Guidance on financial planning and management',
+    title: "Financial Management",
+    description: "Guidance on financial planning and management",
     icon: Briefcase,
   },
   {
-    title: 'Skills Development',
-    description: 'Training to enhance entrepreneurial capabilities',
+    title: "Skills Development",
+    description: "Training to enhance entrepreneurial capabilities",
     icon: TrendingUp,
   },
   {
-    title: 'Ongoing Monitoring',
-    description: 'Continuous enterprise progress tracking',
+    title: "Ongoing Monitoring",
+    description: "Continuous enterprise progress tracking",
     icon: Clock,
   },
 ];
 
-const applicationLanguages = ['English', 'Sinhala', 'Tamil'];
+const applicationLanguages = ["English", "Sinhala", "Tamil"];
 
 export default function LinkedWayPage() {
   return (
@@ -99,7 +99,7 @@ export default function LinkedWayPage() {
       <HeroSection
         title="Liinked Way"
         subtitle="Your Pathway to Investment Success"
-        backgroundImage="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920"
+        backgroundImage="/images/projects/linked_way/cover.png"
       />
 
       {/* Introduction */}
@@ -112,14 +112,18 @@ export default function LinkedWayPage() {
           <div className="animate-on-scroll">
             <div className="bg-white p-8 rounded-2xl shadow-medium">
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                LIINKED WAY is an initiative pioneered and hosted by Lanka Impact Investing Network (LIIN)
-                in collaboration with PwC&apos;s Startup Accelerator. It functions as a pitching platform and
-                learning hub for entrepreneurs to present their businesses to investors and experts.
+                LIINKED WAY is an initiative pioneered and hosted by Lanka
+                Impact Investing Network (LIIN) in collaboration with PwC&apos;s
+                Startup Accelerator. It functions as a pitching platform and
+                learning hub for entrepreneurs to present their businesses to
+                investors and experts.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                The program provides entrepreneurs closed-door pitching opportunities with potential investors,
-                offers access to expert guidance for business model development, and supplies post-investment
-                mentoring and support through a comprehensive learning hub.
+                The program provides entrepreneurs closed-door pitching
+                opportunities with potential investors, offers access to expert
+                guidance for business model development, and supplies
+                post-investment mentoring and support through a comprehensive
+                learning hub.
               </p>
             </div>
           </div>
@@ -149,7 +153,10 @@ export default function LinkedWayPage() {
                       <p className="text-gray-600">{item.description}</p>
                     </div>
                     {idx < programSteps.length - 1 && (
-                      <ArrowRight className="text-gray-300 hidden md:block" size={24} />
+                      <ArrowRight
+                        className="text-gray-300 hidden md:block"
+                        size={24}
+                      />
                     )}
                   </div>
                 </div>
@@ -160,10 +167,7 @@ export default function LinkedWayPage() {
       </Section>
 
       {/* Pitch Format */}
-      <Section
-        id="pitch-format"
-        title="Pitch Session Format"
-      >
+      <Section id="pitch-format" title="Pitch Session Format">
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="animate-on-scroll">
@@ -173,11 +177,16 @@ export default function LinkedWayPage() {
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <Clock className="flex-shrink-0" size={20} />
-                    <span><strong>{pitchFormat.pitchTime}</strong> for pitching</span>
+                    <span>
+                      <strong>{pitchFormat.pitchTime}</strong> for pitching
+                    </span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Clock className="flex-shrink-0" size={20} />
-                    <span><strong>{pitchFormat.discussionTime}</strong> for discussion</span>
+                    <span>
+                      <strong>{pitchFormat.discussionTime}</strong> for
+                      discussion
+                    </span>
                   </div>
                 </div>
               </div>
@@ -189,7 +198,10 @@ export default function LinkedWayPage() {
                 <div className="space-y-3">
                   {pitchFormat.panelists.map((panelist, idx) => (
                     <div key={idx} className="flex items-center gap-3">
-                      <CheckCircle2 className="text-green-500 flex-shrink-0" size={20} />
+                      <CheckCircle2
+                        className="text-green-500 flex-shrink-0"
+                        size={20}
+                      />
                       <span className="text-gray-700">{panelist}</span>
                     </div>
                   ))}
@@ -201,11 +213,7 @@ export default function LinkedWayPage() {
       </Section>
 
       {/* Benefits */}
-      <Section
-        id="benefits"
-        title="What You Get"
-        background="gray"
-      >
+      <Section id="benefits" title="What You Get" background="gray">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((benefit, idx) => (
@@ -224,10 +232,7 @@ export default function LinkedWayPage() {
       </Section>
 
       {/* Eligibility */}
-      <Section
-        id="eligibility"
-        title="How to Apply"
-      >
+      <Section id="eligibility" title="How to Apply">
         <div className="max-w-3xl mx-auto">
           <div className="animate-on-scroll">
             <div className="bg-white p-8 rounded-2xl shadow-medium">
@@ -236,8 +241,8 @@ export default function LinkedWayPage() {
                 <h3 className="text-xl font-bold">Application Requirements</h3>
               </div>
               <p className="text-gray-700 mb-6">
-                Open to entrepreneurs and startups. Submit your application with an optional
-                2-3 page business plan.
+                Open to entrepreneurs and startups. Submit your application with
+                an optional 2-3 page business plan.
               </p>
               <div className="mb-6">
                 <h4 className="font-semibold mb-3">Available Languages:</h4>
@@ -258,15 +263,13 @@ export default function LinkedWayPage() {
       </Section>
 
       {/* Partner */}
-      <Section
-        id="partner"
-        title="In Partnership With"
-        background="gray"
-      >
+      <Section id="partner" title="In Partnership With" background="gray">
         <div className="max-w-md mx-auto">
           <div className="animate-on-scroll">
             <div className="bg-white p-8 rounded-xl shadow-medium text-center">
-              <p className="font-bold text-xl text-gray-700">PwC&apos;s Startup Accelerator</p>
+              <p className="font-bold text-xl text-gray-700">
+                PwC&apos;s Startup Accelerator
+              </p>
               <p className="text-gray-500 mt-2">Strategic Partner</p>
             </div>
           </div>
@@ -280,8 +283,8 @@ export default function LinkedWayPage() {
             Ready to Pitch Your Business?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join Liinked Way and get direct access to investors, expert mentorship, and the support
-            you need to scale your venture.
+            Join Liinked Way and get direct access to investors, expert
+            mentorship, and the support you need to scale your venture.
           </p>
           <a
             href="/contact"

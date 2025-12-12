@@ -65,7 +65,7 @@ const navItems: NavItem[] = [
   },
   {
     label: "Investments",
-    href: "/investments",
+    href: "#investments",
     subItems: [
       { label: "Investment Philosophy", href: "/investments/philosophy" },
       { label: "Investees", href: "/investments/investees" },

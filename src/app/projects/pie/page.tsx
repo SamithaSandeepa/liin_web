@@ -87,7 +87,7 @@ export default function PIEPage() {
       <HeroSection
         title="Platform for Inclusive Entrepreneurship"
         subtitle="Transforming Underserved Entrepreneurs into Success Stories"
-        backgroundImage="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1920"
+        backgroundImage="/images/projects/pie/cover.png"
       />
 
       {/* What is PIE */}
