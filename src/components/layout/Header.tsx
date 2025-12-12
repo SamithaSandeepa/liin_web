@@ -122,7 +122,7 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 bg-primary shadow-lg">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="flex items-center justify-between lg:gap-12 py-4 lg:py-6">
+          <div className="flex items-center justify-between lg:gap-12 py-3 lg:py-4">
             {/* Logo - Left Side */}
             <a
               href="/"
@@ -134,9 +134,9 @@ export default function Header() {
               <Image
                 src="/images/logo.png"
                 alt="LIIN Logo"
-                width={160}
-                height={160}
-                className="object-contain h-12 lg:h-20 w-auto"
+                width={120}
+                height={120}
+                className="object-contain h-10 lg:h-16 w-auto"
                 priority
               />
             </a>
