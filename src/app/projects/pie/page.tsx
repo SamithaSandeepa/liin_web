@@ -92,58 +92,62 @@ export default function PIEPage() {
 
       {/* What is PIE */}
       <Section id="what-is-pie" title="What is PIE?">
-        <div className="max-w-5xl mx-auto">
-          <div className="animate-on-scroll text-center mb-12">
-            <div className="max-w-3xl mx-auto space-y-4 text-gray-700 text-lg leading-relaxed text-justify">
-              <p>
-                PIE is a{" "}
-                <strong className="text-primary">one stop Digital Hub</strong>{" "}
-                for the Entrepreneurs/Startups to further develop their
-                Enterprises and become a success story, hosted by{" "}
-                <strong className="text-gray-900">
-                  Lanka Impact Investing Network (LIIN)
-                </strong>{" "}
-                in collaboration with{" "}
-                <strong className="text-gray-900">
-                  WUSC (World University Services of Canada)
-                </strong>
-                .
-              </p>
+        <div className="max-w-6xl mx-auto space-y-12">
+          {/* Top Section: Logo + Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Logo Side */}
+            <div className="animate-on-scroll flex items-center justify-center">
+              <Image
+                src="/images/projects/pie/awakasha.png"
+                alt="Awakasha Logo"
+                width={400}
+                height={400}
+                className="w-full h-auto object-contain max-w-sm mx-auto"
+                priority
+              />
+            </div>
 
-              <p>
-                PIE is a one stop solution for{" "}
-                <strong>underserved Entrepreneurs of Sri Lanka</strong>. The
-                Platform aims to give a brand to every upcoming Entrepreneur in
-                Sri Lanka. PIE Platform will act as a{" "}
-                <strong className="text-primary">
-                  link between the Entrepreneurs and Support Services
-                </strong>{" "}
-                that they need to become a scalable and an impactful venture.
-              </p>
+            {/* Content Side */}
+            <div className="animate-on-scroll">
+              <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+                <p>
+                  PIE is a{" "}
+                  <strong className="text-primary">one stop Digital Hub</strong>{" "}
+                  for the Entrepreneurs/Startups to further develop their
+                  Enterprises and become a success story, hosted by{" "}
+                  <strong className="text-gray-900">
+                    Lanka Impact Investing Network (LIIN)
+                  </strong>{" "}
+                  in collaboration with{" "}
+                  <strong className="text-gray-900">
+                    WUSC (World University Services of Canada)
+                  </strong>
+                  .
+                </p>
+
+                <p>
+                  PIE is a one stop solution for{" "}
+                  <strong>underserved Entrepreneurs of Sri Lanka</strong>. The
+                  Platform aims to give a brand to every upcoming Entrepreneur
+                  in Sri Lanka. PIE Platform will act as a{" "}
+                  <strong className="text-primary">
+                    link between the Entrepreneurs and Support Services
+                  </strong>{" "}
+                  that they need to become a scalable and an impactful venture.
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Images */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-on-scroll">
-            <div className="overflow-hidden rounded-lg">
-              <Image
-                src="/images/projects/pie/awakasha.png"
-                alt="PIE Platform Awakasha"
-                width={600}
-                height={400}
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            <div className="overflow-hidden rounded-lg">
-              <Image
-                src="/images/projects/pie/PIE2.png"
-                alt="PIE Process Overview"
-                width={600}
-                height={400}
-                className="w-full h-full object-cover"
-              />
-            </div>
+          {/* Bottom Section: Full-width PIE Image */}
+          <div className="animate-on-scroll">
+            <Image
+              src="/images/projects/pie/PIE2.png"
+              alt="PIE Platform"
+              width={1200}
+              height={500}
+              className="w-auto min-h-100 mx-auto object-fit"
+            />
           </div>
         </div>
       </Section>

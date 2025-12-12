@@ -10,8 +10,8 @@ const iconMap = {
 
 export default function ContactInfoSection() {
   return (
-    <Section id="contact-info" title="Get In Touch">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <Section id="contact-info" title="Get In Touch" subtitle="Reach out to us via email or phone">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
         {contactInfo.map((info, idx) => {
           const IconComponent = iconMap[info.icon as keyof typeof iconMap];
           return (

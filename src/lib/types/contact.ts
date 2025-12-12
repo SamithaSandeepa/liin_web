@@ -12,4 +12,5 @@ export interface Office {
   address: string;
   phone: string;
   email: string;
+  mapLink?: string;
 }

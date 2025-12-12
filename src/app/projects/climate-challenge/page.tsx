@@ -1,6 +1,6 @@
-import HeroSection from '@/components/sections/HeroSection';
-import Section from '@/components/ui/Section';
-import Image from 'next/image';
+import HeroSection from "@/components/sections/HeroSection";
+import Section from "@/components/ui/Section";
+import Image from "next/image";
 import {
   Leaf,
   Fish,
@@ -12,77 +12,81 @@ import {
   Target,
   Lightbulb,
   Handshake,
-  CheckCircle2
-} from 'lucide-react';
+  CheckCircle2,
+} from "lucide-react";
 
 const targetSectors = [
   {
-    title: 'Agriculture',
-    description: 'Innovative solutions to address climate impacts on farming and food production',
+    title: "Agriculture",
+    description:
+      "Innovative solutions to address climate impacts on farming and food production",
     icon: Leaf,
   },
   {
-    title: 'Fisheries',
-    description: 'Data-driven approaches to support sustainable fishing practices',
+    title: "Fisheries",
+    description:
+      "Data-driven approaches to support sustainable fishing practices",
     icon: Fish,
   },
 ];
 
 const eligibleParticipants = [
-  'Data Scientists',
-  'Students & Recent Graduates',
-  'Entrepreneurs & Startups',
-  'Working Professionals',
-  'Climate Innovators',
+  "Data Scientists",
+  "Students & Recent Graduates",
+  "Entrepreneurs & Startups",
+  "Working Professionals",
+  "Climate Innovators",
 ];
 
 const programFeatures = [
   {
-    title: 'Data-Driven Solutions',
-    description: 'Utilize big data, AI, machine learning, and advanced analytics',
+    title: "Data-Driven Solutions",
+    description:
+      "Utilize big data, AI, machine learning, and advanced analytics",
     icon: Database,
   },
   {
-    title: 'Impact Investment Focus',
-    description: 'Learn investor criteria and align with economic, social, and environmental goals',
+    title: "Impact Investment Focus",
+    description:
+      "Learn investor criteria and align with economic, social, and environmental goals",
     icon: TrendingUp,
   },
   {
-    title: 'Innovation Platform',
-    description: 'Launch platform for innovators and startups in climate solutions',
+    title: "Innovation Platform",
+    description:
+      "Launch platform for innovators and startups in climate solutions",
     icon: Lightbulb,
   },
   {
-    title: 'Mentorship Access',
-    description: 'Top teams receive mentorship and guidance from industry experts',
+    title: "Mentorship Access",
+    description:
+      "Top teams receive mentorship and guidance from industry experts",
     icon: Brain,
   },
 ];
 
 const prizes = [
   {
-    title: 'Grand Prize',
-    amount: 'Rs. 1 Million',
-    description: 'Awarded to the winning team',
+    title: "Grand Prize",
+    amount: "Rs. 1 Million",
+    description: "Awarded to the winning team",
     highlight: true,
   },
   {
-    title: 'Top 10 Teams',
-    amount: 'Investor Pitch',
-    description: 'Opportunity to pitch to impact investors for funding and scaling support',
+    title: "Top 10 Teams",
+    amount: "Investor Pitch",
+    description:
+      "Opportunity to pitch to impact investors for funding and scaling support",
     highlight: false,
   },
 ];
 
 const partners = [
-  { name: 'USAID', logo: '/images/partners/usaid.png' },
-  { name: 'Climate Collective Foundation', logo: '/images/partners/ccf.png' },
+  { name: "USAID", logo: "/images/partners/usaid.png" },
+  { name: "Climate Collective Foundation", logo: "/images/partners/ccf.png" },
 ];
 
-const partnersTextOnly = [
-  'USAID',
-  'Climate Collective Foundation (CCF)',
-];
+const partnersTextOnly = ["USAID", "Climate Collective Foundation (CCF)"];
 
 export default function ClimateChallengePage() {
   return (
@@ -90,7 +94,8 @@ export default function ClimateChallengePage() {
       <HeroSection
         title="Climate Challenge SL"
         subtitle="Creative Data Solutions for Resilience"
-        backgroundImage="https://images.unsplash.com/photo-1473773508845-188df298d2d1?w=1920"
+        backgroundImage="/images/projects/climate_challenge/cover.png"
+        backgroundSize="contain"
       />
 
       {/* Introduction */}
@@ -103,14 +108,18 @@ export default function ClimateChallengePage() {
           <div className="animate-on-scroll">
             <div className="bg-white p-8 rounded-2xl shadow-medium">
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Climate Challenge SL is Sri Lanka&apos;s inaugural climate hackathon focused on empowering
-                data-driven innovations. The initiative brings together data professionals nationwide
-                to develop solutions addressing climate challenges in agriculture and fisheries sectors.
+                Climate Challenge SL is Sri Lanka&apos;s inaugural climate
+                hackathon focused on empowering data-driven innovations. The
+                initiative brings together data professionals nationwide to
+                develop solutions addressing climate challenges in agriculture
+                and fisheries sectors.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                With the support of USAID and in partnership with the Climate Collective Foundation (CCF),
-                Lanka Impact Investment Network (LIIN) launched this groundbreaking program to revolutionize
-                how we address climate change impacts through innovative data-driven solutions.
+                With the support of USAID and in partnership with the Climate
+                Collective Foundation (CCF), Lanka Impact Investment Network
+                (LIIN) launched this groundbreaking program to revolutionize how
+                we address climate change impacts through innovative data-driven
+                solutions.
               </p>
             </div>
           </div>
@@ -118,11 +127,7 @@ export default function ClimateChallengePage() {
       </Section>
 
       {/* Objectives */}
-      <Section
-        id="objectives"
-        title="Program Objectives"
-        background="gray"
-      >
+      <Section id="objectives" title="Program Objectives" background="gray">
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="animate-on-scroll">
@@ -131,9 +136,12 @@ export default function ClimateChallengePage() {
                   <Target className="text-primary" size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg mb-2">Mitigate Climate Impacts</h3>
+                  <h3 className="font-bold text-lg mb-2">
+                    Mitigate Climate Impacts
+                  </h3>
                   <p className="text-gray-600">
-                    Address climate change impacts on agriculture and fisheries which support over 30% of Sri Lanka&apos;s population
+                    Address climate change impacts on agriculture and fisheries
+                    which support over 30% of Sri Lanka&apos;s population
                   </p>
                 </div>
               </div>
@@ -144,9 +152,12 @@ export default function ClimateChallengePage() {
                   <TrendingUp className="text-primary" size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg mb-2">Foster Scalable Businesses</h3>
+                  <h3 className="font-bold text-lg mb-2">
+                    Foster Scalable Businesses
+                  </h3>
                   <p className="text-gray-600">
-                    Create viable, scalable businesses attractive to impact investors
+                    Create viable, scalable businesses attractive to impact
+                    investors
                   </p>
                 </div>
               </div>
@@ -159,7 +170,8 @@ export default function ClimateChallengePage() {
                 <div>
                   <h3 className="font-bold text-lg mb-2">Launch Platform</h3>
                   <p className="text-gray-600">
-                    Create a launch platform for innovators and startups in climate solutions
+                    Create a launch platform for innovators and startups in
+                    climate solutions
                   </p>
                 </div>
               </div>
@@ -170,9 +182,12 @@ export default function ClimateChallengePage() {
                   <Handshake className="text-primary" size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg mb-2">Impact Investment Integration</h3>
+                  <h3 className="font-bold text-lg mb-2">
+                    Impact Investment Integration
+                  </h3>
                   <p className="text-gray-600">
-                    Integrate impact investment principles with innovation development
+                    Integrate impact investment principles with innovation
+                    development
                   </p>
                 </div>
               </div>
@@ -205,11 +220,7 @@ export default function ClimateChallengePage() {
       </Section>
 
       {/* Program Features */}
-      <Section
-        id="features"
-        title="Program Features"
-        background="gray"
-      >
+      <Section id="features" title="Program Features" background="gray">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {programFeatures.map((feature, idx) => (
@@ -220,7 +231,9 @@ export default function ClimateChallengePage() {
                       <feature.icon className="text-secondary" size={24} />
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg mb-2">{feature.title}</h3>
+                      <h3 className="font-bold text-lg mb-2">
+                        {feature.title}
+                      </h3>
                       <p className="text-gray-600">{feature.description}</p>
                     </div>
                   </div>
@@ -232,25 +245,37 @@ export default function ClimateChallengePage() {
       </Section>
 
       {/* Prizes */}
-      <Section
-        id="prizes"
-        title="Prizes & Opportunities"
-      >
+      <Section id="prizes" title="Prizes & Opportunities">
         <div className="max-w-3xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {prizes.map((prize, idx) => (
               <div key={idx} className="animate-on-scroll">
-                <div className={`p-8 rounded-2xl text-center h-full ${
-                  prize.highlight
-                    ? 'bg-gradient-to-br from-primary to-secondary text-white shadow-hard'
-                    : 'bg-white shadow-medium border-2 border-primary/20'
-                }`}>
-                  <Award size={48} className={`mx-auto mb-4 ${prize.highlight ? 'text-white' : 'text-primary'}`} />
+                <div
+                  className={`p-8 rounded-2xl text-center h-full ${
+                    prize.highlight
+                      ? "bg-gradient-to-br from-primary to-secondary text-white shadow-hard"
+                      : "bg-white shadow-medium border-2 border-primary/20"
+                  }`}
+                >
+                  <Award
+                    size={48}
+                    className={`mx-auto mb-4 ${
+                      prize.highlight ? "text-white" : "text-primary"
+                    }`}
+                  />
                   <h3 className="text-xl font-bold mb-2">{prize.title}</h3>
-                  <p className={`text-3xl font-bold mb-3 ${prize.highlight ? 'text-white' : 'text-primary'}`}>
+                  <p
+                    className={`text-3xl font-bold mb-3 ${
+                      prize.highlight ? "text-white" : "text-primary"
+                    }`}
+                  >
                     {prize.amount}
                   </p>
-                  <p className={prize.highlight ? 'text-white/90' : 'text-gray-600'}>
+                  <p
+                    className={
+                      prize.highlight ? "text-white/90" : "text-gray-600"
+                    }
+                  >
                     {prize.description}
                   </p>
                 </div>
@@ -261,11 +286,7 @@ export default function ClimateChallengePage() {
       </Section>
 
       {/* Eligibility */}
-      <Section
-        id="eligibility"
-        title="Who Can Participate?"
-        background="gray"
-      >
+      <Section id="eligibility" title="Who Can Participate?" background="gray">
         <div className="max-w-3xl mx-auto">
           <div className="animate-on-scroll">
             <div className="bg-white p-8 rounded-2xl shadow-medium">
@@ -276,7 +297,10 @@ export default function ClimateChallengePage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {eligibleParticipants.map((participant, idx) => (
                   <div key={idx} className="flex items-center gap-3">
-                    <CheckCircle2 className="text-green-500 flex-shrink-0" size={20} />
+                    <CheckCircle2
+                      className="text-green-500 flex-shrink-0"
+                      size={20}
+                    />
                     <span className="text-gray-700">{participant}</span>
                   </div>
                 ))}
@@ -287,16 +311,15 @@ export default function ClimateChallengePage() {
       </Section>
 
       {/* Partners */}
-      <Section
-        id="partners"
-        title="Partners"
-      >
+      <Section id="partners" title="Partners">
         <div className="max-w-3xl mx-auto">
           <div className="flex flex-wrap justify-center items-center gap-8">
             {partnersTextOnly.map((partner, idx) => (
               <div key={idx} className="animate-on-scroll">
                 <div className="bg-white px-8 py-6 rounded-xl shadow-medium hover:shadow-hard transition-all">
-                  <p className="font-semibold text-gray-700 text-center">{partner}</p>
+                  <p className="font-semibold text-gray-700 text-center">
+                    {partner}
+                  </p>
                 </div>
               </div>
             ))}
@@ -314,7 +337,8 @@ export default function ClimateChallengePage() {
             Ready to Make an Impact?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join Climate Challenge SL and be part of the solution to climate change through innovative data-driven approaches.
+            Join Climate Challenge SL and be part of the solution to climate
+            change through innovative data-driven approaches.
           </p>
           <a
             href="/contact"

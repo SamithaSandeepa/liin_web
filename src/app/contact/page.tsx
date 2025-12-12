@@ -8,7 +8,12 @@ import {
   Building2,
   Clock,
   HeartHandshake,
+  MapPin,
+  Phone,
+  Mail,
+  ExternalLink,
 } from "lucide-react";
+import { offices } from "@/lib/data/contact";
 
 /**
  * Contact Page - Get in touch with LIIN
@@ -59,6 +64,83 @@ export default function ContactPage() {
       />
 
       <ContactInfoSection />
+
+      {/* Our Offices Section */}
+      <Section
+        id="offices"
+        title="Our Offices"
+        subtitle="Visit us at our locations across Sri Lanka"
+        background="white"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {offices.map((office, idx) => (
+            <div
+              key={idx}
+              className="animate-on-scroll bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl shadow-medium hover:shadow-hard transition-all p-8 border border-primary/10"
+              style={{ animationDelay: `${idx * 100}ms` }}
+            >
+              {/* Office Title */}
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+                  <Building2 size={24} className="text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800">
+                  {office.city}
+                </h3>
+              </div>
+
+              {/* Address */}
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <MapPin
+                    size={20}
+                    className="text-primary flex-shrink-0 mt-1"
+                  />
+                  <div>
+                    <p className="text-gray-700 leading-relaxed">
+                      {office.address}
+                    </p>
+                    {office.mapLink && (
+                      <a
+                        href={office.mapLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-primary hover:text-primary-dark font-semibold mt-2 text-sm transition-colors"
+                      >
+                        View on Map
+                        <ExternalLink size={14} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                {/* Phone */}
+                <div className="flex items-center gap-3">
+                  <Phone size={20} className="text-primary flex-shrink-0" />
+                  <a
+                    href={`tel:${office.phone.replace(/\s/g, "")}`}
+                    className="text-gray-700 hover:text-primary font-medium transition-colors"
+                  >
+                    {office.phone}
+                  </a>
+                </div>
+
+                {/* Email */}
+                <div className="flex items-center gap-3">
+                  <Mail size={20} className="text-primary flex-shrink-0" />
+                  <a
+                    href={`mailto:${office.email}`}
+                    className="text-gray-700 hover:text-primary font-medium transition-colors"
+                  >
+                    {office.email}
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
       <ContactFormSection />
 
       {/* FAQ Section */}
