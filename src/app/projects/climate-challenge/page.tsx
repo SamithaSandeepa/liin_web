@@ -94,7 +94,7 @@ export default function ClimateChallengePage() {
       <HeroSection
         title="Climate Challenge SL"
         subtitle="Creative Data Solutions for Resilience"
-        backgroundImage="/images/projects/climate_challenge/cover.png"
+        backgroundImage="/images/projects/climate_challenge/cover.jpg"
         backgroundSize="contain"
       />
 
