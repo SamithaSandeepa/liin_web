@@ -55,7 +55,9 @@ export default function TeamSectionClient({
           />
           <div className="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/10 transition-colors" />
         </div>
-        <h4 className="font-bold text-sm md:text-lg text-center mb-1">{member.name}</h4>
+        <h4 className="font-bold text-sm md:text-lg text-center mb-1">
+          {member.name}
+        </h4>
         <p className="text-primary text-xs md:text-base font-medium text-center">
           {member.job_title}
         </p>
@@ -73,12 +75,12 @@ export default function TeamSectionClient({
       >
         {/* Team Group Photo */}
         <div className="animate-on-scroll mb-12">
-          <div className="relative w-full h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-hard">
+          <div className="relative w-full h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-hard bg-gray-100">
             <Image
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920"
+              src="/images/aboutus/ourteam.jpg"
               alt="LIIN Team"
               fill
-              className="object-cover"
+              className="object-contain"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-8 text-white">

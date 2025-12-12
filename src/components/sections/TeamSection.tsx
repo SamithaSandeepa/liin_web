@@ -1,5 +1,10 @@
-import { fetchRoleCategories, fetchTeamMembers, RoleCategory, TeamMember } from '@/lib/api';
-import TeamSectionClient from './TeamSectionClient';
+import {
+  fetchRoleCategories,
+  fetchTeamMembers,
+  RoleCategory,
+  TeamMember,
+} from "@/lib/api";
+import TeamSectionClient from "./TeamSectionClient";
 
 export default async function TeamSection() {
   let categories: RoleCategory[] = [];
@@ -8,14 +13,17 @@ export default async function TeamSection() {
   try {
     const [categoriesRes, membersRes] = await Promise.all([
       fetchRoleCategories(),
-      fetchTeamMembers()
+      fetchTeamMembers(),
     ]);
-    console.log(categories, teamMembers, "adfadf")
-    categories = categoriesRes.data?.filter(cat => cat.status === 'published') || [];
-    teamMembers = membersRes.data?.filter(member => member.status === 'published') || [];
+    categories =
+      categoriesRes.data?.filter((cat) => cat.status === "published") || [];
+    teamMembers =
+      membersRes.data?.filter((member) => member.status === "published") || [];
   } catch (error) {
-    console.error('Failed to fetch team data:', error);
+    console.error("Failed to fetch team data:", error);
   }
 
-  return <TeamSectionClient categories={categories} teamMembers={teamMembers} />;
+  return (
+    <TeamSectionClient categories={categories} teamMembers={teamMembers} />
+  );
 }

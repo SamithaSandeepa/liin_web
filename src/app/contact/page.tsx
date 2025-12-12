@@ -60,7 +60,7 @@ export default function ContactPage() {
       <HeroSection
         title="Contact Us"
         subtitle="Let's work together to create meaningful impact"
-        backgroundImage="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920"
+        backgroundImage="/images/contact/cover.jpg"
       />
 
       <ContactInfoSection />
