@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Menu, X, ChevronDown, HandHeart, TrendingUp, Coins } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  HandHeart,
+  TrendingUp,
+  Coins,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface SubItem {
@@ -67,9 +74,7 @@ const navItems: NavItem[] = [
   {
     label: "Impact Funds",
     href: "/impact-funds",
-    subItems: [
-      { label: "Social Enterprise Fund", href: "/impact-funds/sef" },
-    ],
+    subItems: [{ label: "Impact Enterprise Fund", href: "/impact-funds/ief" }],
   },
 ];
 
