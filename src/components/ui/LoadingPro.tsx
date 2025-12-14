@@ -2,15 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { HashLoader } from "react-spinners";
 
 interface LoadingProProps {
   message?: string;
 }
 
 /**
- * Loading Component for LIIN using react-spinners HashLoader
- * Attractive hash spinner animation matching the brand colors
+ * Loading Component for LIIN with centered logo and circular spinner
+ * Clean centered design with spinning rings around the logo
  */
 export default function LoadingPro({
   message = "Loading...",
@@ -18,79 +17,107 @@ export default function LoadingPro({
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Trigger animation after component mounts
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 50);
-
+    const timer = setTimeout(() => setIsVisible(true), 50);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <>
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white animate-fade-in">
-        <div
-          className={`flex flex-col items-center gap-8 transition-all duration-700 ease-out ${
-            isVisible
-              ? "opacity-100 translate-y-0 scale-100"
-              : "opacity-0 translate-y-8 scale-95"
-          }`}
-        >
-          {/* HashLoader Spinner */}
-          <HashLoader 
-            color="#438ac9" 
-            size={80}
-            speedMultiplier={1}
-          />
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-br from-primary/30 via-white to-secondary/30">
+      <div
+        className={`flex flex-col items-center justify-center gap-8 transition-all duration-700 ${
+          isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        }`}
+      >
+        {/* Spinner Container - All elements centered */}
+        <div className="relative w-[200px] h-[200px] flex items-center justify-center">
+          {/* Outer Rotating Ring with Gradient */}
+          <div className="absolute inset-0 flex items-center justify-center animate-spin-slow">
+            <div className="w-[200px] h-[200px] rounded-full bg-gradient-to-r from-primary via-secondary to-primary opacity-20"></div>
+            {/* Orbiting dots */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-primary rounded-full shadow-lg"></div>
+            <div className="absolute bottom-0 right-1/4 w-3 h-3 bg-secondary rounded-full shadow-lg"></div>
+          </div>
 
-          {/* Logo */}
-          {/* <div className="relative w-[100px] h-[100px] animate-pulse-subtle">
+          {/* Middle Spinning Border */}
+          <div className="absolute inset-0 flex items-center justify-center animate-spin">
+            <div className="w-[200px] h-[200px] rounded-full border-4 border-transparent border-t-primary border-r-secondary"></div>
+          </div>
+
+          {/* Inner Glow Effect */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-[200px] h-[200px] rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 animate-pulse-glow"></div>
+          </div>
+
+          {/* Centered Logo */}
+          <div className="relative z-10 animate-float">
             <Image
               src="/images/LIIN_logo/Logomark_Full_Color.png"
               alt="LIIN Logo"
-              width={100}
-              height={100}
-              className="object-contain"
+              width={130}
+              height={130}
+              className="object-contain drop-shadow-2xl"
               priority
             />
-          </div> */}
-
-          {/* Loading text with dots */}
-          <div className="text-center">
-            <p className="text-primary text-xl font-semibold">
-              {message}
-              <span className="inline-flex ml-1">
-                <span
-                  className="animate-bounce-dot"
-                  style={{ animationDelay: "0ms" }}
-                >
-                  .
-                </span>
-                <span
-                  className="animate-bounce-dot"
-                  style={{ animationDelay: "150ms" }}
-                >
-                  .
-                </span>
-                <span
-                  className="animate-bounce-dot"
-                  style={{ animationDelay: "300ms" }}
-                >
-                  .
-                </span>
-              </span>
-            </p>
           </div>
+        </div>
+
+        {/* Loading Text */}
+        <div className="text-center">
+          <p className="text-primary text-xl font-semibold">
+            {message}
+            <span className="inline-flex ml-1">
+              <span
+                className="animate-bounce-dot"
+                style={{ animationDelay: "0ms" }}
+              >
+                .
+              </span>
+              <span
+                className="animate-bounce-dot"
+                style={{ animationDelay: "150ms" }}
+              >
+                .
+              </span>
+              <span
+                className="animate-bounce-dot"
+                style={{ animationDelay: "300ms" }}
+              >
+                .
+              </span>
+            </span>
+          </p>
         </div>
       </div>
 
       <style jsx>{`
-        @keyframes fade-in {
+        @keyframes spin-slow {
           from {
-            opacity: 0;
+            transform: rotate(0deg);
           }
           to {
+            transform: rotate(360deg);
+          }
+        }
+
+        @keyframes pulse-glow {
+          0%,
+          100% {
             opacity: 1;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.6;
+            transform: scale(1.05);
+          }
+        }
+
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
           }
         }
 
@@ -105,30 +132,22 @@ export default function LoadingPro({
           }
         }
 
-        @keyframes pulse-subtle {
-          0%,
-          100% {
-            opacity: 1;
-            transform: scale(1);
-          }
-          50% {
-            opacity: 0.9;
-            transform: scale(0.98);
-          }
+        .animate-spin-slow {
+          animation: spin-slow 4s linear infinite;
         }
 
-        .animate-fade-in {
-          animation: fade-in 0.3s ease-out;
+        .animate-pulse-glow {
+          animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
         }
 
         .animate-bounce-dot {
           animation: bounce-dot 1.4s ease-in-out infinite;
         }
-
-        .animate-pulse-subtle {
-          animation: pulse-subtle 2s ease-in-out infinite;
-        }
       `}</style>
-    </>
+    </div>
   );
 }

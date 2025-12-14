@@ -142,12 +142,12 @@ export default function PartnersSectionClient({ partners, categories }: Partners
       {/* Category Filter */}
       {categories.length > 0 && (
         <div className="flex justify-center mb-12">
-          <div className="bg-white rounded-full p-1.5 shadow-medium inline-flex flex-wrap justify-center">
+          <div className="bg-white rounded-lg md:rounded-full p-1.5 shadow-medium inline-flex flex-wrap justify-center gap-2">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`px-6 py-2 rounded-full text-sm font-semibold transition-all ${
+                className={`px-4 md:px-6 py-2 rounded-lg md:rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap ${
                   activeCategory === category.id
                     ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
                     : 'text-gray-600 hover:text-primary'
