@@ -23,6 +23,7 @@ export default function AdvertisementModal({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [filteredAds, setFilteredAds] = useState<Advertisement[]>([]);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   // Filter ads based on display frequency
   useEffect(() => {
@@ -45,11 +46,17 @@ export default function AdvertisementModal({
     }
   }, [advertisements]);
 
+  // Reset image loaded state when ad changes
+  useEffect(() => {
+    setImageLoaded(false);
+  }, [currentIndex]);
+
   // Auto-slide through ads (10 seconds each)
   useEffect(() => {
     if (!isOpen || filteredAds.length <= 1 || !isAutoPlaying) return;
 
     const interval = setInterval(() => {
+      setImageLoaded(false);
       setCurrentIndex((prev) => {
         const nextIndex = (prev + 1) % filteredAds.length;
         markAdAsDisplayed(filteredAds[nextIndex].id);
@@ -64,22 +71,26 @@ export default function AdvertisementModal({
     setIsOpen(false);
   };
 
-  const handlePrevious = () => {
-    setIsAutoPlaying(false);
-    setCurrentIndex((prev) => {
-      const prevIndex = (prev - 1 + filteredAds.length) % filteredAds.length;
-      markAdAsDisplayed(filteredAds[prevIndex].id);
-      return prevIndex;
-    });
-  };
+
 
   // Navigate to next ad
   const handleNext = () => {
     setIsAutoPlaying(false);
+    setImageLoaded(false);
     setCurrentIndex((prev) => {
       const nextIndex = (prev + 1) % filteredAds.length;
       markAdAsDisplayed(filteredAds[nextIndex].id);
       return nextIndex;
+    });
+  };
+
+  const handlePreviousNav = () => {
+    setIsAutoPlaying(false);
+    setImageLoaded(false);
+    setCurrentIndex((prev) => {
+      const prevIndex = (prev - 1 + filteredAds.length) % filteredAds.length;
+      markAdAsDisplayed(filteredAds[prevIndex].id);
+      return prevIndex;
     });
   };
 
@@ -117,8 +128,10 @@ export default function AdvertisementModal({
             {/* Main Wrapper: w-fit ensures it hugs the content (the image) */}
             <div className="relative w-fit max-w-[90vw] bg-white/0 flex flex-col items-center justify-center rounded-xl overflow-hidden shadow-2xl">
               
-              {/* Top Bar Area */}
-              <div className="w-full bg-white h-12 md:h-14 flex items-center justify-center relative z-20 px-4 border-b border-gray-100">
+              {/* Top Bar Area - Only show when image is loaded */}
+              <div className={`w-full bg-white h-12 md:h-14 flex items-center justify-center relative z-20 px-4 border-b border-gray-100 transition-opacity duration-300 ${
+                imageLoaded ? "opacity-100" : "opacity-0"
+              }`}>
                 {/* Title/Action Button - Centered */}
                 {currentAd.button_url ? (
                   <a
@@ -154,16 +167,19 @@ export default function AdvertisementModal({
                      alt={currentAd.title || "Advertisement"}
                      width={800}
                      height={600}
-                     className="w-auto h-auto max-h-[95vh] md:max-h-[85vh] object-contain block"
+                     className={`w-auto h-auto max-h-[95vh] md:max-h-[85vh] object-contain block transition-opacity duration-300 ${
+                       imageLoaded ? "opacity-100" : "opacity-0"
+                     }`}
+                     onLoad={() => setImageLoaded(true)}
                      priority
                    />
                   )}
 
-                  {/* Navigation Arrows (if multiple ads) */}
-                  {filteredAds.length > 1 && (
+                  {/* Navigation Arrows (if multiple ads) - Only show when image is loaded */}
+                  {filteredAds.length > 1 && imageLoaded && (
                     <>
                       <button
-                        onClick={handlePrevious}
+                        onClick={handlePreviousNav}
                         className="absolute left-3 top-1/2 -translate-y-1/2 z-30 p-1.5 bg-white/30 hover:bg-white/50 backdrop-blur-md rounded-full text-white transition-all hover:scale-110"
                         aria-label="Previous"
                       >
@@ -179,14 +195,15 @@ export default function AdvertisementModal({
                     </>
                   )}
                   
-                   {/* Progress Dots (if multiple ads) */}
-                   {filteredAds.length > 1 && (
+                   {/* Progress Dots (if multiple ads) - Only show when image is loaded */}
+                   {filteredAds.length > 1 && imageLoaded && (
                     <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex gap-1.5">
                       {filteredAds.map((_, index) => (
                         <button
                           key={index}
                           onClick={() => {
                             setIsAutoPlaying(false);
+                            setImageLoaded(false);
                             setCurrentIndex(index);
                             markAdAsDisplayed(filteredAds[index].id);
                           }}
