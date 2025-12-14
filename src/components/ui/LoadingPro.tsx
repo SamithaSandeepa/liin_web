@@ -62,7 +62,7 @@ export default function LoadingPro({
         </div>
 
         {/* Loading Text */}
-        <div className="text-center">
+        {/* <div className="text-center">
           <p className="text-primary text-xl font-semibold">
             {message}
             <span className="inline-flex ml-1">
@@ -86,7 +86,7 @@ export default function LoadingPro({
               </span>
             </span>
           </p>
-        </div>
+        </div> */}
       </div>
 
       <style jsx>{`
