@@ -22,7 +22,7 @@ export default function LoadingPro({
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-br from-primary/30 via-white to-secondary/30">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white/90">
       <div
         className={`flex flex-col items-center justify-center gap-8 transition-all duration-700 ${
           isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
