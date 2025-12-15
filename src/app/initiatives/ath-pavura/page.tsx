@@ -364,7 +364,7 @@ export default function AthPavuraPage() {
         primaryButtonText="Contact Us"
         primaryButtonLink="/contact"
         secondaryButtonText="View Investments"
-        secondaryButtonLink="/investments"
+        secondaryButtonLink="/investments/philosophy"
       />
     </>
   );

@@ -29,32 +29,32 @@ export default function LoadingPro({
         }`}
       >
         {/* Spinner Container - All elements centered */}
-        <div className="relative w-[200px] h-[200px] flex items-center justify-center">
+        <div className="relative w-[120px] h-[120px] flex items-center justify-center">
           {/* Outer Rotating Ring with Gradient */}
           <div className="absolute inset-0 flex items-center justify-center animate-spin-slow">
-            <div className="w-[200px] h-[200px] rounded-full bg-gradient-to-r from-primary via-secondary to-primary opacity-20"></div>
+            <div className="w-[120px] h-[120px] rounded-full bg-gradient-to-r from-primary via-secondary to-primary opacity-20"></div>
             {/* Orbiting dots */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-primary rounded-full shadow-lg"></div>
-            <div className="absolute bottom-0 right-1/4 w-3 h-3 bg-secondary rounded-full shadow-lg"></div>
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-primary rounded-full shadow-lg"></div>
+            <div className="absolute bottom-0 right-1/4 w-2 h-2 bg-secondary rounded-full shadow-lg"></div>
           </div>
 
           {/* Middle Spinning Border */}
           <div className="absolute inset-0 flex items-center justify-center animate-spin">
-            <div className="w-[200px] h-[200px] rounded-full border-4 border-transparent border-t-primary border-r-secondary"></div>
+            <div className="w-[120px] h-[120px] rounded-full border-4 border-transparent border-t-primary border-r-secondary"></div>
           </div>
 
           {/* Inner Glow Effect */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[200px] h-[200px] rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 animate-pulse-glow"></div>
+            <div className="w-[120px] h-[120px] rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 animate-pulse-glow"></div>
           </div>
 
           {/* Centered Logo */}
-          <div className="relative z-10 animate-float">
+          <div className="relative z-10 animate-float mt-2">
             <Image
               src="/images/LIIN_logo/Logomark_Full_Color.png"
               alt="LIIN Logo"
-              width={130}
-              height={130}
+              width={60}
+              height={60}
               className="object-contain drop-shadow-2xl"
               priority
             />
