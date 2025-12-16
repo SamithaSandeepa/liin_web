@@ -108,7 +108,6 @@ export default function AthPavuraPage() {
         subtitle="Pioneering Social Entrepreneurship in Sri Lanka"
         backgroundImage="/images/athpavura/cover.png"
         backgroundSize="cover"
-        height="16-9"
       />
 
       {/* Introduction */}
