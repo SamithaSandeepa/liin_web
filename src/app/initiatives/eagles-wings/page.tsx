@@ -137,7 +137,6 @@ export default function EaglesWingsPage() {
         title="On Eagle's Wings"
         subtitle="A Reality TV Journey for Impactful Entrepreneurship"
         backgroundImage="/images/eagleswings/cover.gif"
-        backgroundSize="cover"
       />
 
       {/* Introduction */}
