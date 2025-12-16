@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import AnimatedTextLoop from "@/components/ui/AnimatedTextLoop";
+import VideoSyncedText from "@/components/ui/VideoSyncedText";
 
 interface HeroSectionProps {
   title?: string;
@@ -162,8 +162,9 @@ export default function HeroSection({
 
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
-        {animatedPhrases ? (
-          <AnimatedTextLoop
+        {animatedPhrases && phraseDurations ? (
+          <VideoSyncedText
+            videoRef={videoRef}
             phrases={animatedPhrases}
             durations={phraseDurations}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-snug md:leading-tight text-shadow-lg min-h-[100px] md:min-h-[200px] flex items-center justify-center"

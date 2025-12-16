@@ -40,11 +40,11 @@ export default async function Home() {
   // 00.00.10.19 - 00.00.13.24 = 3.05s
   // 00.00.14.07 - 00.00.25.04 = 10.97s
   const heroDurations = [
-    2570, // "Investing in Profit with Purpose"
-    2970, // "Catalyzing Transformative Change"
-    3140, // "Empowering People"
-    3050, // "Commitment to a Living Planet"
-    8970, // "Sri Lanka's Pioneer in Impact Investing"
+    2680, // "Investing in Profit with Purpose"
+    2880, // "Catalyzing Transformative Change"
+    3200, // "Empowering People"
+    3800, // "Commitment to a Living Planet" - increased to appear later
+    11880, // "Sri Lanka's Pioneer in Impact Investing"
   ];
 
   // Fetch advertisements and hero banner from API (server-side)
