@@ -126,7 +126,7 @@ export default function ApproachCardExpanded({
               />
             </div>
             <div className="p-6 flex flex-col flex-grow">
-              <h3 className="text-2xl font-bold mb-4 text-primary">
+              <h3 className="text-2xl font-bold mb-4 text-primary min-h-[90px] flex items-start">
                 {card.title}
               </h3>
               <p className="text-sm mb-6 leading-relaxed text-gray-600 flex-grow text-justify">
