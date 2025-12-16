@@ -109,7 +109,7 @@ export default function LinkedWayPage() {
       >
         <div className="max-w-4xl mx-auto">
           <div className="animate-on-scroll">
-            <div className="bg-white p-8 rounded-2xl shadow-medium">
+            <div className="bg-white p-8 rounded-2xl shadow-medium text-justify">
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
                 LIINKEDWay is an initiative pioneered and hosted by Lanka Impact
                 Investing Network (LIIN) in collaboration with PwC&apos;s
