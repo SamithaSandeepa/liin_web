@@ -41,7 +41,7 @@ const platforms = [
     logo: "/images/platformslogos/awakasha.png",
     description:
       "Empowering the next generation of digital innovators through technology and mentorship.",
-    link: "/projects/pif",
+    link: "/projects/pie",
     color: "text-primary-dark",
     bg: "bg-primary-dark/10",
     border: "border-primary-dark/20",
@@ -53,12 +53,7 @@ const shouldEnableSlider = platforms.length > 4;
 
 // Duplicate items for infinite loop ONLY if sliding is enabled
 const displayPlatforms = shouldEnableSlider
-  ? [
-      ...platforms,
-      ...platforms,
-      ...platforms,
-      ...platforms,
-    ]
+  ? [...platforms, ...platforms, ...platforms, ...platforms]
   : platforms;
 
 export default function InitiativesShowcaseSection() {
@@ -273,8 +268,18 @@ export default function InitiativesShowcaseSection() {
             ref={containerRef}
             className={`
                 flex gap-8 px-8 pt-4 no-scrollbar 
-                ${shouldEnableSlider ? "overflow-x-auto" : "justify-center flex-wrap overflow-hidden"}
-                ${isDragging ? "cursor-grabbing" : shouldEnableSlider ? "cursor-grab" : "cursor-default"}
+                ${
+                  shouldEnableSlider
+                    ? "overflow-x-auto"
+                    : "justify-center flex-wrap overflow-hidden"
+                }
+                ${
+                  isDragging
+                    ? "cursor-grabbing"
+                    : shouldEnableSlider
+                    ? "cursor-grab"
+                    : "cursor-default"
+                }
             `}
             // Mouse Events (Desktop Drag & Hover)
             onMouseDown={handleMouseDown}
