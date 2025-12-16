@@ -27,7 +27,7 @@ export const offices: Office[] = [
   },
   {
     city: "Jaffna",
-    address: "No.42/3, Temple Road, Jaffna 40000 Sri Lanka",
+    address: "No.42/3, Temple Road, Jaffna, 40000 Sri Lanka",
     phone: "+94 77 605 1256",
     email: "info@liin.lk",
     mapLink:
