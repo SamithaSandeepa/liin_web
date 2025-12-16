@@ -41,8 +41,8 @@ export default async function Home() {
   // 00.00.14.07 - 00.00.25.04 = 10.97s
   const heroDurations = [
     2680, // "Investing in Profit with Purpose"
-    2880, // "Catalyzing Transformative Change"
-    3200, // "Empowering People"
+    3000, // "Catalyzing Transformative Change"
+    3300, // "Empowering People"
     3800, // "Commitment to a Living Planet" - increased to appear later
     11880, // "Sri Lanka's Pioneer in Impact Investing"
   ];
