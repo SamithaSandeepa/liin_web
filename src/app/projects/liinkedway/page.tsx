@@ -99,7 +99,7 @@ export default function LinkedWayPage() {
       <HeroSection
         title="LIINKEDWay"
         subtitle="Your Pathway to Investment Success"
-        backgroundImage="/images/projects/linked_way/cover.png"
+        backgroundImage="/images/projects/liinked_way/cover.png"
       />
 
       {/* Introduction */}
@@ -268,7 +268,7 @@ export default function LinkedWayPage() {
           <div className="animate-on-scroll">
             <div className="bg-white p-8 rounded-xl shadow-medium text-center">
               <Image
-                src="/images/partners/pwc_logo.png"
+                src="/images/projects/liinked_way/PWC.svg.png"
                 alt="PwC Logo"
                 width={200}
                 height={100}
