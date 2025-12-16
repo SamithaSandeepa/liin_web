@@ -98,6 +98,8 @@ export default function ClimateChallengePage() {
         title="Climate Challenge SL"
         subtitle="Creative Data Solutions for Resilience"
         backgroundImage="/images/projects/climate_challenge/cover.jpg"
+        backgroundSize="cover"
+        height="16-9"
       />
 
       {/* Introduction */}
