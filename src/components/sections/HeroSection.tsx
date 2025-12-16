@@ -10,7 +10,14 @@ interface HeroSectionProps {
   phraseDurations?: number[]; // Custom duration for each phrase in milliseconds
   backgroundImage?: string;
   backgroundVideo?: string;
-  height?: "default" | "fullscreen" | "large" | "medium" | "compact";
+  height?:
+    | "default"
+    | "fullscreen"
+    | "large"
+    | "medium"
+    | "compact"
+    | "16-9"
+    | "responsive";
   buttonText?: string | null;
   buttonUrl?: string | null;
   backgroundSize?: "cover" | "contain"; // New prop to control background sizing
@@ -37,6 +44,7 @@ export default function HeroSection({
     large: "min-h-[70vh] max-h-[800px]", // Large hero, capped
     medium: "min-h-[60vh] max-h-[600px]", // Medium hero
     compact: "min-h-[50vh] max-h-[500px]", // Compact hero
+    "16-9": "aspect-video", // Perfect 16:9 aspect ratio
   };
 
   const heightClass = heightClasses[height] || heightClasses.default;
