@@ -68,8 +68,8 @@ export default function InvestmentPhilosophyPage() {
       </Section>
 
       <Section
-        title="What is the Social Credit Score"
-        subtitle="Your Social Credit Score is a numeric representation of your investments towards Social Entrepreneurship and your online involvement with social causes. Check yours here!"
+        title="What is the LIINKEDWayit Score"
+        subtitle="Your LIINKEDWayit Score is a numeric representation of your investments towards Social Entrepreneurship and your online involvement with social causes. Check yours here!"
         background="gradient-primary"
         className="py-16"
       >
@@ -93,10 +93,9 @@ export default function InvestmentPhilosophyPage() {
         </div>
       </Section>
 
-      {/* Social Credit Score Content */}
-      <Section title="Social Credit Score" background="white">
+      {/* LIINKEDWayit Score Content */}
+      <Section title="LIINKEDWayit Score" background="white">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-4 text-gray-700 leading-relaxed text-justify">
             <p className="text-lg">
               In a perfect world, your worthiness would be measured not by your
               financial history alone, but by the impact your actions have on
@@ -104,10 +103,10 @@ export default function InvestmentPhilosophyPage() {
               we do is aimed towards creating a better world; which is why the
               investments you make towards Social Entrepreneurship, as well as
               your online involvement with social causes is measured and
-              represented as your Social Credit Score.
+              represented as your LIINKEDWayit Score.
             </p>
             <p className="text-lg font-semibold text-primary">
-              Feel Good, Create a Better World. Increase your Social Credit
+              Feel Good, Create a Better World. Increase your LIINKEDWayit
               Score.
             </p>
           </div>
@@ -115,7 +114,7 @@ export default function InvestmentPhilosophyPage() {
             <div className="relative rounded-lg overflow-hidden shadow-2xl aspect-video">
               <iframe
                 src="https://www.youtube.com/embed/wu6guOcmmr0"
-                title="Social Credit Score Video"
+                title="LIINKEDWayit Score Video"
                 className="w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -131,7 +130,7 @@ export default function InvestmentPhilosophyPage() {
           <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
             <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
               <h3 className="text-2xl font-bold text-gray-800">
-                Social Credit Score
+                LIINKEDWayit Score
               </h3>
               <button
                 onClick={() => setShowModal(false)}
@@ -141,9 +140,9 @@ export default function InvestmentPhilosophyPage() {
               </button>
             </div>
             <div className="p-6 lg:p-8">
-              <div className="space-y-4 text-gray-700 leading-relaxed text-justify">
+              <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p className="text-lg">
-                  Your Social Credit Score is based on a multiple of
+                  Your LIINKEDWayit Score is based on a multiple of
                   quantitative and qualitative measures. Points are allocated
                   for the project category chosen and the performance of your
                   Investee, which is determined by both sales figures and the
