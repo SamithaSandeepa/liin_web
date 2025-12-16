@@ -138,7 +138,6 @@ export default function EaglesWingsPage() {
         subtitle="A Reality TV Journey for Impactful Entrepreneurship"
         backgroundImage="/images/eagleswings/cover.gif"
         backgroundSize="cover"
-        height="16-9"
       />
 
       {/* Introduction */}
