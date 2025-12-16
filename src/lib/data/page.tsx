@@ -96,6 +96,7 @@ export default function InvestmentPhilosophyPage() {
       {/* LIINKEDWayit Score Content */}
       <Section title="LIINKEDWayit Score" background="white">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
             <p className="text-lg">
               In a perfect world, your worthiness would be measured not by your
               financial history alone, but by the impact your actions have on

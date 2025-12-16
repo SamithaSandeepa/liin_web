@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Section from "@/components/ui/Section";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,11 +20,24 @@ export default function TeamSectionClient({
   const [activeCategory, setActiveCategory] = useState<string>(
     categories[0]?.id || ""
   );
+  const [isMobile, setIsMobile] = useState(false);
 
   const getImageUrl = (assetId: string | null) => {
     if (!assetId) return "/images/default-team-member.svg";
     return getAssetUrl(assetId);
   };
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const currentTeam = teamMembers.filter(
     (member) => member.team_member_category === activeCategory
@@ -75,21 +88,30 @@ export default function TeamSectionClient({
       >
         {/* Team Group Photo */}
         <div className="animate-on-scroll mb-12">
-          <div className="relative w-full h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-hard bg-gray-100">
+          <div className="relative w-full h-[250px] md:h-[500px] rounded-2xl overflow-hidden shadow-hard bg-gray-100">
             <Image
-              src="/images/aboutus/ourteam.jpg"
+              src={
+                isMobile
+                  ? "/images/aboutus/ourteam.jpg"
+                  : "/images/aboutus/ourteam.webp"
+              }
               alt="LIIN Team"
               fill
-              className="object-contain"
+              className="object-cover md:object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-              <h3 className="text-2xl md:text-3xl font-bold">
-                Driving Impact Together
-              </h3>
-              <p className="text-white/90">
-                Our dedicated team working towards sustainable development
-              </p>
+            {/* Gradient overlay - stronger on mobile */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent md:bg-gradient-to-t md:from-primary/50 md:to-transparent" />
+
+            {/* Text container with better spacing */}
+            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+              <div className="max-w-2xl">
+                <h3 className="text-xl md:text-3xl font-bold mb-2 drop-shadow-lg">
+                  Driving Impact Together
+                </h3>
+                <p className="text-sm md:text-base text-white/95 drop-shadow-md line-clamp-2 md:line-clamp-none">
+                  Our dedicated team working towards sustainable development
+                </p>
+              </div>
             </div>
           </div>
         </div>

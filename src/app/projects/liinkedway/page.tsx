@@ -1,3 +1,4 @@
+import Image from "next/image";
 import HeroSection from "@/components/sections/HeroSection";
 import Section from "@/components/ui/Section";
 import {
@@ -266,9 +267,13 @@ export default function LinkedWayPage() {
         <div className="max-w-md mx-auto">
           <div className="animate-on-scroll">
             <div className="bg-white p-8 rounded-xl shadow-medium text-center">
-              <p className="font-bold text-xl text-gray-700">
-                PwC&apos;s Startup Accelerator
-              </p>
+              <Image
+                src="/images/partners/pwc_logo.png"
+                alt="PwC Logo"
+                width={200}
+                height={100}
+                className="mx-auto h-auto object-contain"
+              />
               <p className="text-gray-500 mt-2">Strategic Partner</p>
             </div>
           </div>
