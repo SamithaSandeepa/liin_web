@@ -37,14 +37,15 @@ export default function HeroSection({
 }: HeroSectionProps) {
   // Optimized height classes - accounts for header and uses standard sizes
   // Header is approximately 68px on desktop, 48px on mobile
+  // Mobile uses aspect ratio, desktop uses viewport-based heights
   const heightClasses: Record<string, string> = {
-    fullscreen: "min-h-[calc(100dvh-48px)] lg:min-h-[calc(100dvh-68px)]", // Full viewport minus header
+    fullscreen: "aspect-video md:min-h-[calc(100dvh-68px)] md:aspect-auto", // Aspect ratio on mobile, fullscreen on desktop
     default:
-      "min-h-[calc(100dvh-48px)] lg:min-h-[calc(100dvh-68px)] max-h-[900px]", // Full but capped
-    large: "min-h-[70vh] max-h-[800px]", // Large hero, capped
-    medium: "min-h-[60vh] max-h-[600px]", // Medium hero
-    compact: "min-h-[50vh] max-h-[500px]", // Compact hero
-    "16-9": "aspect-video", // Perfect 16:9 aspect ratio
+      "aspect-video md:min-h-[calc(100dvh-68px)] md:max-h-[900px] md:aspect-auto", // Aspect ratio on mobile, full but capped on desktop
+    large: "aspect-video md:min-h-[70vh] md:max-h-[800px] md:aspect-auto", // Aspect ratio on mobile, large on desktop
+    medium: "aspect-video md:min-h-[60vh] md:max-h-[600px] md:aspect-auto", // Aspect ratio on mobile, medium on desktop
+    compact: "aspect-video md:min-h-[50vh] md:max-h-[500px] md:aspect-auto", // Aspect ratio on mobile, compact on desktop
+    "16-9": "aspect-video", // Perfect 16:9 aspect ratio for all sizes
   };
 
   const heightClass = heightClasses[height] || heightClasses.default;
