@@ -106,7 +106,9 @@ export default function AthPavuraPage() {
       <HeroSection
         title="Ath Pavura"
         subtitle="Pioneering Social Entrepreneurship in Sri Lanka"
-        backgroundImage="/images/athpavura/cover.png"
+        backgroundImage="/images/athpavura/cover.jpg"
+        // backgroundSize="cover"
+        // height="16-9"
       />
 
       {/* Introduction */}
