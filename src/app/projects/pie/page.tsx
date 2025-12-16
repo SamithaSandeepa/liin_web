@@ -109,7 +109,7 @@ export default function PIEPage() {
 
             {/* Content Side */}
             <div className="animate-on-scroll">
-              <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+              <div className="space-y-6 text-gray-700 text-lg leading-relaxed text-justify">
                 <p>
                   PIE is a{" "}
                   <strong className="text-primary">one stop Digital Hub</strong>{" "}

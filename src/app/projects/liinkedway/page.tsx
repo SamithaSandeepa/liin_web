@@ -97,7 +97,7 @@ export default function LinkedWayPage() {
   return (
     <>
       <HeroSection
-        title="Liinked Way"
+        title="LIINKEDWay"
         subtitle="Your Pathway to Investment Success"
         backgroundImage="/images/projects/linked_way/cover.png"
       />
@@ -105,15 +105,15 @@ export default function LinkedWayPage() {
       {/* Introduction */}
       <Section
         id="introduction"
-        title="About Liinked Way"
+        title="About LIINKEDWay"
         subtitle="A pitching platform and learning hub for entrepreneurs"
       >
         <div className="max-w-4xl mx-auto">
           <div className="animate-on-scroll">
             <div className="bg-white p-8 rounded-2xl shadow-medium">
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                LIINKED WAY is an initiative pioneered and hosted by Lanka
-                Impact Investing Network (LIIN) in collaboration with PwC&apos;s
+                LIINKEDWay is an initiative pioneered and hosted by Lanka Impact
+                Investing Network (LIIN) in collaboration with PwC&apos;s
                 Startup Accelerator. It functions as a pitching platform and
                 learning hub for entrepreneurs to present their businesses to
                 investors and experts.
@@ -283,7 +283,7 @@ export default function LinkedWayPage() {
             Ready to Pitch Your Business?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join Liinked Way and get direct access to investors, expert
+            Join LIINKEDWay and get direct access to investors, expert
             mentorship, and the support you need to scale your venture.
           </p>
           <a

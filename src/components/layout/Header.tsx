@@ -58,7 +58,7 @@ const navItems: NavItem[] = [
           { label: "Climate Challenge", href: "/projects/climate-challenge" },
           { label: "PIE", href: "/projects/pie" },
           { label: "Emerging Women", href: "/projects/emerging-women" },
-          { label: "Liinked Way", href: "/projects/liinked-way" },
+          { label: "LIINKEDWay", href: "/projects/liinkedway" },
         ],
       },
     ],
@@ -153,14 +153,14 @@ export default function Header() {
                 <div className="hidden lg:flex justify-end items-center pb-3 border-b border-white/20 text-xs font-medium text-white/90 mb-2">
                   <div className="flex items-center gap-8">
                     <a
-                      href="#"
+                      href="/contact#contact-form"
                       className="flex items-center gap-2 hover:text-white hover:underline transition-all decoration-white/50"
                     >
                       <TrendingUp size={14} />
                       <span>Become an Investor</span>
                     </a>
                     <a
-                      href="#"
+                      href="/contact#contact-form"
                       className="flex items-center gap-2 hover:text-white hover:underline transition-all decoration-white/50"
                     >
                       <Coins size={14} />
