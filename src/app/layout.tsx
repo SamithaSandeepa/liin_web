@@ -8,6 +8,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AnimationProvider from "@/components/AnimationProvider";
 import InitialLoader from "@/components/ui/InitialLoader";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -43,6 +44,49 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <InitialLoader />
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+          toastOptions={{
+            duration: 4000,
+            style: {
+              background: '#fff',
+              color: '#333',
+              padding: '16px',
+              borderRadius: '12px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+              fontSize: '15px',
+              maxWidth: '500px',
+            },
+            success: {
+              style: {
+                border: '2px solid #0066CC',
+              },
+              iconTheme: {
+                primary: '#0066CC',
+                secondary: '#fff',
+              },
+            },
+            error: {
+              style: {
+                border: '2px solid #0066CC',
+              },
+              iconTheme: {
+                primary: '#0066CC',
+                secondary: '#fff',
+              },
+            },
+            loading: {
+              style: {
+                border: '2px solid #0066CC',
+              },
+              iconTheme: {
+                primary: '#0066CC',
+                secondary: '#fff',
+              },
+            },
+          }}
+        />
         <Header />
         <main>
           {children}
