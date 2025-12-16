@@ -18,7 +18,7 @@ export default function AboutPage() {
       {/* What Makes Us Different */}
       <Section id="about-content" title="What Makes Us Different">
         <div className="max-w-4xl mx-auto">
-          <div className="space-y-6 text-gray-700 leading-relaxed">
+          <div className="space-y-6 text-gray-700 leading-relaxed text-justify">
             <p className="text-lg">
               LIIN is Sri Lanka's first impact investment firm, dedicated
               exclusively to social enterprises. We operate as a not-for-profit
@@ -88,10 +88,36 @@ export default function AboutPage() {
                 <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-xl transform -translate-x-1/4 -translate-y-1/4 group-hover:scale-125 transition-transform duration-700"></div>
                 {/* Geometric Pattern */}
                 <div className="absolute bottom-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <svg width="120" height="120" viewBox="0 0 120 120" className="text-primary">
-                    <circle cx="60" cy="60" r="50" fill="none" stroke="currentColor" strokeWidth="2" />
-                    <circle cx="60" cy="60" r="35" fill="none" stroke="currentColor" strokeWidth="2" />
-                    <circle cx="60" cy="60" r="20" fill="none" stroke="currentColor" strokeWidth="2" />
+                  <svg
+                    width="120"
+                    height="120"
+                    viewBox="0 0 120 120"
+                    className="text-primary"
+                  >
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    />
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="35"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    />
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="20"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    />
                   </svg>
                 </div>
               </div>
@@ -110,16 +136,51 @@ export default function AboutPage() {
                 </p>
                 {/* Animated Background Elements */}
                 <div className="absolute inset-0 opacity-20">
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                  <div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary/30 rounded-full blur-3xl animate-pulse"
+                    style={{ animationDelay: "0.5s" }}
+                  ></div>
                 </div>
                 <div className="absolute bottom-0 right-0 w-40 h-40 bg-secondary/10 rounded-full blur-2xl transform translate-x-1/4 translate-y-1/4 group-hover:scale-150 transition-transform duration-700"></div>
                 <div className="absolute top-0 left-0 w-32 h-32 bg-secondary/10 rounded-full blur-xl transform -translate-x-1/4 -translate-y-1/4 group-hover:scale-125 transition-transform duration-700"></div>
                 {/* Geometric Pattern */}
                 <div className="absolute bottom-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <svg width="120" height="120" viewBox="0 0 120 120" className="text-secondary">
-                    <rect x="10" y="10" width="100" height="100" fill="none" stroke="currentColor" strokeWidth="2" rx="10" />
-                    <rect x="25" y="25" width="70" height="70" fill="none" stroke="currentColor" strokeWidth="2" rx="8" />
-                    <rect x="40" y="40" width="40" height="40" fill="none" stroke="currentColor" strokeWidth="2" rx="6" />
+                  <svg
+                    width="120"
+                    height="120"
+                    viewBox="0 0 120 120"
+                    className="text-secondary"
+                  >
+                    <rect
+                      x="10"
+                      y="10"
+                      width="100"
+                      height="100"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      rx="10"
+                    />
+                    <rect
+                      x="25"
+                      y="25"
+                      width="70"
+                      height="70"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      rx="8"
+                    />
+                    <rect
+                      x="40"
+                      y="40"
+                      width="40"
+                      height="40"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      rx="6"
+                    />
                   </svg>
                 </div>
               </div>

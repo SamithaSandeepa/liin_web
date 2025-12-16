@@ -10,7 +10,7 @@ interface HeroSectionProps {
   phraseDurations?: number[]; // Custom duration for each phrase in milliseconds
   backgroundImage?: string;
   backgroundVideo?: string;
-  height?: "default" | "fullscreen";
+  height?: "default" | "fullscreen" | "large" | "medium" | "compact";
   buttonText?: string | null;
   buttonUrl?: string | null;
   backgroundSize?: "cover" | "contain"; // New prop to control background sizing
@@ -28,8 +28,18 @@ export default function HeroSection({
   buttonUrl,
   backgroundSize = "cover", // Default to cover for backward compatibility
 }: HeroSectionProps) {
-  const heightClass =
-    height === "fullscreen" ? "min-h-[100dvh]" : "w-full aspect-video";
+  // Optimized height classes - accounts for header and uses standard sizes
+  // Header is approximately 68px on desktop, 48px on mobile
+  const heightClasses: Record<string, string> = {
+    fullscreen: "min-h-[calc(100dvh-48px)] lg:min-h-[calc(100dvh-68px)]", // Full viewport minus header
+    default:
+      "min-h-[calc(100dvh-48px)] lg:min-h-[calc(100dvh-68px)] max-h-[900px]", // Full but capped
+    large: "min-h-[70vh] max-h-[800px]", // Large hero, capped
+    medium: "min-h-[60vh] max-h-[600px]", // Medium hero
+    compact: "min-h-[50vh] max-h-[500px]", // Compact hero
+  };
+
+  const heightClass = heightClasses[height] || heightClasses.default;
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
@@ -61,7 +71,7 @@ export default function HeroSection({
       const playVideo = async () => {
         try {
           // Wait a bit for page loader to disappear first
-          await new Promise(resolve => setTimeout(resolve, 100));
+          await new Promise((resolve) => setTimeout(resolve, 100));
           await video.play();
           setVideoLoaded(true); // Also set on successful play
         } catch (err) {
@@ -82,7 +92,6 @@ export default function HeroSection({
         video.removeEventListener("canplay", handleVideoReady);
         video.removeEventListener("playing", handleVideoReady);
       };
-
     }
 
     // Retry on user interaction (for strict mobile policies)

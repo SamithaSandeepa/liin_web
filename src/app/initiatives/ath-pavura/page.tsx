@@ -157,7 +157,12 @@ export default function AthPavuraPage() {
       </Section>
 
       {/* Impact & Achievements */}
-      <Section id="impact" title="Impact & Achievements" background="secondary" className="relative">
+      <Section
+        id="impact"
+        title="Impact & Achievements"
+        background="secondary"
+        className="relative"
+      >
         <PrismaBackground />
         <div className="max-w-5xl mx-auto relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -272,7 +277,7 @@ export default function AthPavuraPage() {
           </div>
           <div className="mt-8 text-center">
             <a
-              href="/projects"
+              href="/investments/investees"
               className="inline-block bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-primary/90 hover:scale-105 transition-all"
             >
               Learn More About Our Investments
@@ -364,7 +369,7 @@ export default function AthPavuraPage() {
         primaryButtonText="Contact Us"
         primaryButtonLink="/contact"
         secondaryButtonText="View Investments"
-        secondaryButtonLink="/investments"
+        secondaryButtonLink="/investments/philosophy"
       />
     </>
   );

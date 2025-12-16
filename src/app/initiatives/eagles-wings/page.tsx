@@ -142,7 +142,7 @@ export default function EaglesWingsPage() {
       {/* Introduction */}
       <Section id="intro" title="Empowering Visionary Entrepreneurs">
         <div className="max-w-4xl mx-auto">
-          <div className="space-y-6 text-gray-700 leading-relaxed">
+          <div className="space-y-6 text-gray-700 leading-relaxed text-justify">
             <p className="text-lg">
               Welcome to <strong>"On Eagle's Wings"</strong>, a groundbreaking
               initiative designed to nurture and empower visionary

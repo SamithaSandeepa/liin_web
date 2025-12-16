@@ -106,7 +106,7 @@ export default function ClimateChallengePage() {
       >
         <div className="max-w-4xl mx-auto">
           <div className="animate-on-scroll">
-            <div className="bg-white p-8 rounded-2xl shadow-medium">
+            <div className="bg-white p-8 rounded-2xl shadow-medium text-justify">
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
                 Climate Challenge SL is Sri Lanka&apos;s inaugural climate
                 hackathon focused on empowering data-driven innovations. The

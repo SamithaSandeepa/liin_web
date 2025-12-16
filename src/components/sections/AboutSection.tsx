@@ -1,4 +1,5 @@
 import Section from "@/components/ui/Section";
+import Link from "next/link";
 import Button from "@/components/ui/Button";
 import InvestmentBackground from "@/components/ui/InvestmentBackground";
 
@@ -22,12 +23,16 @@ export default function AboutSection() {
         pressing social and environmental issues across Sri Lanka.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-        <Button variant="primary" size="lg">
-          About Us
-        </Button>
-        <Button variant="primary" size="lg">
-          Investment Philosophy
-        </Button>
+        <Link href="/about">
+          <Button variant="primary" size="lg">
+            About Us
+          </Button>
+        </Link>
+        <Link href="/investments/philosophy">
+          <Button variant="primary" size="lg">
+            Investment Philosophy
+          </Button>
+        </Link>
       </div>
       </div>
     </Section>

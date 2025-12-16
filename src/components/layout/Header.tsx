@@ -58,7 +58,7 @@ const navItems: NavItem[] = [
           { label: "Climate Challenge", href: "/projects/climate-challenge" },
           { label: "PIE", href: "/projects/pie" },
           { label: "Emerging Women", href: "/projects/emerging-women" },
-          { label: "Liinked Way", href: "/projects/liinked-way" },
+          { label: "LIINKEDWay", href: "/projects/liinkedway" },
         ],
       },
     ],
@@ -127,7 +127,7 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 bg-primary shadow-lg">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="flex items-center justify-between lg:gap-12 py-3 lg:py-4">
+          <div className="flex items-center justify-between lg:gap-12 py-3 lg:py-2">
             {/* Logo - Left Side */}
             <a
               href="/"
@@ -141,7 +141,7 @@ export default function Header() {
                 alt="LIIN Logo"
                 width={120}
                 height={120}
-                className="object-contain h-10 lg:h-16 w-auto"
+                className="object-contain h-10 lg:h-12 w-auto"
                 priority
               />
             </a>
@@ -153,14 +153,14 @@ export default function Header() {
                 <div className="hidden lg:flex justify-end items-center pb-3 border-b border-white/20 text-xs font-medium text-white/90 mb-2">
                   <div className="flex items-center gap-8">
                     <a
-                      href="#"
+                      href="/contact#contact-form"
                       className="flex items-center gap-2 hover:text-white hover:underline transition-all decoration-white/50"
                     >
                       <TrendingUp size={14} />
                       <span>Become an Investor</span>
                     </a>
                     <a
-                      href="#"
+                      href="/contact#contact-form"
                       className="flex items-center gap-2 hover:text-white hover:underline transition-all decoration-white/50"
                     >
                       <Coins size={14} />
@@ -306,7 +306,7 @@ export default function Header() {
           >
             <div className="flex flex-col h-full">
               {/* Menu Header */}
-              <div className="flex items-center justify-between py-4 lg:py-4 px-6 border-b border-white/20">
+              <div className="flex items-center justify-between py-4 lg:py-2 px-6 border-b border-white/20">
                 {/* Logo - Mobile only */}
                 <a
                   href="/"
