@@ -72,16 +72,16 @@ export default function ContactPage() {
         subtitle="Visit us at our locations across Sri Lanka"
         background="white"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto md:items-start">
           {offices.map((office, idx) => (
             <div
               key={idx}
-              className="animate-on-scroll bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl shadow-medium hover:shadow-hard transition-all p-8 border border-primary/10"
+              className="animate-on-scroll bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl shadow-medium hover:shadow-hard transition-all p-8 border border-primary/10 flex flex-col"
               style={{ animationDelay: `${idx * 100}ms` }}
             >
               {/* Office Title */}
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shrink-0">
                   <Building2 size={24} className="text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-800">
@@ -90,8 +90,8 @@ export default function ContactPage() {
               </div>
 
               {/* Address */}
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
+              <div className="space-y-6 flex-1">
+                <div className="grid grid-cols-[20px_1fr] gap-3 items-start min-h-[90px]">
                   <MapPin
                     size={20}
                     className="text-primary flex-shrink-0 mt-1"
@@ -115,7 +115,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Phone */}
-                <div className="flex items-center gap-3">
+                <div className="grid grid-cols-[20px_1fr] gap-3 items-center">
                   <Phone size={20} className="text-primary flex-shrink-0" />
                   <a
                     href={`tel:${office.phone.replace(/\s/g, "")}`}
@@ -126,7 +126,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Email */}
-                <div className="flex items-center gap-3">
+                <div className="grid grid-cols-[20px_1fr] gap-3 items-center">
                   <Mail size={20} className="text-primary flex-shrink-0" />
                   <a
                     href={`mailto:${office.email}`}
