@@ -85,7 +85,7 @@ const partners = [
   { name: "USAID", logo: "/images/projects/climate_challenge/USAID.webp" },
   {
     name: "Climate Collective Foundation",
-    logo: "/images/projects/climate_challenge/CCF.webp",
+    logo: "/images/projects/climate_challenge/CCF.png",
   },
 ];
 
@@ -98,7 +98,6 @@ export default function ClimateChallengePage() {
         title="Climate Challenge SL"
         subtitle="Creative Data Solutions for Resilience"
         backgroundImage="/images/projects/climate_challenge/cover.jpg"
-        backgroundSize="cover"
         height="16-9"
       />
 
