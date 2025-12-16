@@ -82,8 +82,11 @@ const prizes = [
 ];
 
 const partners = [
-  { name: "USAID", logo: "/images/partners/usaid.png" },
-  { name: "Climate Collective Foundation", logo: "/images/partners/ccf.png" },
+  { name: "USAID", logo: "/images/projects/climate_challenge/USAID.webp" },
+  {
+    name: "Climate Collective Foundation",
+    logo: "/images/projects/climate_challenge/CCF.webp",
+  },
 ];
 
 const partnersTextOnly = ["USAID", "Climate Collective Foundation (CCF)"];
@@ -314,19 +317,23 @@ export default function ClimateChallengePage() {
       <Section id="partners" title="Partners">
         <div className="max-w-3xl mx-auto">
           <div className="flex flex-wrap justify-center items-center gap-8">
-            {partnersTextOnly.map((partner, idx) => (
+            {partners.map((partner, idx) => (
               <div key={idx} className="animate-on-scroll">
                 <div className="bg-white px-8 py-6 rounded-xl shadow-medium hover:shadow-hard transition-all">
-                  <p className="font-semibold text-gray-700 text-center">
-                    {partner}
-                  </p>
+                  <Image
+                    src={partner.logo}
+                    alt={partner.name}
+                    width={150}
+                    height={75}
+                    className="object-contain"
+                  />
+                  {/* <p className="font-semibold text-gray-700 text-center">
+                    {partner.name}
+                  </p> */}
                 </div>
               </div>
             ))}
           </div>
-          <p className="text-center text-gray-500 mt-6 text-sm">
-            Partner logos will be added here
-          </p>
         </div>
       </Section>
 

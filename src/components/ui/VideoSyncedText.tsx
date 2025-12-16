@@ -11,7 +11,7 @@ interface VideoSyncedTextProps {
 
 /**
  * VideoSyncedText - Syncs text animation to video playback time
- * 
+ *
  * TIMER ADJUSTMENTS:
  * - Line 108: Fade out duration (300ms) - time for text to fade out before changing
  * - Line 84: Fallback fade duration (400ms) - used when no video
@@ -30,11 +30,11 @@ export default function VideoSyncedText({
 
   // Different animation for each phrase (same as original AnimatedTextLoop)
   const animations = [
-    "typewriter",    // Character by character typing
-    "letterReveal",  // Letters appear with stagger
-    "splitCenter",   // Words split from center
-    "wave",          // Wave effect on words
-    "rotateFlip",    // 3D rotate and flip effect
+    "typewriter", // Character by character typing
+    "letterReveal", // Letters appear with stagger
+    "splitCenter", // Words split from center
+    "wave", // Wave effect on words
+    "rotateFlip", // 3D rotate and flip effect
   ];
 
   const currentAnimation = animations[currentIndex % animations.length];
@@ -72,7 +72,7 @@ export default function VideoSyncedText({
   // Sync with video timeupdate
   useEffect(() => {
     const video = videoRef.current;
-    
+
     // Fallback timer-based animation if no video
     if (!video) {
       let idx = 0;
@@ -91,7 +91,7 @@ export default function VideoSyncedText({
 
       const timers: NodeJS.Timeout[] = [];
       let elapsed = durations[0];
-      
+
       for (let i = 0; i < 100; i++) {
         const timer = setTimeout(runTimer, elapsed);
         timers.push(timer);
@@ -173,7 +173,11 @@ export default function VideoSyncedText({
   if (currentAnimation === "typewriter") {
     const words = typewriterText.split(" ");
     return (
-      <div className={`${wrapperClasses} transition-opacity duration-300 ${isAnimating ? "opacity-100" : "opacity-0"} text-center`}>
+      <div
+        className={`${wrapperClasses} transition-opacity duration-300 ${
+          isAnimating ? "opacity-100" : "opacity-0"
+        } text-center`}
+      >
         <div className="inline-block max-w-full">
           {words.map((word, idx) => (
             <span key={idx} className="inline-block whitespace-nowrap mr-4">
@@ -195,7 +199,10 @@ export default function VideoSyncedText({
       <div className={`${wrapperClasses} text-center`}>
         <div className="inline-block max-w-full">
           {words.map((word, wordIdx) => (
-            <span key={`word-${wordIdx}`} className="inline-block whitespace-nowrap mr-4">
+            <span
+              key={`word-${wordIdx}`}
+              className="inline-block whitespace-nowrap mr-4"
+            >
               {word.split("").map((letter, letterIdx) => {
                 const currentLetterCount = letterCount++;
                 return (
@@ -243,11 +250,15 @@ export default function VideoSyncedText({
     const rightWords = words.slice(mid);
 
     return (
-      <div className={`${wrapperClasses} flex flex-wrap items-center justify-center gap-x-4 gap-y-0 text-center overflow-hidden leading-none`}>
+      <div
+        className={`${wrapperClasses} flex flex-wrap items-center justify-center gap-x-4 gap-y-0 text-center overflow-hidden leading-none`}
+      >
         {leftWords.map((word, idx) => (
           <span
             key={`left-${currentIndex}-${idx}`}
-            className={`whitespace-nowrap ${isAnimating ? "animate-slide-from-left" : ""}`}
+            className={`whitespace-nowrap ${
+              isAnimating ? "animate-slide-from-left" : ""
+            }`}
             style={{
               animationDelay: `${idx * 100}ms`,
               animationFillMode: "forwards",
@@ -259,7 +270,9 @@ export default function VideoSyncedText({
         {rightWords.map((word, idx) => (
           <span
             key={`right-${currentIndex}-${idx}`}
-            className={`whitespace-nowrap ${isAnimating ? "animate-slide-from-right" : ""}`}
+            className={`whitespace-nowrap ${
+              isAnimating ? "animate-slide-from-right" : ""
+            }`}
             style={{
               animationDelay: `${idx * 100}ms`,
               animationFillMode: "forwards",
@@ -304,7 +317,9 @@ export default function VideoSyncedText({
   if (currentAnimation === "wave") {
     const words = displayText.split(" ");
     return (
-      <div className={`${wrapperClasses} flex flex-wrap items-center justify-center gap-x-4 gap-y-0 text-center leading-none`}>
+      <div
+        className={`${wrapperClasses} flex flex-wrap items-center justify-center gap-x-4 gap-y-0 text-center leading-none`}
+      >
         {words.map((word, idx) => (
           <span
             key={`wave-${currentIndex}-${idx}`}
@@ -325,7 +340,8 @@ export default function VideoSyncedText({
         ))}
         <style jsx>{`
           @keyframes wave {
-            0%, 100% {
+            0%,
+            100% {
               transform: translateY(0);
             }
             50% {
@@ -341,11 +357,15 @@ export default function VideoSyncedText({
   if (currentAnimation === "rotateFlip") {
     const words = displayText.split(" ");
     return (
-      <div className={`${wrapperClasses} flex flex-wrap items-center justify-center gap-x-4 gap-y-0 text-center leading-none`}>
+      <div
+        className={`${wrapperClasses} flex flex-wrap items-center justify-center gap-x-4 gap-y-0 text-center leading-none`}
+      >
         {words.map((word, idx) => (
           <span
             key={`rotate-${currentIndex}-${idx}`}
-            className={`inline-block whitespace-nowrap ${isAnimating ? "animate-rotate-flip" : ""}`}
+            className={`inline-block whitespace-nowrap ${
+              isAnimating ? "animate-rotate-flip" : ""
+            }`}
             style={{
               animationDelay: `${idx * 120}ms`,
               animationFillMode: "forwards",

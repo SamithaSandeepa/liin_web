@@ -9,7 +9,6 @@ import {
   Briefcase,
   Target,
   Clock,
-  ArrowRight,
   CheckCircle2,
   FileText,
 } from "lucide-react";
@@ -152,12 +151,12 @@ export default function LinkedWayPage() {
                       </div>
                       <p className="text-gray-600">{item.description}</p>
                     </div>
-                    {idx < programSteps.length - 1 && (
+                    {/* {idx < programSteps.length - 1 && (
                       <ArrowRight
                         className="text-gray-300 hidden md:block"
                         size={24}
                       />
-                    )}
+                    )} */}
                   </div>
                 </div>
               </div>
@@ -169,9 +168,9 @@ export default function LinkedWayPage() {
       {/* Pitch Format */}
       <Section id="pitch-format" title="Pitch Session Format">
         <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 auto-rows-fr">
             <div className="animate-on-scroll">
-              <div className="bg-gradient-to-br from-primary to-secondary p-8 rounded-2xl shadow-hard text-white">
+              <div className="bg-gradient-to-br from-primary to-secondary p-8 rounded-2xl shadow-hard text-white h-full">
                 <Presentation size={48} className="mb-4" />
                 <h3 className="text-2xl font-bold mb-6">Session Structure</h3>
                 <div className="space-y-4">

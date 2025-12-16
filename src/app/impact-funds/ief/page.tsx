@@ -200,17 +200,19 @@ export default function ImpactEnterpriseFundPage() {
         title="Benefits Offered to Portfolio Companies"
         background="white"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto auto-rows-fr">
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className="group bg-gradient-to-br from-white to-primary/5 border-2 border-gray-200 rounded-2xl p-8 hover:border-primary hover:shadow-xl transition-all duration-300"
+              className={`group bg-gradient-to-br from-white to-primary/5 border-2 border-gray-200 rounded-2xl p-8 hover:border-primary hover:shadow-xl transition-all duration-300 h-full flex flex-col ${
+                index === 0 ? "lg:pr-16" : ""
+              }`}
             >
-              <div className="flex items-start gap-4">
+              <div className="flex gap-4">
                 <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                   <Award className="w-6 h-6 text-white" />
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="text-xl font-bold text-primary mb-3">
                     {benefit.title}
                   </h3>

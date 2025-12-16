@@ -73,7 +73,7 @@ const navItems: NavItem[] = [
   },
   {
     label: "Impact Funds",
-    href: "/impact-funds",
+    href: "#impact-funds",
     subItems: [{ label: "Impact Enterprise Fund", href: "/impact-funds/ief" }],
   },
 ];
