@@ -8,6 +8,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AnimationProvider from "@/components/AnimationProvider";
 import InitialLoader from "@/components/ui/InitialLoader";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
@@ -87,6 +88,7 @@ export default function RootLayout({
             },
           }}
         />
+        <ScrollToTop />
         <Header />
         <main>
           {children}

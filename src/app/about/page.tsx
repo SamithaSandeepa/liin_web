@@ -16,7 +16,11 @@ export default function AboutPage() {
       />
 
       {/* What Makes Us Different */}
-      <Section id="about-content" title="What Makes Us Different">
+      <Section
+        id="about-content"
+        title="What Makes Us Different"
+        className="relative overflow-hidden scroll-mt-20"
+      >
         <div className="max-w-4xl mx-auto">
           <div className="space-y-6 text-gray-700 leading-relaxed text-justify">
             <p className="text-lg">
