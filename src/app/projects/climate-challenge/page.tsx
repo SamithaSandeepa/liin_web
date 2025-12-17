@@ -316,20 +316,18 @@ export default function ClimateChallengePage() {
       {/* Partners */}
       <Section id="partners" title="Partners">
         <div className="max-w-3xl mx-auto">
-          <div className="flex flex-wrap justify-center items-center gap-8">
+          <div className="flex flex-wrap justify-center items-stretch gap-8">
             {partners.map((partner, idx) => (
               <div key={idx} className="animate-on-scroll">
-                <div className="bg-white px-8 py-6 rounded-xl shadow-medium hover:shadow-hard transition-all">
-                  <Image
-                    src={partner.logo}
-                    alt={partner.name}
-                    width={150}
-                    height={75}
-                    className="object-contain"
-                  />
-                  {/* <p className="font-semibold text-gray-700 text-center">
-                    {partner.name}
-                  </p> */}
+                <div className="bg-white px-8 py-6 rounded-xl shadow-medium hover:shadow-hard transition-all w-[200px] h-[120px] flex items-center justify-center">
+                  <div className="relative w-[150px] h-[75px]">
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
               </div>
             ))}
