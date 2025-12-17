@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Section from '@/components/ui/Section';
-import InvestmentBackground from '@/components/ui/InvestmentBackground';
-import toast from 'react-hot-toast';
+import { useState } from "react";
+import Section from "@/components/ui/Section";
+import InvestmentBackground from "@/components/ui/InvestmentBackground";
+import toast from "react-hot-toast";
 
 /**
  * ContactFormSection - Client component for form interactivity
@@ -13,12 +13,12 @@ import toast from 'react-hot-toast';
  */
 export default function ContactFormSection() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-    type: 'general'
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+    type: "general",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,13 +28,13 @@ export default function ContactFormSection() {
     setIsSubmitting(true);
 
     // Show loading toast
-    const loadingToast = toast.loading('Sending your message...');
+    const loadingToast = toast.loading("Sending your message...");
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: formData.name,
@@ -48,24 +48,32 @@ export default function ContactFormSection() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message');
+        throw new Error(data.error || "Failed to send message");
       }
 
       // Success!
-      toast.success('Message sent successfully! We\'ll get back to you soon.', {
+      toast.success("Message sent successfully! We'll get back to you soon.", {
         id: loadingToast,
         duration: 5000,
       });
 
       // Reset form after success
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '', type: 'general' });
-
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+        type: "general",
+      });
     } catch (error) {
-      console.error('Form submission error:', error);
-      
+      console.error("Form submission error:", error);
+
       // Show error toast
       toast.error(
-        error instanceof Error ? error.message : 'Failed to send message. Please try again.',
+        error instanceof Error
+          ? error.message
+          : "Failed to send message. Please try again.",
         {
           id: loadingToast,
           duration: 5000,
@@ -77,19 +85,29 @@ export default function ContactFormSection() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
   return (
-    <Section id="contact-form" title="Send Us a Message" background="gray" className="relative overflow-hidden">
+    <Section
+      id="contact-form"
+      title="Send Us a Message"
+      background="gray"
+      className="relative overflow-hidden scroll-mt-20"
+    >
       <InvestmentBackground />
       <div className="relative z-10 max-w-3xl mx-auto">
-        <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 rounded-2xl shadow-hard">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white p-8 md:p-12 rounded-2xl shadow-hard"
+        >
           {/* Inquiry Type */}
           <div className="mb-6">
             <label htmlFor="type" className="block text-sm font-semibold mb-2">
@@ -162,7 +180,10 @@ export default function ContactFormSection() {
 
           {/* Subject */}
           <div className="mb-6">
-            <label htmlFor="subject" className="block text-sm font-semibold mb-2">
+            <label
+              htmlFor="subject"
+              className="block text-sm font-semibold mb-2"
+            >
               Subject (Optional)
             </label>
             <input
@@ -178,7 +199,10 @@ export default function ContactFormSection() {
 
           {/* Message */}
           <div className="mb-8">
-            <label htmlFor="message" className="block text-sm font-semibold mb-2">
+            <label
+              htmlFor="message"
+              className="block text-sm font-semibold mb-2"
+            >
               Message *
             </label>
             <textarea
@@ -204,20 +228,36 @@ export default function ContactFormSection() {
             disabled={isSubmitting}
             className={`w-full py-4 rounded-full font-bold text-lg transition-all shadow-lg ${
               isSubmitting
-                ? 'bg-gray-400 cursor-not-allowed opacity-70'
-                : 'bg-primary text-white hover:bg-primary-dark hover:scale-105'
+                ? "bg-gray-400 cursor-not-allowed opacity-70"
+                : "bg-primary text-white hover:bg-primary-dark hover:scale-105"
             }`}
           >
             {isSubmitting ? (
               <span className="flex items-center justify-center gap-2">
-                <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <svg
+                  className="animate-spin h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
                 </svg>
                 Sending...
               </span>
             ) : (
-              'Send Message'
+              "Send Message"
             )}
           </button>
         </form>

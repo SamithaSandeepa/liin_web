@@ -85,6 +85,7 @@ export default function TeamSectionClient({
         title="Meet Our Team"
         subtitle="Experienced professionals driving impact across Sri Lanka"
         background="gray"
+        className="relative overflow-hidden scroll-mt-20"
       >
         {/* Team Group Photo */}
         <div className="animate-on-scroll mb-12">
