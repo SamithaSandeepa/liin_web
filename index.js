@@ -7,7 +7,7 @@ const env = {
   ...process.env,
   NODE_ENV: 'production',
   PORT: process.env.PORT || 50000,
-  HOSTNAME: process.env.HOSTNAME || '127.0.0.1'
+  HOSTNAME: process.env.HOSTNAME || '0.0.0.0'
 };
 
 console.log('Starting Next.js standalone server...');
