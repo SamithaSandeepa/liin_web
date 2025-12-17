@@ -42,8 +42,8 @@ export default async function Home() {
   const heroDurations = [
     2680, // "Investing in Profit with Purpose"
     3000, // "Catalyzing Transformative Change"
-    3300, // "Empowering People"
-    3800, // "Commitment to a Living Planet" - increased to appear later
+    4500, // "Empowering People"
+    3500, // "Commitment to a Living Planet" - increased to appear later
     11880, // "Sri Lanka's Pioneer in Impact Investing"
   ];
 
@@ -59,7 +59,7 @@ export default async function Home() {
         backgroundVideo={
           mainBanner?.background_video
             ? getAssetUrl(mainBanner.background_video)
-            : "/videos/hero/hero.webm"
+            : undefined
         }
         buttonText={mainBanner?.button_text}
         buttonUrl={mainBanner?.button_url}
