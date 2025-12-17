@@ -28,7 +28,7 @@ export default function SDGSection() {
     >
       <div className="max-w-4xl mx-auto mb-12 text-center">
         <p className="text-lg text-gray-700 leading-relaxed">
-          At Lanka Impact Investing Network (LIIN), our initiatives are closely aligned with the United Nations Sustainable Development Goals (SDGs) Agenda 2030. Through our investments and programs, we strive to foster inclusive economic growth, promote sustainable business practices, empower women, and build partnerships that generate lasting social and environmental impact across Sri Lanka.
+          At Lanka Impact Investing Network (LIIN), our initiatives are closely aligned with the United Nations Sustainable Development Goals (SDGs) Agenda 2030. Through our investments and programs, we strive to foster inclusive economic growth, promote sustainable business practices, empower women, and build partnerships that generate lasting social and environmental impact across Sri Lanka
         </p>
       </div>
 
