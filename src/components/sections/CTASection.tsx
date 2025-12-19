@@ -1,5 +1,5 @@
-import { ctaData } from '@/lib/data/cta';
-import { TrendingUp, Lightbulb } from 'lucide-react';
+import { ctaData } from "@/lib/data/cta";
+import { TrendingUp, Lightbulb } from "lucide-react";
 
 // Icon mapping
 const iconMap = {
@@ -15,9 +15,9 @@ export default function CTASection() {
         <div
           className="relative flex items-center justify-center p-8 md:p-12 lg:p-16 h-full"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1560472355-536de3962603?w=800)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
+            backgroundImage: "url(/images/cta/investor.jpg)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         >
           {/* Blue Overlay */}
@@ -27,8 +27,15 @@ export default function CTASection() {
           <div className="relative z-10 text-center max-w-md animate-on-scroll flex flex-col items-center">
             <div className="mb-6 md:h-16 flex items-center justify-center">
               {(() => {
-                const IconComponent = iconMap[ctaData[0].icon as keyof typeof iconMap];
-                return IconComponent ? <IconComponent size={64} className="mx-auto text-white" strokeWidth={1.5} /> : null;
+                const IconComponent =
+                  iconMap[ctaData[0].icon as keyof typeof iconMap];
+                return IconComponent ? (
+                  <IconComponent
+                    size={64}
+                    className="mx-auto text-white"
+                    strokeWidth={1.5}
+                  />
+                ) : null;
               })()}
             </div>
             <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white md:h-20 flex items-center justify-center">
@@ -50,9 +57,10 @@ export default function CTASection() {
         <div
           className="relative flex items-center justify-center p-8 md:p-12 lg:p-16 h-full"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         >
           {/* Darker Blue Overlay */}
@@ -62,8 +70,15 @@ export default function CTASection() {
           <div className="relative z-10 text-center max-w-md animate-on-scroll flex flex-col items-center">
             <div className="mb-6 md:h-16 flex items-center justify-center">
               {(() => {
-                const IconComponent = iconMap[ctaData[1].icon as keyof typeof iconMap];
-                return IconComponent ? <IconComponent size={64} className="mx-auto text-white" strokeWidth={1.5} /> : null;
+                const IconComponent =
+                  iconMap[ctaData[1].icon as keyof typeof iconMap];
+                return IconComponent ? (
+                  <IconComponent
+                    size={64}
+                    className="mx-auto text-white"
+                    strokeWidth={1.5}
+                  />
+                ) : null;
               })()}
             </div>
             <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white md:h-20 flex items-center justify-center">
