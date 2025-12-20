@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Section from '@/components/ui/Section';
-import { sdgImages } from '@/lib/data/sdgs';
+import { useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Section from "@/components/ui/Section";
+import { sdgImages } from "@/lib/data/sdgs";
 
 export default function SDGSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -27,8 +27,13 @@ export default function SDGSection() {
       background="white"
     >
       <div className="max-w-4xl mx-auto mb-12 text-center">
-        <p className="text-lg text-gray-700 leading-relaxed">
-          At Lanka Impact Investing Network (LIIN), our initiatives are closely aligned with the United Nations Sustainable Development Goals (SDGs) Agenda 2030. Through our investments and programs, we strive to foster inclusive economic growth, promote sustainable business practices, empower women, and build partnerships that generate lasting social and environmental impact across Sri Lanka.
+        <p className="text-xl text-gray-700 leading-relaxed text-justify">
+          At Lanka Impact Investing Network (LIIN), our initiatives are closely
+          aligned with the United Nations Sustainable Development Goals (SDGs)
+          Agenda 2030. Through our investments and programs, we strive to foster
+          inclusive economic growth, promote sustainable business practices,
+          empower women, and build partnerships that generate lasting social and
+          environmental impact across Sri Lanka.
         </p>
       </div>
 
@@ -59,7 +64,10 @@ export default function SDGSection() {
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
             {sdgImages
-              .slice(currentSlide * itemsPerPage, (currentSlide + 1) * itemsPerPage)
+              .slice(
+                currentSlide * itemsPerPage,
+                (currentSlide + 1) * itemsPerPage
+              )
               .map((sdg, idx) => (
                 <div
                   key={`${currentSlide}-${idx}`}
@@ -84,7 +92,7 @@ export default function SDGSection() {
               key={idx}
               onClick={() => setCurrentSlide(idx)}
               className={`w-3 h-3 rounded-full transition-all ${
-                idx === currentSlide ? 'bg-primary w-6' : 'bg-gray-300'
+                idx === currentSlide ? "bg-primary w-6" : "bg-gray-300"
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
