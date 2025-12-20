@@ -1,4 +1,12 @@
-import { Facebook, Linkedin, Instagram, Youtube, MapPin, Phone, Mail } from "lucide-react";
+import {
+  Facebook,
+  Linkedin,
+  Instagram,
+  Youtube,
+  MapPin,
+  Phone,
+  Mail,
+} from "lucide-react";
 
 interface SocialLink {
   name: string;
@@ -15,7 +23,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
-  { label: "On Eagle's Wings", href: "/eagles-wings" },
+  { label: "On Eagle's Wings", href: "/initiatives/eagles-wings" },
   { label: "News and Insights", href: "/news" },
   { label: "Investments", href: "/investments" },
   { label: "Impact Funds", href: "/impact" },
@@ -105,9 +113,9 @@ export default function Footer() {
                     Address
                   </h3>
                   <address className="text-sm opacity-90 not-italic">
-                    <a 
-                      href="https://www.google.com/maps/dir//lanka+impact+investing+network/@6.921621,79.8536131,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3ae25968acacee83:0x42af46f654d274e7!2m2!1d79.8563538!2d6.9216365?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D" 
-                      target="_blank" 
+                    <a
+                      href="https://www.google.com/maps/dir//lanka+impact+investing+network/@6.921621,79.8536131,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3ae25968acacee83:0x42af46f654d274e7!2m2!1d79.8563538!2d6.9216365?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="hover:opacity-100 transition-opacity block hover:text-white"
                     >
