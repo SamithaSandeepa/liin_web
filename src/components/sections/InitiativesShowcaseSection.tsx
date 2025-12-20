@@ -222,7 +222,7 @@ export default function InitiativesShowcaseSection() {
 
       <div className="relative z-10 w-full">
         {/* Title and Subtitle */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 sm:mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-primary">
             Our Initiatives
           </h2>
@@ -319,7 +319,7 @@ export default function InitiativesShowcaseSection() {
                 {/* Clean Floating Item */}
                 <div
                   className={`
-                  group/card h-full p-6 transition-all duration-300
+                  group/card h-full p-2 sm:p-6 transition-all duration-300
                   hover:-translate-y-2
                 `}
                 >
@@ -339,7 +339,7 @@ export default function InitiativesShowcaseSection() {
                   <h3 className="text-2xl font-bold text-gray-800 text-center mb-3 group-hover/card:text-primary transition-colors">
                     {platform.name}
                   </h3>
-                  <p className="text-gray-600 text-justify leading-relaxed mb-8 text-sm md:text-base border-l-2 border-transparent group-hover/card:border-primary/30 pl-0 group-hover/card:pl-3 transition-all duration-300">
+                  <p className="text-gray-600 text-justify leading-relaxed mb-2 sm:mb-8 text-sm md:text-base border-l-2 border-transparent group-hover/card:border-primary/30 pl-0 group-hover/card:pl-3 transition-all duration-300">
                     {platform.description}
                   </p>
 

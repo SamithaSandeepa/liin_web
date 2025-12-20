@@ -93,6 +93,12 @@ const sidebarItems: NavItem[] = [
   { label: "Contact Us", href: "/contact" },
 ];
 
+// Quick action items for mobile sidebar
+const quickActionItems = [
+  { label: "Become an Investor", href: "/contact#contact-form", icon: TrendingUp },
+  { label: "Apply for Funding", href: "/contact#contact-form", icon: Coins },
+];
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -306,7 +312,7 @@ export default function Header() {
           >
             <div className="flex flex-col h-full">
               {/* Menu Header */}
-              <div className="flex items-center justify-between py-4 lg:py-2 px-6 border-b border-white/20">
+              <div className="flex items-center justify-between py-3 lg:py-2 px-6 border-b border-white/20">
                 {/* Logo - Mobile only */}
                 <a
                   href="/"
@@ -454,7 +460,7 @@ export default function Header() {
                   </div>
 
                   {/* Sidebar Items (always shown) */}
-                  <div className="pt-4 border-t border-white/20 mt-4 lg:pt-0 lg:border-0 lg:mt-0 space-y-1">
+                  <div className="sm:pt-4 sm:border-t sm:border-white/20 sm:mt-4 lg:pt-0 lg:border-0 lg:mt-0 space-y-1">
                     {sidebarItems.map((item) => (
                       <li key={item.label}>
                         {item.subItems ? (
@@ -507,6 +513,25 @@ export default function Header() {
                         )}
                       </li>
                     ))}
+
+                    {/* Quick Action Items - Mobile Only */}
+                    <div className="lg:hidden pt-4 mt-4 border-t border-white/20">
+                      {quickActionItems.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <li key={item.label}>
+                            <a
+                              href={item.href}
+                              onClick={closeMenu}
+                              className="flex items-center gap-2 px-4 py-2 text-white/70 text-xs font-medium hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                            >
+                              <Icon size={12} />
+                              <span>{item.label}</span>
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </div>
                   </div>
                 </ul>
               </nav>

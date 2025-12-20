@@ -39,8 +39,7 @@ export default function Section({
       "bg-gradient-to-r from-primary to-primary-light text-white",
     "gradient-secondary":
       "bg-gradient-to-br from-secondary to-secondary-light text-white",
-    "gradient-grey":
-      "bg-gradient-to-r from-grey-dark to-grey text-white",
+    "gradient-grey": "bg-gradient-to-r from-grey-dark to-grey text-white",
   };
 
   const containerSizes = {
@@ -54,20 +53,30 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`py-20 px-6 ${backgrounds[background]} ${className}`}
+      className={`py-12 sm:py-20 px-6 ${backgrounds[background]} ${className}`}
     >
       <div className={`container mx-auto ${containerSizes[containerSize]}`}>
         {(title || subtitle) && (
-          <div className="text-center mb-16">
+          <div className="text-center mb-8 sm:mb-16">
             {title && (
-              <h2 className={`text-4xl lg:text-5xl font-bold mb-4 ${
-                ['white', 'gray', 'grey-light'].includes(background) ? 'text-primary' : ''
-              }`}>{title}</h2>
+              <h2
+                className={`text-4xl lg:text-5xl font-bold mb-4 ${
+                  ["white", "gray", "grey-light"].includes(background)
+                    ? "text-primary"
+                    : ""
+                }`}
+              >
+                {title}
+              </h2>
             )}
             {subtitle && (
-              <p className={`text-lg lg:text-xl max-w-4xl mx-auto ${
-                ['white', 'gray', 'grey-light'].includes(background) ? 'text-gray-600' : 'opacity-90'
-              }`}>
+              <p
+                className={`text-lg lg:text-xl max-w-4xl mx-auto ${
+                  ["white", "gray", "grey-light"].includes(background)
+                    ? "text-gray-600"
+                    : "opacity-90"
+                }`}
+              >
                 {subtitle}
               </p>
             )}

@@ -66,7 +66,7 @@ export default function ApproachCardExpanded({
                   <h3 className="text-2xl font-bold mb-4 text-primary">
                     {card.title}
                   </h3>
-                  <p className="text-sm mb-6 leading-relaxed text-gray-600 flex-grow">
+                  <p className="text-sm mb-6 leading-relaxed text-gray-600 flex-grow text-justify">
                     {card.desc}
                   </p>
                   <Link
