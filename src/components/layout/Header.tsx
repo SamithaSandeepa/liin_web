@@ -312,7 +312,7 @@ export default function Header() {
           >
             <div className="flex flex-col h-full">
               {/* Menu Header */}
-              <div className="flex items-center justify-between py-4 lg:py-2 px-6 border-b border-white/20">
+              <div className="flex items-center justify-between py-3 lg:py-2 px-6 border-b border-white/20">
                 {/* Logo - Mobile only */}
                 <a
                   href="/"

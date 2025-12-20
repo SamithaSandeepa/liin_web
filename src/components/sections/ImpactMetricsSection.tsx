@@ -12,7 +12,7 @@ export default function ImpactMetricsSection() {
       className="relative"
     >
       <PrismaBackground />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 text-center relative z-10">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-8 text-center relative z-10">
         {impactMetrics.map((metric, idx) => {
           const IconComponent = metric.icon;
           return (
