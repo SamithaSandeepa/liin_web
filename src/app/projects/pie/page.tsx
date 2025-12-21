@@ -159,12 +159,12 @@ export default function PIEPage() {
         subtitle="5-Step Journey to Transform Your Business"
         background="gray"
       >
-        <div className="max-w-4xl mx-auto sm:text-justify">
+        <div className="max-w-4xl mx-auto text-justify">
           <div className="space-y-8">
             {programSteps.map((item, idx) => (
               <div
                 key={idx}
-                className="animate-on-scroll flex gap-6"
+                className="animate-on-scroll flex flex-col md:flex-row gap-6"
                 style={{ animationDelay: `${idx * 100}ms` }}
               >
                 {/* Step Number */}
@@ -181,7 +181,7 @@ export default function PIEPage() {
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 leading-relaxed break-words">
                     {item.description}
                   </p>
                 </div>

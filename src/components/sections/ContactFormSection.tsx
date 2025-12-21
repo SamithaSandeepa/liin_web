@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import Section from "@/components/ui/Section";
 import InvestmentBackground from "@/components/ui/InvestmentBackground";
 import toast from "react-hot-toast";
@@ -18,7 +19,7 @@ export default function ContactFormSection() {
     phone: "",
     subject: "",
     message: "",
-    type: "general",
+    type: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -113,19 +114,25 @@ export default function ContactFormSection() {
             <label htmlFor="type" className="block text-sm font-semibold mb-2">
               I am interested in:
             </label>
-            <select
-              id="type"
-              name="type"
-              value={formData.type}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-primary focus:outline-none transition-colors"
-              required
-            >
-              <option value="general">General Inquiry</option>
-              <option value="investor">Becoming an Investor</option>
-              <option value="funding">Applying for Funding</option>
-              <option value="partnership">Partnership Opportunities</option>
-            </select>
+            <div className="relative">
+              <select
+                id="type"
+                name="type"
+                value={formData.type}
+                onChange={handleChange}
+                className="w-full pr-10 px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-primary focus:outline-none transition-colors appearance-none"
+                required
+              >
+                <option value="" disabled>
+                  -- Please select an option --
+                </option>
+                <option value="general">General Inquiry</option>
+                <option value="investor">Becoming an Investor</option>
+                <option value="funding">Applying for Funding</option>
+                <option value="partnership">Partnership Opportunities</option>
+              </select>
+              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
+            </div>
           </div>
 
           {/* Name */}
