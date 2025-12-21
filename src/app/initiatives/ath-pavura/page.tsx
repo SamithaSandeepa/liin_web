@@ -46,14 +46,16 @@ const impactStats = [
   { label: "Enterprises Funded", value: "37", suffix: "", icon: Target },
   {
     label: "Average Investment Size",
-    value: "1,070,000",
+    value: "1.07",
     prefix: "LKR ",
+    suffix: "M",
     icon: DollarSign,
   },
   {
     label: "Total Capital Committed",
-    value: "50,000,000",
+    value: "50",
     prefix: "LKR ",
+    suffix: "M",
     icon: TrendingUp,
   },
 ];
