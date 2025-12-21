@@ -232,7 +232,7 @@ export default function AthPavuraPage() {
                   <Youtube size={24} className="text-red-600" />
                 </div>
                 <CounterAnimation
-                  value="17,000 +"
+                  value="17K+"
                   duration={2}
                   className="text-2xl font-bold text-primary mb-1"
                 />
@@ -245,7 +245,7 @@ export default function AthPavuraPage() {
                   <Youtube size={24} className="text-red-600" />
                 </div>
                 <CounterAnimation
-                  value="13,500,000 +"
+                  value="13.5M+"
                   duration={2.5}
                   className="text-2xl font-bold text-primary mb-1"
                 />
@@ -258,7 +258,7 @@ export default function AthPavuraPage() {
                   <Facebook size={24} className="text-blue-600" />
                 </div>
                 <CounterAnimation
-                  value="14,000 +"
+                  value="14K+"
                   duration={2}
                   className="text-2xl font-bold text-primary mb-1"
                 />
@@ -271,7 +271,7 @@ export default function AthPavuraPage() {
                   <Facebook size={24} className="text-blue-600" />
                 </div>
                 <CounterAnimation
-                  value="213,000 +"
+                  value="213K+"
                   duration={2}
                   className="text-2xl font-bold text-primary mb-1"
                 />
