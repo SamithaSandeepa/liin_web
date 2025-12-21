@@ -146,7 +146,7 @@ export default function PIEPage() {
               alt="PIE Platform"
               width={1200}
               height={500}
-              className="w-auto min-h-50 sm:min-h-100 mx-auto object-contain"
+              className="w-full h-auto mx-auto object-contain"
             />
           </div>
         </div>
@@ -159,7 +159,7 @@ export default function PIEPage() {
         subtitle="5-Step Journey to Transform Your Business"
         background="gray"
       >
-        <div className="max-w-4xl mx-auto text-justify">
+        <div className="max-w-4xl mx-auto sm:text-justify">
           <div className="space-y-8">
             {programSteps.map((item, idx) => (
               <div
