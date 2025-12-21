@@ -146,7 +146,7 @@ export default function PIEPage() {
               alt="PIE Platform"
               width={1200}
               height={500}
-              className="w-auto min-h-100 mx-auto object-fit"
+              className="w-auto min-h-50 sm:min-h-100 mx-auto object-contain"
             />
           </div>
         </div>

@@ -304,10 +304,10 @@ export default function AthPavuraPage() {
       {/* Partners */}
       <Section id="partners" title="Partners & Sponsors">
         <div className="max-w-4xl mx-auto">
-          <div className="flex flex-wrap justify-center items-center gap-6">
+          <div className="grid grid-cols-2 md:flex md:flex-wrap justify-center items-center gap-6">
             {partnersWithLogos.map((partner, idx) => (
               <div key={idx} className="animate-on-scroll">
-                <div className="bg-white p-6 rounded-xl shadow-medium hover:shadow-hard transition-all flex items-center justify-center h-24 w-40">
+                <div className="bg-white p-6 rounded-xl shadow-medium hover:shadow-hard transition-all flex items-center justify-center h-24 w-full md:w-40">
                   <Image
                     src={partner.logo}
                     alt={partner.name}
