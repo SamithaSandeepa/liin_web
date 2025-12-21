@@ -212,6 +212,8 @@ export default function InitiativesShowcaseSection() {
   return (
     <Section
       id="initiatives"
+      title="Our Initiatives"
+      subtitle="Driving transformative change through innovative programs"
       className="relative overflow-hidden"
       background="gray"
     >
@@ -221,16 +223,6 @@ export default function InitiativesShowcaseSection() {
       </div> */}
 
       <div className="relative z-10 w-full">
-        {/* Title and Subtitle */}
-        <div className="text-center mb-8 sm:mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-primary">
-            Our Initiatives
-          </h2>
-          <p className="text-lg lg:text-xl max-w-4xl mx-auto text-gray-600">
-            Driving transformative change through innovative programs
-          </p>
-        </div>
-
         {/* Interactive Slider Container */}
         <div className="w-full relative group">
           {/* Gradient Masks (Only show if slider enabled) */}
