@@ -1,5 +1,6 @@
 import { ctaData } from "@/lib/data/cta";
 import { TrendingUp, Lightbulb } from "lucide-react";
+import Image from "next/image";
 
 // Icon mapping
 const iconMap = {
@@ -12,14 +13,16 @@ export default function CTASection() {
     <section id="cta" className="relative">
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
         {/* Become an Investor - Left Side */}
-        <div
-          className="relative flex items-center justify-center p-8 md:p-12 lg:p-16 h-full"
-          style={{
-            backgroundImage: "url(/images/cta/investor.jpg)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
+        <div className="relative flex items-center justify-center p-8 md:p-12 lg:p-16 h-full overflow-hidden">
+          {/* Background image (use Next/Image for reliable mobile rendering) */}
+          <Image
+            src="/images/cta/investor.jpg"
+            alt="Investor background"
+            fill
+            priority
+            unoptimized
+            className="absolute inset-0 object-cover w-full h-full"
+          />
           {/* Blue Overlay */}
           <div className="absolute inset-0 bg-primary/85" />
 
@@ -54,15 +57,15 @@ export default function CTASection() {
         </div>
 
         {/* Apply for Funding - Right Side */}
-        <div
-          className="relative flex items-center justify-center p-8 md:p-12 lg:p-16 h-full"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
+        <div className="relative flex items-center justify-center p-8 md:p-12 lg:p-16 h-full overflow-hidden">
+          <Image
+            src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200"
+            alt="Funding background"
+            fill
+            priority
+            unoptimized
+            className="absolute inset-0 object-cover w-full h-full"
+          />
           {/* Darker Blue Overlay */}
           <div className="absolute inset-0 bg-secondary/90" />
 
