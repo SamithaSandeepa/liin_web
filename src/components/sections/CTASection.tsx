@@ -16,7 +16,7 @@ export default function CTASection() {
         <div className="relative flex items-center justify-center p-8 md:p-12 lg:p-16 h-full overflow-hidden">
           {/* Background image (use Next/Image for reliable mobile rendering) */}
           <Image
-            src="/images/cta/investor.jpg"
+            src="/images/cta/Investor.jpg"
             alt="Investor background"
             fill
             priority
