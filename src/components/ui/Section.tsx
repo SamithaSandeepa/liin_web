@@ -60,7 +60,7 @@ export default function Section({
           <div className="text-center mb-8 sm:mb-16">
             {title && (
               <h2
-                className={`text-4xl lg:text-5xl font-bold mb-4 ${
+                className={`text-3xl lg:text-5xl font-bold mb-4 ${
                   ["white", "gray", "grey-light"].includes(background)
                     ? "text-primary"
                     : ""
