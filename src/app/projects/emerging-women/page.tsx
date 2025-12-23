@@ -1,5 +1,6 @@
 import HeroSection from "@/components/sections/HeroSection";
 import Section from "@/components/ui/Section";
+import JoinNetworkSection from "@/components/sections/JoinNetworkSection";
 import {
   Users,
   Award,
@@ -193,31 +194,15 @@ export default function EmergingWomenPage() {
       </Section>
 
       {/* CTA */}
-      <Section background="gradient-primary">
-        <div className="text-center text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Join the Movement
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Be part of a community empowering women entrepreneurs to create
-            lasting impact in Sri Lanka.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              className="inline-block bg-white text-primary px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-colors shadow-lg"
-            >
-              Join as Entrepreneur
-            </a>
-            <a
-              href="/contact"
-              className="inline-block bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition-colors"
-            >
-              Become a Mentor
-            </a>
-          </div>
-        </div>
-      </Section>
+      <JoinNetworkSection
+        title="Join the Movement"
+        subtitle="Be part of a community empowering women entrepreneurs to create lasting impact in Sri Lanka."
+        description=""
+        primaryButtonText="Join as Entrepreneur"
+        primaryButtonLink="/contact#contact-form"
+        secondaryButtonText="Become a Mentor"
+        secondaryButtonLink="/contact"
+      />
     </>
   );
 }
