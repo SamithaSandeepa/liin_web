@@ -1,5 +1,6 @@
 import HeroSection from "@/components/sections/HeroSection";
 import Section from "@/components/ui/Section";
+import JoinNetworkSection from "@/components/sections/JoinNetworkSection";
 import Image from "next/image";
 import {
   Users,
@@ -292,35 +293,13 @@ export default function PIEPage() {
       </Section>
 
       {/* Join CTA */}
-      <Section id="apply" title="JOIN THE NEXT COHORT">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="animate-on-scroll">
-            <div className="max-w-2xl mx-auto space-y-4 text-gray-700 text-lg leading-relaxed mb-10 text-justify">
-              <p>
-                We are excited to announce that a new cohort of entrepreneurs
-                will soon begin their journey with PIE. If you are an
-                entrepreneur or startup looking to grow your business, gain
-                mentorship, and access market and investment opportunities, we
-                invite you to apply.
-              </p>
-
-              <p>
-                Interested entrepreneurs can fill out the online application
-                form and submit your details to join the PIE Platform. Don't
-                miss the opportunity to take your enterprise to the next level!
-              </p>
-            </div>
-
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-primary text-white px-10 py-4 rounded-lg font-semibold hover:bg-primary/90 transition-colors text-lg"
-            >
-              <span>Apply Now</span>
-              <ArrowRight size={20} />
-            </a>
-          </div>
-        </div>
-      </Section>
+      <JoinNetworkSection
+        title="JOIN THE NEXT COHORT"
+        subtitle="We are excited to announce that a new cohort of entrepreneurs will soon begin their journey with PIE. If you are an entrepreneur or startup looking to grow your business, gain mentorship, and access market and investment opportunities, we invite you to apply."
+        description="Interested entrepreneurs can fill out the online application form and submit your details to join the PIE Platform. Don't miss the opportunity to take your enterprise to the next level!"
+        primaryButtonText="Apply Now"
+        primaryButtonLink="/contact#contact-form"
+      />
     </>
   );
 }
