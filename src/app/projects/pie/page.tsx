@@ -160,7 +160,7 @@ export default function PIEPage() {
         subtitle="5-Step Journey to Transform Your Business"
         background="gray"
       >
-        <div className="max-w-4xl mx-auto text-justify">
+        <div className="max-w-4xl mx-auto">
           <div className="space-y-8">
             {programSteps.map((item, idx) => (
               <div
