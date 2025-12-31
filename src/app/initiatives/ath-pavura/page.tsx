@@ -225,9 +225,9 @@ export default function AthPavuraPage() {
       {/* Online Presence */}
       <Section id="online" title="Online Presence & Engagement">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 items-stretch">
             <div className="animate-on-scroll">
-              <div className="bg-white p-6 rounded-2xl shadow-medium hover:shadow-hard transition-all text-center">
+              <div className="bg-white p-6 rounded-2xl shadow-medium hover:shadow-hard transition-all text-center h-full flex flex-col">
                 <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
                   <Youtube size={24} className="text-red-600" />
                 </div>
@@ -240,7 +240,7 @@ export default function AthPavuraPage() {
               </div>
             </div>
             <div className="animate-on-scroll">
-              <div className="bg-white p-6 rounded-2xl shadow-medium hover:shadow-hard transition-all text-center">
+              <div className="bg-white p-6 rounded-2xl shadow-medium hover:shadow-hard transition-all text-center h-full flex flex-col">
                 <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
                   <Youtube size={24} className="text-red-600" />
                 </div>
@@ -253,7 +253,7 @@ export default function AthPavuraPage() {
               </div>
             </div>
             <div className="animate-on-scroll">
-              <div className="bg-white p-6 rounded-2xl shadow-medium hover:shadow-hard transition-all text-center">
+              <div className="bg-white p-6 rounded-2xl shadow-medium hover:shadow-hard transition-all text-center h-full flex flex-col">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
                   <Facebook size={24} className="text-blue-600" />
                 </div>
@@ -266,7 +266,7 @@ export default function AthPavuraPage() {
               </div>
             </div>
             <div className="animate-on-scroll">
-              <div className="bg-white p-6 rounded-2xl shadow-medium hover:shadow-hard transition-all text-center">
+              <div className="bg-white p-6 rounded-2xl shadow-medium hover:shadow-hard transition-all text-center h-full flex flex-col">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
                   <Facebook size={24} className="text-blue-600" />
                 </div>

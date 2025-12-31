@@ -45,10 +45,10 @@ export default function PartnersSectionClient({ partners, categories }: Partners
     ? partners.filter((partner) => partner.partner_category === activeCategory)
     : partners;
 
-  // Auto-scroll animation (desktop only)
+  // Auto-scroll animation (works on both desktop and mobile)
   useEffect(() => {
     const container = containerRef.current;
-    if (!container || isMobile || filteredPartners.length === 0) return;
+    if (!container || filteredPartners.length === 0) return;
 
     const animate = (currentTime: number) => {
       if (!isPaused && !isDragging && container) {
@@ -77,7 +77,7 @@ export default function PartnersSectionClient({ partners, categories }: Partners
       }
       lastTimeRef.current = 0;
     };
-  }, [isPaused, isDragging, isMobile, filteredPartners]);
+  }, [isPaused, isDragging, filteredPartners]);
 
   // Desktop drag handlers
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -178,28 +178,6 @@ export default function PartnersSectionClient({ partners, categories }: Partners
               {/* Gradient Masks */}
               <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
               <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
-
-              {/* Navigation Arrows - Desktop only, visible on hover */}
-              {!isMobile && (
-                <>
-                  <button
-                    onClick={() => scroll('left')}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    aria-label="Scroll left"
-                    type="button"
-                  >
-                    <ChevronLeft className="w-5 h-5 text-primary" />
-                  </button>
-                  <button
-                    onClick={() => scroll('right')}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    aria-label="Scroll right"
-                    type="button"
-                  >
-                    <ChevronRight className="w-5 h-5 text-primary" />
-                  </button>
-                </>
-              )}
 
               {/* Scrollable Container */}
               <div
