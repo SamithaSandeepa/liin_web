@@ -21,6 +21,7 @@ export default function PartnersSectionClient({ partners, categories }: Partners
   const startX = useRef(0);
   const scrollLeftStart = useRef(0);
   const hasTouched = useRef(false);
+  const scrollPosRef = useRef(0);
 
   useEffect(() => {
     if (categories.length > 0 && !categories.some(c => c.id === activeCategory)) {
@@ -54,16 +55,22 @@ export default function PartnersSectionClient({ partners, categories }: Partners
       if (!isPaused && !isDragging && container) {
         if (lastTimeRef.current === 0) {
           lastTimeRef.current = currentTime;
+          // Sync precise position with actual DOM position on start/resume
+          scrollPosRef.current = container.scrollLeft;
         }
         const deltaTime = currentTime - lastTimeRef.current;
         lastTimeRef.current = currentTime;
 
         const speed = 0.03 * deltaTime; // 30 pixels per second
-        container.scrollLeft += speed;
+        
+        // Use ref for subpixel precision
+        scrollPosRef.current += speed;
+        container.scrollLeft = scrollPosRef.current;
 
         // Stop at the end
         if (container.scrollLeft >= container.scrollWidth - container.clientWidth) {
           container.scrollLeft = 0; // Reset to start
+          scrollPosRef.current = 0;
         }
       }
       animationRef.current = requestAnimationFrame(animate);
